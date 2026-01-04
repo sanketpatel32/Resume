@@ -2,14 +2,14 @@ export const resume = {
     name: "Sanket Patel",
     title: "Full-Stack Developer",
     summary:
-        "I build scalable web apps that solve real problems. My focus is on writing clean code, creating smooth user experiences, and turning complex ideas into working products.",
+        "I specialize in building robust, scalable backend APIs and server-side applications. My focus is on designing clean RESTful architectures, optimizing database performance, and creating reliable systems that power seamless user experiences.",
     highlights: [
-        "Full-Stack Development",
-        "AI/ML & NLP",
+        "Backend API Development",
+        "Node.js & Express.js",
+        "RESTful API Design",
+        "Database Architecture",
         "Real-Time Systems",
-        "Cloud Computing",
-        "Database Design",
-        "API Development",
+        "Cloud Services & DevOps",
     ],
     career: [
         {
@@ -18,8 +18,10 @@ export const resume = {
             dates: "Sept 2025 - Present",
             location: "Remote",
             bullets: [
-                "Built a full-stack AI interview platform using React, Node.js, Express, and FastAPI with WebSockets for real-time tracking, JWT-based authentication, role-based access control, and AWS SES email notifications.",
-                "Developed an NLP-based automated interview scoring system using PyTorch and Sentence Transformers, applying semantic similarity, spaCy, and fuzzy matching techniques to evaluate candidate responses and reduce manual recruiter review time.",
+                "Designed and developed RESTful APIs using Node.js and Express.js for an AI interview platform, implementing JWT-based authentication, role-based access control, and modular middleware architecture.",
+                "Built real-time communication features using Socket.io for live interview tracking and instant notifications, handling concurrent user sessions efficiently.",
+                "Integrated AWS services (SES, S3) for email notifications and file storage, implementing secure API endpoints with proper error handling and validation.",
+                "Optimized MongoDB queries and designed efficient database schemas, improving API response times and ensuring data integrity across the platform.",
             ],
         },
         {
@@ -113,10 +115,11 @@ export const resume = {
         email: "sanpatel323@gmail.com",
         phone: "+91 9503125836",
         location: "Jamnagar, Gujarat, India",
-        linkedin: "",
+        linkedin: "https://www.linkedin.com/in/sanketpatel32/",
         github: "https://github.com/sanketpatel32",
         instagram: "https://www.instagram.com/sanket_patel32/",
-        website: "",
+        youtube: "https://www.youtube.com/@camouflage32p",
+        website: "https://www.sanketpatel.online/",
         otherLinks: [],
     },
 };

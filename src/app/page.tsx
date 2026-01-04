@@ -8,7 +8,7 @@ import ProjectCard from "@/components/ProjectCard";
 import ContactForm from "@/components/ContactForm";
 import SkillIcon, { CategoryIcon } from "@/components/SkillIcon";
 import { resume } from "@/data/resume";
-import { FiMail, FiPhone, FiMapPin, FiGithub, FiInstagram, FiArrowUp, FiDownload } from "react-icons/fi";
+import { FiMail, FiPhone, FiMapPin, FiGithub, FiInstagram, FiLinkedin, FiYoutube, FiGlobe, FiArrowUp, FiDownload } from "react-icons/fi";
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
@@ -286,6 +286,51 @@ export default function Home() {
                       <FiInstagram size={20} />
                     </span>
                     <span>@sanket_patel32</span>
+                  </motion.a>
+                )}
+
+                {resume.contact.linkedin && (
+                  <motion.a
+                    href={resume.contact.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={shouldReduceMotion ? {} : { x: 5 }}
+                    className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
+                  >
+                    <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
+                      <FiLinkedin size={20} />
+                    </span>
+                    <span>linkedin.com/in/sanketpatel32</span>
+                  </motion.a>
+                )}
+
+                {resume.contact.youtube && (
+                  <motion.a
+                    href={resume.contact.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={shouldReduceMotion ? {} : { x: 5 }}
+                    className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
+                  >
+                    <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
+                      <FiYoutube size={20} />
+                    </span>
+                    <span>@camouflage32p</span>
+                  </motion.a>
+                )}
+
+                {resume.contact.website && (
+                  <motion.a
+                    href={resume.contact.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={shouldReduceMotion ? {} : { x: 5 }}
+                    className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
+                  >
+                    <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
+                      <FiGlobe size={20} />
+                    </span>
+                    <span>sanketpatel.online</span>
                   </motion.a>
                 )}
               </div>
