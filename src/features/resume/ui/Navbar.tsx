@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { profile } from "@/features/resume/content/profile";
 import { sectionNav } from "@/features/resume/model/sectionNav";
 import { scrollToSection, scrollToTop } from "@/shared/lib/scroll";
@@ -29,7 +29,7 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -40,7 +40,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <m.nav
         initial={shouldReduceMotion ? {} : { y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -50,14 +50,25 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <div className="flex items-center gap-3 cursor-pointer group" onClick={scrollToTop}>
+            <button
+              type="button"
+              className="flex items-center gap-3 cursor-pointer group bg-transparent border-0 p-0"
+              onClick={scrollToTop}
+              aria-label="Scroll to top"
+            >
               <div className="relative w-8 h-8 md:w-10 md:h-10">
-                <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  fill
+                  sizes="(max-width: 768px) 32px, 40px"
+                  className="object-contain"
+                />
               </div>
               <span className="text-white font-semibold text-lg md:text-xl tracking-tight group-hover:text-[var(--accent)] transition-colors">
                 {profile.name}
               </span>
-            </div>
+            </button>
 
             <ul className="hidden md:flex items-center gap-8">
               {sectionNav.map((item) => (
@@ -72,7 +83,7 @@ export default function Navbar() {
                   >
                     {item.label}
                     {activeSection === item.id && (
-                      <motion.span
+                      <m.span
                         layoutId="activeSection"
                         className="absolute -bottom-0 left-0 right-0 h-0.5 bg-[var(--accent)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
@@ -108,9 +119,9 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </m.nav>
 
-      <motion.div
+      <m.div
         initial={false}
         animate={{
           opacity: isMobileMenuOpen ? 1 : 0,
@@ -120,7 +131,7 @@ export default function Navbar() {
       >
         <ul className="flex flex-col items-center justify-center h-full gap-8">
           {sectionNav.map((item, index) => (
-            <motion.li
+            <m.li
               key={item.id}
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
               animate={isMobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -134,10 +145,10 @@ export default function Navbar() {
               >
                 {item.label}
               </button>
-            </motion.li>
+            </m.li>
           ))}
         </ul>
-      </motion.div>
+      </m.div>
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 interface ProjectCardProps {
@@ -24,7 +24,7 @@ export default function ProjectCard({
     const shouldReduceMotion = useReducedMotion();
 
     return (
-        <motion.div
+        <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -76,6 +76,6 @@ export default function ProjectCard({
                     </span>
                 ))}
             </div>
-        </motion.div>
+        </m.div>
     );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { LazyMotion, domAnimation } from "framer-motion";
 import { resumeContent } from "@/features/resume/content";
 import Footer from "@/features/resume/ui/Footer";
 import Navbar from "@/features/resume/ui/Navbar";
@@ -12,7 +13,7 @@ import SkillsSection from "@/features/resume/ui/sections/SkillsSection";
 
 export default function ResumePage() {
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <Navbar />
 
       <main className="bg-black">
@@ -25,6 +26,6 @@ export default function ResumePage() {
       </main>
 
       <Footer profile={resumeContent.profile} />
-    </>
+    </LazyMotion>
   );
 }

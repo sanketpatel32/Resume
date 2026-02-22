@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
+import { m, useReducedMotion } from "framer-motion";
 import { FiDownload, FiGithub } from "react-icons/fi";
 import type { ContactInfo, Profile } from "@/features/resume/model/types";
 import { scrollToSection } from "@/shared/lib/scroll";
@@ -16,56 +17,56 @@ export default function AboutSection({ profile, contact }: AboutSectionProps) {
   return (
     <section id="about" className="min-h-screen flex items-center justify-center pt-20">
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl">
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-3xl"
         >
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
             className="text-[var(--accent)] font-medium mb-4"
           >
             Hello, I&apos;m
-          </motion.p>
+          </m.p>
 
-          <motion.h1
+          <m.h1
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="text-5xl md:text-7xl font-bold mb-4 tracking-tight"
           >
             {profile.name}
-          </motion.h1>
+          </m.h1>
 
-          <motion.h2
+          <m.h2
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="text-2xl md:text-3xl text-[var(--text-muted)] font-medium mb-8"
           >
             {profile.title}
-          </motion.h2>
+          </m.h2>
 
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
             className="text-lg text-[var(--text-muted)] leading-relaxed mb-10 max-w-2xl"
           >
             {profile.summary}
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
             className="flex flex-wrap gap-3"
           >
             {profile.highlights.map((highlight, index) => (
-              <motion.span
+              <m.span
                 key={highlight}
                 initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -74,11 +75,11 @@ export default function AboutSection({ profile, contact }: AboutSectionProps) {
                 className="px-4 py-2 text-sm font-medium text-white bg-white/5 border border-white/10 rounded-full hover:border-[var(--accent)]/50 hover:shadow-[0_0_20px_rgba(110,231,183,0.1)] transition-all duration-300 cursor-default"
               >
                 {highlight}
-              </motion.span>
+              </m.span>
             ))}
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
@@ -90,14 +91,14 @@ export default function AboutSection({ profile, contact }: AboutSectionProps) {
             >
               Get in Touch
             </button>
-            <a
+            <Link
               href="/resume.pdf"
               download="Sanket_Patel_Resume.pdf"
               className="px-6 py-3 border border-white/10 rounded-lg font-semibold text-white hover:bg-white/5 hover:border-[var(--accent)]/50 transition-all duration-300 flex items-center gap-2 group cursor-pointer"
             >
               <FiDownload className="group-hover:text-[var(--accent)] transition-colors" />
               Download CV
-            </a>
+            </Link>
             {contact.github && (
               <a
                 href={contact.github}
@@ -109,8 +110,8 @@ export default function AboutSection({ profile, contact }: AboutSectionProps) {
                 <FiGithub size={20} />
               </a>
             )}
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );

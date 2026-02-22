@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface SectionProps {
@@ -19,7 +19,7 @@ export default function Section({ id, title, children, className = "" }: Section
             className={`min-h-screen py-20 md:py-32 ${className}`}
         >
             <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl">
-                <motion.div
+                <m.div
                     initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -29,7 +29,7 @@ export default function Section({ id, title, children, className = "" }: Section
                         <span className="text-[var(--accent)]">/</span> {title}
                     </h2>
                     {children}
-                </motion.div>
+                </m.div>
             </div>
         </section>
     );

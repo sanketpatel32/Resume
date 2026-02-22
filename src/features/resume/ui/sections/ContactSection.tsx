@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import {
   FiGlobe,
   FiGithub,
@@ -32,7 +32,7 @@ export default function ContactSection({ contact }: ContactSectionProps) {
           </p>
 
           <div className="space-y-6">
-            <motion.a
+            <m.a
               href={`mailto:${contact.email}`}
               whileHover={shouldReduceMotion ? {} : { x: 5 }}
               className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
@@ -41,9 +41,9 @@ export default function ContactSection({ contact }: ContactSectionProps) {
                 <FiMail size={20} />
               </span>
               <span>{contact.email}</span>
-            </motion.a>
+            </m.a>
 
-            <motion.a
+            <m.a
               href={`tel:${contact.phone.replace(/\s/g, "")}`}
               whileHover={shouldReduceMotion ? {} : { x: 5 }}
               className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
@@ -52,9 +52,9 @@ export default function ContactSection({ contact }: ContactSectionProps) {
                 <FiPhone size={20} />
               </span>
               <span>{contact.phone}</span>
-            </motion.a>
+            </m.a>
 
-            <motion.div
+            <m.div
               whileHover={shouldReduceMotion ? {} : { x: 5 }}
               className="flex items-center gap-4 text-[var(--text-muted)] group"
             >
@@ -62,10 +62,10 @@ export default function ContactSection({ contact }: ContactSectionProps) {
                 <FiMapPin size={20} />
               </span>
               <span>{contact.location}</span>
-            </motion.div>
+            </m.div>
 
             {contact.github && (
-              <motion.a
+              <m.a
                 href={contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -76,11 +76,11 @@ export default function ContactSection({ contact }: ContactSectionProps) {
                   <FiGithub size={20} />
                 </span>
                 <span>github.com/sanketpatel32</span>
-              </motion.a>
+              </m.a>
             )}
 
             {contact.instagram && (
-              <motion.a
+              <m.a
                 href={contact.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -91,11 +91,11 @@ export default function ContactSection({ contact }: ContactSectionProps) {
                   <FiInstagram size={20} />
                 </span>
                 <span>@sanket_patel32</span>
-              </motion.a>
+              </m.a>
             )}
 
             {contact.linkedin && (
-              <motion.a
+              <m.a
                 href={contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -106,11 +106,11 @@ export default function ContactSection({ contact }: ContactSectionProps) {
                   <FiLinkedin size={20} />
                 </span>
                 <span>linkedin.com/in/sanketpatel32</span>
-              </motion.a>
+              </m.a>
             )}
 
             {contact.youtube && (
-              <motion.a
+              <m.a
                 href={contact.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -121,11 +121,11 @@ export default function ContactSection({ contact }: ContactSectionProps) {
                   <FiYoutube size={20} />
                 </span>
                 <span>@camouflage32p</span>
-              </motion.a>
+              </m.a>
             )}
 
             {contact.website && (
-              <motion.a
+              <m.a
                 href={contact.website}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -136,12 +136,12 @@ export default function ContactSection({ contact }: ContactSectionProps) {
                   <FiGlobe size={20} />
                 </span>
                 <span>sanketpatel.online</span>
-              </motion.a>
+              </m.a>
             )}
           </div>
         </div>
 
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -150,7 +150,7 @@ export default function ContactSection({ contact }: ContactSectionProps) {
         >
           <h3 className="text-xl font-semibold text-white mb-6">Send me a message</h3>
           <ContactForm />
-        </motion.div>
+        </m.div>
       </div>
     </Section>
   );
