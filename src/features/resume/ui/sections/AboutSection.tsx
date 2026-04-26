@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { FiDownload, FiGithub } from "react-icons/fi";
 import type { ContactInfo, Profile } from "@/features/resume/model/types";
 import { scrollToSection } from "@/shared/lib/scroll";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 interface AboutSectionProps {
   profile: Profile;
@@ -12,7 +13,7 @@ interface AboutSectionProps {
 }
 
 export default function AboutSection({ profile, contact }: AboutSectionProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
     <section id="about" className="min-h-screen flex items-center justify-center pt-20">

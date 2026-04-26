@@ -1,7 +1,8 @@
 "use client";
 
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { ReactNode } from "react";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 interface SectionProps {
     id: string;
@@ -11,7 +12,7 @@ interface SectionProps {
 }
 
 export default function Section({ id, title, children, className = "" }: SectionProps) {
-    const shouldReduceMotion = useReducedMotion();
+    const shouldReduceMotion = useHydratedReducedMotion();
 
     return (
         <section

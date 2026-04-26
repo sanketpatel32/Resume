@@ -1,6 +1,6 @@
 "use client";
 
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   FiGlobe,
   FiGithub,
@@ -13,6 +13,7 @@ import {
 } from "react-icons/fi";
 import { ContactForm } from "@/features/contact";
 import type { ContactInfo } from "@/features/resume/model/types";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 import Section from "@/shared/ui/Section";
 
 interface ContactSectionProps {
@@ -20,7 +21,7 @@ interface ContactSectionProps {
 }
 
 export default function ContactSection({ contact }: ContactSectionProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
     <Section id="contact" title="Contact Me">

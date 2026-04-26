@@ -1,6 +1,7 @@
 "use client";
 
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 interface TimelineItemProps {
   company: string;
@@ -19,7 +20,7 @@ export default function TimelineItem({
   bullets,
   index,
 }: TimelineItemProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
     <m.div

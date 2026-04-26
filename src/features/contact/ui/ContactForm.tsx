@@ -1,7 +1,8 @@
 "use client";
 
 import { useReducer } from "react";
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 interface FormData {
   name: string;
@@ -120,7 +121,7 @@ function validateForm(formData: FormData): FormErrors {
 }
 
 export default function ContactForm() {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
   const [state, dispatch] = useReducer(contactFormReducer, initialState);
 
   const handleSubmit = async (e: React.FormEvent) => {

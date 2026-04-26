@@ -2,16 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { profile } from "@/features/resume/content/profile";
 import { sectionNav } from "@/features/resume/model/sectionNav";
 import { scrollToSection, scrollToTop } from "@/shared/lib/scroll";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("about");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {

@@ -1,4 +1,5 @@
 import { career } from "@/features/resume/content/career";
+import { certifications } from "@/features/resume/content/certifications";
 import { contact } from "@/features/resume/content/contact";
 import { education } from "@/features/resume/content/education";
 import { profile } from "@/features/resume/content/profile";
@@ -12,6 +13,7 @@ export const resumeContent: ResumeContent = {
   profile,
   career,
   education,
+  certifications,
   skills,
   projects,
   contact,

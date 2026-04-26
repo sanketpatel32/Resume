@@ -1,16 +1,17 @@
 "use client";
 
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import type { SkillsContent } from "@/features/resume/model/types";
 import SkillIcon, { CategoryIcon } from "@/features/resume/ui/cards/SkillIcon";
 import Section from "@/shared/ui/Section";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 interface SkillsSectionProps {
   skills: SkillsContent;
 }
 
 export default function SkillsSection({ skills }: SkillsSectionProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
     <Section id="skills" title="Skills">

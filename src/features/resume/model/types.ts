@@ -22,6 +22,14 @@ export interface EducationItem {
   details: string[];
 }
 
+export interface CertificationItem {
+  name: string;
+  issuer: string;
+  credentialUrl: string;
+  credentialId?: string;
+  description?: string;
+}
+
 interface SkillCategory {
   name: string;
   items: string[];
@@ -61,6 +69,7 @@ export interface ResumeContent {
   profile: Profile;
   career: CareerItem[];
   education: EducationItem[];
+  certifications: CertificationItem[];
   skills: SkillsContent;
   projects: ProjectItem[];
   contact: ContactInfo;

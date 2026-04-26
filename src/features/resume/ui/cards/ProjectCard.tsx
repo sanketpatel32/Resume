@@ -1,7 +1,8 @@
 "use client";
 
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 interface ProjectCardProps {
     name: string;
@@ -21,7 +22,7 @@ export default function ProjectCard({
     links,
     index,
 }: ProjectCardProps) {
-    const shouldReduceMotion = useReducedMotion();
+    const shouldReduceMotion = useHydratedReducedMotion();
 
     return (
         <m.div
