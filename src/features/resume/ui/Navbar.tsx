@@ -62,6 +62,7 @@ export default function Navbar() {
                   src="/logo.png"
                   alt="Logo"
                   fill
+                  loading="eager"
                   sizes="(max-width: 768px) 32px, 40px"
                   className="object-contain"
                 />

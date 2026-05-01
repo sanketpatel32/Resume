@@ -2,6 +2,30 @@ import type { ProjectItem } from "@/features/resume/model/types";
 
 export const projects: ProjectItem[] = [
   {
+    name: "ScanForge - AI-Powered API Testing & Security Scanner",
+    description:
+      "Production-ready DAST platform for REST APIs that automates OWASP API Top 10 security testing with safe/balanced/aggressive scan modes, evidence-backed findings, and multi-tenant workspace isolation. Built as a TypeScript monorepo with local-first Bun runners, real-time queue monitoring, and enterprise-grade security controls.",
+    tech: [
+      "TypeScript",
+      "Bun",
+      "Turborepo",
+      "Next.js 16",
+      "React 19",
+      "Express 5",
+      "oRPC",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "BullMQ",
+      "Drizzle ORM",
+      "Better Auth",
+      "Docker",
+    ],
+    links: {
+      github: "https://github.com/sanketpatel32/ScanForge",
+    },
+  },
+  {
     name: "Salon Management Web App",
     description:
       "Full-stack salon appointment platform with secure JWT-based authentication, service and staff management, real-time booking, and payment integration (CashFree). Features automated email/SMS reminders, rescheduling, customer reviews, and admin dashboard.",
@@ -17,15 +41,6 @@ export const projects: ProjectItem[] = [
     tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "Socket.io", "SQL"],
     links: {
       github: "https://github.com/sanketpatel32/Group-Chat-App",
-    },
-  },
-  {
-    name: "Boring App",
-    description:
-      "A general-purpose productivity app designed to streamline daily tasks and save time. Features a clean interface for managing everyday activities efficiently.",
-    tech: ["React", "Next.js", "Algo"],
-    links: {
-      live: "https://boring-app-theta.vercel.app/",
     },
   },
 ];

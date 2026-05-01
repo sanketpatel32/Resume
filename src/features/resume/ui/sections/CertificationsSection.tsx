@@ -1,8 +1,9 @@
 "use client";
 
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { FiAward, FiExternalLink } from "react-icons/fi";
 import type { CertificationItem } from "@/features/resume/model/types";
+import { useHydratedReducedMotion } from "@/shared/lib/motion";
 import Section from "@/shared/ui/Section";
 
 interface CertificationsSectionProps {
@@ -18,7 +19,7 @@ const getCredentialHost = (url: string) => {
 };
 
 export default function CertificationsSection({ certifications }: CertificationsSectionProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
     <Section id="certifications" title="Certifications">
