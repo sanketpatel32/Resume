@@ -26,6 +26,40 @@ export const projects: ProjectItem[] = [
     },
   },
   {
+    name: "mdpeek - Markdown Viewer & Editor",
+    description:
+      "Lightweight Windows desktop app for viewing and editing Markdown with live preview, multi-file tabs, syntax highlighting, Mermaid and KaTeX support, file associations, auto-updates, and session restore. Built as a ~5.5 MB installer without bundling Chromium.",
+    tech: [
+      "Tauri 2",
+      "Rust",
+      "JavaScript",
+      "WebView2",
+      "Vitest",
+      "NSIS",
+    ],
+    links: {
+      github: "https://github.com/sanketpatel32/Mdpeek",
+    },
+  },
+  {
+    name: "AuraFlow - Developer Utility Portal",
+    description:
+      "Self-hosted developer portal combining 16 tools, including API testing, SQL and NoSQL clients, a real-time Kanban board, cron triggers, JSON utilities, and a password generator. A single Bun service powers the React app, REST API, and WebSocket updates.",
+    tech: [
+      "TypeScript",
+      "Bun",
+      "React 19",
+      "Vite",
+      "WebSockets",
+      "MongoDB",
+      "Electron",
+    ],
+    links: {
+      github: "https://github.com/sanketpatel32/Portal",
+      live: "https://portal.sanketpatel.online",
+    },
+  },
+  {
     name: "Salon Management Web App",
     description:
       "Full-stack salon appointment platform with secure JWT-based authentication, service and staff management, real-time booking, and payment integration (CashFree). Features automated email/SMS reminders, rescheduling, customer reviews, and admin dashboard.",
