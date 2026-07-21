@@ -10,8 +10,14 @@ interface CareerSectionProps {
 
 export default function CareerSection({ career }: CareerSectionProps) {
   return (
-    <Section id="career" title="Career">
-      <div className="max-w-3xl">
+    <Section
+      id="career"
+      number="01"
+      tag="CAREER HISTORY"
+      title="Work Experience"
+      description="Professional software engineering and data science roles focused on building scalable backend architectures and data systems."
+    >
+      <div className="max-w-4xl mx-auto">
         {career.map((job, index) => (
           <TimelineItem
             key={`${job.company}-${job.role}`}

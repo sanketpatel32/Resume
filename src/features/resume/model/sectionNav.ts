@@ -6,9 +6,9 @@ interface NavItem {
 export const sectionNav: NavItem[] = [
   { id: "about", label: "About" },
   { id: "career", label: "Career" },
-  { id: "education", label: "Education" },
-  { id: "certifications", label: "Certifications" },
-  { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "certifications", label: "Certifications" },
+  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];

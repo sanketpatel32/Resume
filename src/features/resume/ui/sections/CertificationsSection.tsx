@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { FiAward, FiExternalLink } from "react-icons/fi";
+import { FiAward, FiExternalLink, FiCheckCircle } from "react-icons/fi";
 import type { CertificationItem } from "@/features/resume/model/types";
 import { useHydratedReducedMotion } from "@/shared/lib/motion";
 import Section from "@/shared/ui/Section";
@@ -14,7 +14,7 @@ const getCredentialHost = (url: string) => {
   try {
     return new URL(url).hostname.replace(/^www\./, "");
   } catch {
-    return "External credential";
+    return "coursera.org";
   }
 };
 
@@ -22,77 +22,66 @@ export default function CertificationsSection({ certifications }: Certifications
   const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
-    <Section id="certifications" title="Certifications">
-      <m.p
-        initial={shouldReduceMotion ? {} : { opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.45, ease: "easeOut" }}
-        className="max-w-2xl text-[var(--text-muted)] leading-relaxed mb-10"
-      >
-        Professional credentials and course certificates with publicly verifiable links.
-      </m.p>
-
-      <div className="grid gap-6 md:grid-cols-2">
+    <Section
+      id="certifications"
+      number="04"
+      tag="VERIFIED CREDENTIALS"
+      title="Certifications & Specializations"
+      description="Publicly verifiable professional certificates and specialized course completions."
+    >
+      <div className="grid gap-6 md:grid-cols-3">
         {certifications.map((certification, index) => (
           <m.article
             key={`${certification.name}-${certification.issuer}`}
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: 34, scale: 0.98 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-            whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.01 }}
-            className="group relative overflow-hidden p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent hover:border-[var(--accent)]/40 hover:shadow-[0_0_45px_rgba(110,231,183,0.12)] transition-all duration-300"
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="glass-card group p-6 rounded-2xl relative flex flex-col justify-between overflow-hidden"
           >
-            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_top_right,rgba(110,231,183,0.12),transparent_55%)]" />
-            <m.div
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-8 -left-24 h-24 w-56 rotate-12 bg-gradient-to-r from-transparent via-[var(--accent)]/12 to-transparent"
-              animate={shouldReduceMotion ? {} : { x: [-30, 34, -30] }}
-              transition={{ duration: 6, repeat: Infinity, repeatType: "mirror", delay: index * 0.4 }}
-            />
+            {/* Top ambient highlight line */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-            <div className="relative flex items-start justify-between gap-4 mb-4">
-              <h3 className="text-lg font-semibold text-white group-hover:text-[var(--accent)] transition-colors text-balance">
+            <div>
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  <FiAward size={22} />
+                </div>
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
+                  <FiCheckCircle size={10} /> Verifiable
+                </span>
+              </div>
+
+              <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors mb-2 leading-snug">
                 {certification.name}
               </h3>
-              <m.span
-                className="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-white/10 bg-white/5 text-[var(--accent)] shrink-0"
-                animate={shouldReduceMotion ? {} : { rotate: [0, 4, 0, -4, 0] }}
-                transition={{ duration: 4.2, repeat: Infinity, repeatDelay: 1.2, delay: index * 0.15 }}
-              >
-                <FiAward size={18} aria-hidden="true" />
-              </m.span>
+
+              <p className="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] mb-4">
+                Issuer: {certification.issuer}
+              </p>
+
+              {certification.description && (
+                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                  {certification.description}
+                </p>
+              )}
             </div>
 
-            <p className="text-xs tracking-wide uppercase text-[var(--text-muted)] mb-3">{certification.issuer}</p>
-
-            {certification.description && (
-              <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
-                {certification.description}
-              </p>
-            )}
-
-            <div className="flex items-center justify-between gap-4 border-t border-white/10 mt-6 pt-4">
-              <p className="text-xs text-[var(--text-muted)]">
+            <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2">
+              <span className="text-[11px] font-mono text-[var(--text-dim)] truncate">
                 {getCredentialHost(certification.credentialUrl)}
-                {certification.credentialId ? ` • ID: ${certification.credentialId}` : ""}
-              </p>
+              </span>
 
-              <m.a
+              <a
                 href={certification.credentialUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${certification.name} credential`}
-                whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
-                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                className="group/link inline-flex items-center gap-2 rounded-lg border border-[var(--accent)]/40 bg-[var(--accent-dim)] px-4 py-2 text-sm font-medium text-[var(--accent)] hover:border-[var(--accent)] hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-xs font-mono font-medium text-emerald-300 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all group/link"
               >
-                View Credential
-                <span className="transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">
-                  <FiExternalLink size={16} />
-                </span>
-              </m.a>
+                Verify
+                <FiExternalLink size={12} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+              </a>
             </div>
           </m.article>
         ))}

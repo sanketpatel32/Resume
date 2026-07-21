@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
+import { FiBriefcase, FiMapPin, FiCalendar } from "react-icons/fi";
 import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 interface TimelineItemProps {
@@ -13,29 +14,14 @@ interface TimelineItemProps {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, x: -40, scale: 0.95 },
+  hidden: { opacity: 0, y: 25 },
   visible: {
     opacity: 1,
-    x: 0,
-    scale: 1,
+    y: 0,
     transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as const,
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1] as const,
     },
-  },
-  hover: {
-    x: 5,
-    scale: 1.01,
-    boxShadow: "0 0 50px rgba(110, 231, 183, 0.1)",
-    transition: { duration: 0.3 },
-  },
-};
-
-const dotVariants = {
-  hover: {
-    scale: 1.5,
-    boxShadow: "0 0 30px var(--accent)",
-    transition: { duration: 0.3 },
   },
 };
 
@@ -52,60 +38,62 @@ export default function TimelineItem({
   return (
     <m.div
       variants={cardVariants}
-      initial="hidden"
+      initial={shouldReduceMotion ? "visible" : "hidden"}
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-      whileHover={!shouldReduceMotion ? "hover" : undefined}
-      transition={{ delay: index * 0.15 }}
-      className="relative pl-10 pb-14 last:pb-0 border-l-2 border-white/10 group cursor-default"
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ delay: index * 0.1 }}
+      className="relative pl-8 sm:pl-10 pb-12 last:pb-0 border-l border-emerald-500/20 group"
     >
-      {/* Animated timeline dot */}
-      <m.div
-        variants={dotVariants}
-        className="absolute left-0 top-2 w-4 h-4 -translate-x-[9px] rounded-full bg-gradient-to-br from-[var(--accent)] to-emerald-600 group-hover:shadow-[0_0_25px_var(--accent)] transition-all duration-300 flex items-center justify-center"
-      >
-        <div className="w-1.5 h-1.5 rounded-full bg-white/80" />
-      </m.div>
-
-      {/* Shimmer effect on hover */}
-      <div className="absolute inset-0 overflow-hidden rounded-xl pointer-events-none">
-        <m.div
-          initial={{ x: "-100%" }}
-          whileHover={{ x: "100%" }}
-          transition={{ duration: 0.6 }}
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-        />
+      {/* Laser Glow Timeline Dot */}
+      <div className="absolute left-0 top-1.5 -translate-x-1/2 w-4 h-4 rounded-full bg-[#050507] border-2 border-emerald-500 group-hover:border-emerald-400 group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.8)] transition-all duration-300 flex items-center justify-center">
+        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
       </div>
 
-      <m.div
-        className="relative p-7 rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent hover:border-[var(--accent)]/40 hover:shadow-[0_0_40px_rgba(110,231,183,0.08)] transition-all duration-300 backdrop-blur-sm"
-      >
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
+      {/* Card Content */}
+      <div className="glass-card p-6 sm:p-7 rounded-2xl relative overflow-hidden">
+        {/* Subtle Ambient Card Top Highlight */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-4 border-b border-white/10">
           <div>
-            <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[var(--accent)] transition-colors duration-300">{company}</h3>
-            <p className="text-[var(--accent)] font-medium text-base md:text-lg mt-1">{role}</p>
+            <div className="flex items-center gap-2 mb-1">
+              <FiBriefcase className="text-emerald-400 text-sm" />
+              <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                {company}
+              </h3>
+            </div>
+            <p className="text-emerald-400 font-medium text-base sm:text-lg">
+              {role}
+            </p>
           </div>
-          <div className="text-sm text-[var(--text-muted)] md:text-right space-y-1">
-            <p className="font-medium">{dates}</p>
-            {location && <p>{location}</p>}
+
+          <div className="flex flex-wrap sm:flex-col sm:items-end gap-2 text-xs font-mono text-[var(--text-muted)]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">
+              <FiCalendar className="text-emerald-400" />
+              {dates}
+            </span>
+            {location && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] text-[var(--text-dim)]">
+                <FiMapPin />
+                {location}
+              </span>
+            )}
           </div>
         </div>
+
+        {/* Bullets */}
         <ul className="space-y-3">
           {bullets.map((bullet, bulletIndex) => (
-            <m.li
+            <li
               key={`${company}-${bulletIndex}`}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 + bulletIndex * 0.1, duration: 0.4 }}
-              className="text-[var(--text-muted)] text-sm leading-relaxed flex gap-3 group/bullet"
+              className="text-slate-300 text-sm leading-relaxed flex items-start gap-3"
             >
-              <span className="text-[var(--accent)] mt-1.5 shrink-0 group-hover/bullet:scale-125 transition-transform duration-200">{"\u2022"}</span>
-              <span className="group-hover/bullet:text-white transition-colors duration-200">{bullet}</span>
-            </m.li>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/70 mt-2 shrink-0 group-hover:bg-emerald-400 transition-colors" />
+              <span>{bullet}</span>
+            </li>
           ))}
         </ul>
-      </m.div>
+      </div>
     </m.div>
   );
 }

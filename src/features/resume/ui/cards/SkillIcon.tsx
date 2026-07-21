@@ -1,45 +1,82 @@
 "use client";
 
-import { m } from "framer-motion";
-import { useHydratedReducedMotion } from "@/shared/lib/motion";
+import {
+  SiPython,
+  SiJavascript,
+  SiTypescript,
+  SiCplusplus,
+  SiReact,
+  SiNextdotjs,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiVite,
+  SiNodedotjs,
+  SiExpress,
+  SiFastapi,
+  SiSocketdotio,
+  SiMongodb,
+  SiPostgresql,
+  SiPytorch,
+  SiAmazonwebservices,
+  SiGit,
+  SiGithub,
+  SiDocker,
+  SiBun,
+  SiRust,
+  SiRedis,
+} from "react-icons/si";
+import { FiCode, FiDatabase, FiCpu, FiCloud, FiTerminal, FiLayers } from "react-icons/fi";
 
-interface SkillIconProps {
-    name: string;
-}
-
-const iconVariants = {
-    hover: {
-        scale: 1.2,
-        rotate: [0, -5, 5, 0],
-        transition: { duration: 0.3 },
-    },
+const skillIconMap: Record<string, React.ElementType> = {
+  Python: SiPython,
+  JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  "C++": SiCplusplus,
+  Java: FiCode,
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  HTML: SiHtml5,
+  CSS: SiCss3,
+  "Tailwind CSS": SiTailwindcss,
+  Vite: SiVite,
+  "Node.js": SiNodedotjs,
+  "Express.js": SiExpress,
+  FastAPI: SiFastapi,
+  "Socket.io": SiSocketdotio,
+  MongoDB: SiMongodb,
+  SQL: FiDatabase,
+  PostgreSQL: SiPostgresql,
+  PyTorch: SiPytorch,
+  Transformers: FiCpu,
+  "Sentence Transformers": FiCpu,
+  spaCy: FiCpu,
+  NLTK: FiCpu,
+  AWS: SiAmazonwebservices,
+  Azure: FiCloud,
+  Git: SiGit,
+  GitHub: SiGithub,
+  Docker: SiDocker,
+  Bun: SiBun,
+  Rust: SiRust,
+  Redis: SiRedis,
 };
 
-export default function SkillIcon({ name }: SkillIconProps) {
-    const shouldReduceMotion = useHydratedReducedMotion();
-    
-    // Return null or a placeholder since we're not rendering actual icons here
-    return (
-        <m.span
-            variants={iconVariants}
-            whileHover={!shouldReduceMotion ? "hover" : undefined}
-            className="inline-block w-4 h-4 text-[var(--accent)]"
-        >
-            •
-        </m.span>
-    );
+export default function SkillIcon({ name }: { name: string }) {
+  const Icon = skillIconMap[name] || FiCode;
+  return <Icon className="w-4 h-4 text-emerald-400 shrink-0" />;
 }
 
+const categoryIconMap: Record<string, React.ElementType> = {
+  "Programming Languages": FiTerminal,
+  Frontend: FiCode,
+  Backend: FiLayers,
+  Databases: FiDatabase,
+  "AI/ML & NLP": FiCpu,
+  "Cloud & DevOps": FiCloud,
+};
+
 export function CategoryIcon({ category }: { category: string }) {
-    const shouldReduceMotion = useHydratedReducedMotion();
-    
-    return (
-        <m.span
-            variants={iconVariants}
-            whileHover={!shouldReduceMotion ? "hover" : undefined}
-            className="inline-block text-[var(--accent)]"
-        >
-            ✦
-        </m.span>
-    );
+  const Icon = categoryIconMap[category] || FiLayers;
+  return <Icon className="w-5 h-5 text-emerald-400" />;
 }

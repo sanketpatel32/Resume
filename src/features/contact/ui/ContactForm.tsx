@@ -2,6 +2,7 @@
 
 import { useReducer } from "react";
 import { m } from "framer-motion";
+import { FiSend, FiCheckCircle } from "react-icons/fi";
 import { useHydratedReducedMotion } from "@/shared/lib/motion";
 
 interface FormData {
@@ -176,16 +177,16 @@ export default function ContactForm() {
       <m.div
         initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-8 rounded-xl border border-[var(--accent)]/30 bg-[var(--accent-dim)] text-center"
+        className="p-8 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 text-center space-y-4"
       >
-        <div className="text-4xl mb-4">{"\u2713"}</div>
-        <h3 className="text-xl font-semibold text-white mb-2">Message Sent!</h3>
-        <p className="text-[var(--text-muted)] text-sm">
-          Thank you for reaching out. I&apos;ll get back to you soon.
+        <FiCheckCircle className="w-12 h-12 text-emerald-400 mx-auto" />
+        <h3 className="text-xl font-bold text-white">Message Sent Successfully!</h3>
+        <p className="text-slate-300 text-sm max-w-sm mx-auto leading-relaxed">
+          Thank you for reaching out. I&apos;ve received your note and will reply promptly.
         </p>
         <button
           onClick={() => dispatch({ type: "reset_submission" })}
-          className="mt-6 text-[var(--accent)] hover:underline text-sm"
+          className="mt-4 px-4 py-2 text-xs font-mono text-emerald-400 underline hover:text-emerald-300 transition-colors cursor-pointer"
         >
           Send another message
         </button>
@@ -194,10 +195,10 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
-          Name
+        <label htmlFor="name" className="block text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider mb-2">
+          Your Name
         </label>
         <input
           type="text"
@@ -205,18 +206,18 @@ export default function ContactForm() {
           name="name"
           value={state.formData.name}
           onChange={handleChange}
-          className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all ${
-            state.errors.name ? "border-red-500" : "border-white/10"
+          className={`w-full px-4 py-3 bg-white/[0.03] border rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:bg-white/[0.05] transition-all ${
+            state.errors.name ? "border-red-500/70" : "border-white/10"
           }`}
-          placeholder="Your name"
+          placeholder="Sanket Patel"
           disabled={state.isSubmitting}
         />
-        {state.errors.name && <p className="mt-1 text-xs text-red-400">{state.errors.name}</p>}
+        {state.errors.name && <p className="mt-1 text-xs text-red-400 font-mono">{state.errors.name}</p>}
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
-          Email
+        <label htmlFor="email" className="block text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider mb-2">
+          Email Address
         </label>
         <input
           type="email"
@@ -224,17 +225,17 @@ export default function ContactForm() {
           name="email"
           value={state.formData.email}
           onChange={handleChange}
-          className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all ${
-            state.errors.email ? "border-red-500" : "border-white/10"
+          className={`w-full px-4 py-3 bg-white/[0.03] border rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:bg-white/[0.05] transition-all ${
+            state.errors.email ? "border-red-500/70" : "border-white/10"
           }`}
-          placeholder="your@email.com"
+          placeholder="name@domain.com"
           disabled={state.isSubmitting}
         />
-        {state.errors.email && <p className="mt-1 text-xs text-red-400">{state.errors.email}</p>}
+        {state.errors.email && <p className="mt-1 text-xs text-red-400 font-mono">{state.errors.email}</p>}
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
+        <label htmlFor="message" className="block text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider mb-2">
           Message
         </label>
         <textarea
@@ -242,31 +243,36 @@ export default function ContactForm() {
           name="message"
           value={state.formData.message}
           onChange={handleChange}
-          rows={5}
-          className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all resize-none ${
-            state.errors.message ? "border-red-500" : "border-white/10"
+          rows={4}
+          className={`w-full px-4 py-3 bg-white/[0.03] border rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:bg-white/[0.05] transition-all resize-none ${
+            state.errors.message ? "border-red-500/70" : "border-white/10"
           }`}
-          placeholder="Your message..."
+          placeholder="Hi Sanket, I'd like to discuss a project..."
           disabled={state.isSubmitting}
         />
-        {state.errors.message && <p className="mt-1 text-xs text-red-400">{state.errors.message}</p>}
+        {state.errors.message && <p className="mt-1 text-xs text-red-400 font-mono">{state.errors.message}</p>}
       </div>
 
       {state.submitError && (
-        <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+        <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-mono">
           {state.submitError}
         </div>
       )}
 
-      <m.button
+      <button
         type="submit"
         disabled={state.isSubmitting}
-        whileHover={shouldReduceMotion || state.isSubmitting ? {} : { scale: 1.02 }}
-        whileTap={shouldReduceMotion || state.isSubmitting ? {} : { scale: 0.98 }}
-        className="w-full py-3 px-6 bg-[var(--accent)] text-black font-semibold rounded-lg hover:shadow-[0_0_30px_rgba(110,231,183,0.3)] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+        className="w-full py-3.5 px-6 bg-emerald-500 text-black font-semibold rounded-xl hover:bg-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.3)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 text-sm group"
       >
-        {state.isSubmitting ? "Sending..." : "Send Message"}
-      </m.button>
+        {state.isSubmitting ? (
+          "Sending Message..."
+        ) : (
+          <>
+            <span>Send Message</span>
+            <FiSend className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </>
+        )}
+      </button>
     </form>
   );
 }

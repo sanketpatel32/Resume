@@ -10,6 +10,7 @@ import {
   FiMapPin,
   FiPhone,
   FiYoutube,
+  FiArrowUpRight,
 } from "react-icons/fi";
 import { ContactForm } from "@/features/contact";
 import type { ContactInfo } from "@/features/resume/model/types";
@@ -23,133 +24,81 @@ interface ContactSectionProps {
 export default function ContactSection({ contact }: ContactSectionProps) {
   const shouldReduceMotion = useHydratedReducedMotion();
 
+  const socialLinks = [
+    { label: "Email", value: contact.email, href: `mailto:${contact.email}`, icon: FiMail },
+    { label: "Phone", value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, "")}`, icon: FiPhone },
+    { label: "Location", value: contact.location, href: null, icon: FiMapPin },
+    { label: "GitHub", value: "github.com/sanketpatel32", href: contact.github, icon: FiGithub },
+    { label: "LinkedIn", value: "linkedin.com/in/sanketpatel32", href: contact.linkedin, icon: FiLinkedin },
+    { label: "Instagram", value: "@sanket_patel32", href: contact.instagram, icon: FiInstagram },
+    { label: "YouTube", value: "@camouflage32p", href: contact.youtube, icon: FiYoutube },
+    { label: "Website", value: "sanketpatel.online", href: contact.website, icon: FiGlobe },
+  ];
+
   return (
-    <Section id="contact" title="Contact Me">
-      <div className="grid gap-12 lg:grid-cols-2">
-        <div className="space-y-8">
-          <p className="text-lg text-[var(--text-muted)] leading-relaxed">
-            I&apos;m always open to discussing new projects, creative ideas, or opportunities to
-            be part of your vision. Feel free to reach out!
-          </p>
+    <Section
+      id="contact"
+      number="06"
+      tag="GET IN TOUCH"
+      title="Let's Connect"
+      description="Have a question, collaboration idea, or open engineering role? Reach out directly or drop a message below."
+    >
+      <div className="grid gap-12 lg:grid-cols-12 items-start">
+        {/* Left Column: Direct Links */}
+        <div className="lg:col-span-6 space-y-4">
+          <div className="grid sm:grid-cols-2 gap-3">
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
+              const content = (
+                <div className="glass-card group p-4 rounded-xl flex items-center gap-3.5 relative overflow-hidden">
+                  <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500/20 transition-colors">
+                    <Icon size={18} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[11px] font-mono text-[var(--text-dim)] uppercase tracking-wider">
+                      {item.label}
+                    </div>
+                    <div className="text-xs font-medium text-slate-200 truncate group-hover:text-emerald-300 transition-colors">
+                      {item.value}
+                    </div>
+                  </div>
+                  {item.href && (
+                    <FiArrowUpRight size={14} className="text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  )}
+                </div>
+              );
 
-          <div className="space-y-6">
-            <m.a
-              href={`mailto:${contact.email}`}
-              whileHover={shouldReduceMotion ? {} : { x: 5 }}
-              className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
-            >
-              <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
-                <FiMail size={20} />
-              </span>
-              <span>{contact.email}</span>
-            </m.a>
+              if (item.href) {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="block"
+                  >
+                    {content}
+                  </a>
+                );
+              }
 
-            <m.a
-              href={`tel:${contact.phone.replace(/\s/g, "")}`}
-              whileHover={shouldReduceMotion ? {} : { x: 5 }}
-              className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
-            >
-              <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
-                <FiPhone size={20} />
-              </span>
-              <span>{contact.phone}</span>
-            </m.a>
-
-            <m.div
-              whileHover={shouldReduceMotion ? {} : { x: 5 }}
-              className="flex items-center gap-4 text-[var(--text-muted)] group"
-            >
-              <span className="p-3 border border-white/10 rounded-lg">
-                <FiMapPin size={20} />
-              </span>
-              <span>{contact.location}</span>
-            </m.div>
-
-            {contact.github && (
-              <m.a
-                href={contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={shouldReduceMotion ? {} : { x: 5 }}
-                className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
-              >
-                <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
-                  <FiGithub size={20} />
-                </span>
-                <span>github.com/sanketpatel32</span>
-              </m.a>
-            )}
-
-            {contact.instagram && (
-              <m.a
-                href={contact.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={shouldReduceMotion ? {} : { x: 5 }}
-                className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
-              >
-                <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
-                  <FiInstagram size={20} />
-                </span>
-                <span>@sanket_patel32</span>
-              </m.a>
-            )}
-
-            {contact.linkedin && (
-              <m.a
-                href={contact.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={shouldReduceMotion ? {} : { x: 5 }}
-                className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
-              >
-                <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
-                  <FiLinkedin size={20} />
-                </span>
-                <span>linkedin.com/in/sanketpatel32</span>
-              </m.a>
-            )}
-
-            {contact.youtube && (
-              <m.a
-                href={contact.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={shouldReduceMotion ? {} : { x: 5 }}
-                className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
-              >
-                <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
-                  <FiYoutube size={20} />
-                </span>
-                <span>@camouflage32p</span>
-              </m.a>
-            )}
-
-            {contact.website && (
-              <m.a
-                href={contact.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={shouldReduceMotion ? {} : { x: 5 }}
-                className="flex items-center gap-4 text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
-              >
-                <span className="p-3 border border-white/10 rounded-lg group-hover:border-[var(--accent)]/50 transition-colors">
-                  <FiGlobe size={20} />
-                </span>
-                <span>sanketpatel.online</span>
-              </m.a>
-            )}
+              return <div key={item.label}>{content}</div>;
+            })}
           </div>
         </div>
 
+        {/* Right Column: Contact Form */}
         <m.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="p-6 md:p-8 rounded-xl border border-white/10 bg-white/[0.02]"
+          className="lg:col-span-6 glass-panel p-7 sm:p-8 rounded-2xl relative"
         >
-          <h3 className="text-xl font-semibold text-white mb-6">Send me a message</h3>
+          <h3 className="text-xl font-bold text-white mb-2">Send a Direct Message</h3>
+          <p className="text-xs text-[var(--text-muted)] mb-6">
+            Fill in the details below and I will respond to your inbox as soon as possible.
+          </p>
           <ContactForm />
         </m.div>
       </div>
