@@ -21,7 +21,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
       return project.name.includes("ScanForge") || project.name.includes("AuraFlow") || project.name.includes("mdpeek");
     }
     if (activeTab === "fullstack") {
-      return project.name.includes("Salon") || project.name.includes("Group Chat") || project.name.includes("AuraFlow");
+      return project.name.includes("Salon") || project.name.includes("AuraFlow");
     }
     return true;
   });

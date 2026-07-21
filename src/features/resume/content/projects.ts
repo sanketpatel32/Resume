@@ -68,13 +68,4 @@ export const projects: ProjectItem[] = [
       github: "https://github.com/sanketpatel32/fresha-salon-app",
     },
   },
-  {
-    name: "Group Chat Web App",
-    description:
-      "Real-time web-based chat application with secure user authentication, scalable one-to-one and group messaging, SQL-based relational data modeling, and cron jobs for automated message cleanup to optimize database performance.",
-    tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "Socket.io", "SQL"],
-    links: {
-      github: "https://github.com/sanketpatel32/Group-Chat-App",
-    },
-  },
 ];
