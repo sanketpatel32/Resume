@@ -2,19 +2,48 @@
 
 :root {
   --accent: #6ee7b7;
+  --accent-glow: rgba(110, 231, 183, 0.5);
   --accent-dim: rgba(110, 231, 183, 0.15);
   --text-muted: #a1a1aa;
   --border-subtle: rgba(255, 255, 255, 0.1);
+  --gradient-start: #0a0a0a;
+  --gradient-end: #000000;
 }
 
 * {
   scroll-behavior: smooth;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: #000;
+  background: linear-gradient(180deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
   color: #fff;
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Animated background gradient */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(110, 231, 183, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(110, 231, 183, 0.02) 0%, transparent 40%);
+  animation: bgFloat 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes bgFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(2%, 2%) rotate(1deg); }
+  66% { transform: translate(-1%, 1%) rotate(-1deg); }
 }
 
 ::selection {
@@ -28,22 +57,72 @@ body {
   outline-offset: 2px;
 }
 
-/* Scrollbar styling */
+/* Custom scrollbar with gradient */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #333 0%, #444 100%);
+  border-radius: 5px;
+  border: 1px solid #000;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
+  background: linear-gradient(180deg, #6ee7b7 0%, #4ade80 100%);
+}
+
+/* Glow effect utility */
+.glow-accent {
+  box-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(110, 231, 183, 0.2);
+}
+
+.glow-accent-sm {
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse glow animation */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+  50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(110, 231, 183, 0.3); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(110, 231, 183, 0.1), transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
 }
 
 /* Reduced motion */
@@ -53,4 +132,25 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  
+  body::before {
+    animation: none;
+  }
+}
+
+/* Section divider with glow */
+.section-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* Card hover lift effect */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(110, 231, 183, 0.15);
 }
