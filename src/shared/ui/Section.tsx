@@ -18,7 +18,7 @@ const sectionVariants = {
         y: 0,
         transition: {
             duration: 0.7,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as const,
         },
     },
 };
@@ -30,7 +30,7 @@ const titleVariants = {
         x: 0,
         transition: {
             duration: 0.6,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as const,
         },
     },
 };
@@ -74,7 +74,7 @@ export default function Section({ id, title, children, className = "" }: Section
                         initial={{ width: 0, opacity: 0 }}
                         whileInView={{ width: "100%", opacity: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
                         className="h-px bg-gradient-to-r from-transparent via-[var(--accent)]/50 to-transparent mb-12"
                     />
                     

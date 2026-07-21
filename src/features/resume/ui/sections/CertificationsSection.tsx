@@ -40,7 +40,7 @@ export default function CertificationsSection({ certifications }: Certifications
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 34, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] as const }}
             whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.01 }}
             className="group relative overflow-hidden p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent hover:border-[var(--accent)]/40 hover:shadow-[0_0_45px_rgba(110,231,183,0.12)] transition-all duration-300"
           >
