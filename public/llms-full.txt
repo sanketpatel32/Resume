@@ -1,0 +1,141 @@
+# Sanket Patel - Full-Stack Developer & Backend Specialist
+
+> I specialize in building robust, scalable backend APIs and server-side applications. My focus is on designing clean RESTful architectures, optimizing database performance, and creating reliable systems that power seamless user experiences.
+
+- **Website**: https://www.sanketpatel.online/
+- **Email**: sanpatel323@gmail.com
+- **Phone**: +91 9503125836
+- **Location**: Jamnagar, Gujarat, India (Open to Remote Roles)
+- **GitHub**: https://github.com/sanketpatel32
+- **LinkedIn**: https://www.linkedin.com/in/sanketpatel32/
+- **Instagram**: https://www.instagram.com/sanket_patel32/
+- **YouTube**: https://www.youtube.com/@camouflage32p
+
+---
+
+## Core Highlights
+
+- Backend API Development
+- Node.js & Express.js
+- RESTful API Design
+- Database Architecture
+- Real-Time Systems & WebSockets
+- Cloud Services & DevOps
+
+---
+
+## Work Experience
+
+### Software Developer | The Algorithm
+- **Period**: Sept 2025 - Present
+- **Location**: Remote
+- **Responsibilities & Achievements**:
+  - Designed and developed RESTful APIs using Node.js and Express.js for an AI interview platform, implementing JWT-based authentication, role-based access control, and modular middleware architecture.
+  - Built real-time communication features using Socket.io for live interview tracking and instant notifications, handling concurrent user sessions efficiently.
+  - Integrated AWS services (SES, S3) for email notifications and file storage, implementing secure API endpoints with proper error handling and validation.
+  - Optimized MongoDB queries and designed efficient database schemas, improving API response times and ensuring data integrity across the platform.
+
+### Data Science Intern | Axis Bank
+- **Period**: May 2023 - July 2023
+- **Location**: Mumbai, India
+- **Responsibilities & Achievements**:
+  - Developed and deployed a customer churn prediction model for credit card services, achieving high predictive performance through effective data analysis and modeling.
+
+---
+
+## Featured Projects & Architecture
+
+### ScanForge - AI-Powered API Testing & Security Scanner
+- **Description**: Production-ready DAST platform for REST APIs that automates OWASP API Top 10 security testing with safe/balanced/aggressive scan modes, evidence-backed findings, and multi-tenant workspace isolation. Built as a TypeScript monorepo with local-first Bun runners, real-time queue monitoring, and enterprise-grade security controls.
+- **Tech Stack**: TypeScript, Bun, Turborepo, Next.js 16, React 19, Express 5, oRPC, PostgreSQL, MongoDB, Redis, BullMQ, Drizzle ORM, Better Auth, Docker
+- **Repository**: https://github.com/sanketpatel32/ScanForge
+
+### mdpeek - Markdown Viewer & Editor
+- **Description**: Lightweight Windows desktop app for viewing and editing Markdown with live preview, multi-file tabs, syntax highlighting, Mermaid and KaTeX support, file associations, auto-updates, and session restore. Built as a ~5.5 MB installer without bundling Chromium.
+- **Tech Stack**: Tauri 2, Rust, JavaScript, WebView2, Vitest, NSIS
+- **Repository**: https://github.com/sanketpatel32/Mdpeek
+
+### AuraFlow - Developer Utility Portal
+- **Description**: Self-hosted developer portal combining 16 tools, including API testing, SQL and NoSQL clients, a real-time Kanban board, cron triggers, JSON utilities, and a password generator. A single Bun service powers the React app, REST API, and WebSocket updates.
+- **Tech Stack**: TypeScript, Bun, React 19, Vite, WebSockets, MongoDB, Electron
+- **Repository**: https://github.com/sanketpatel32/Portal
+- **Live Deployment**: https://portal.sanketpatel.online
+
+### Salon Management Web App
+- **Description**: Full-stack salon appointment platform with secure JWT-based authentication, service and staff management, real-time booking, and payment integration (CashFree). Features automated email/SMS reminders, rescheduling, customer reviews, and admin dashboard.
+- **Tech Stack**: Node.js, Express.js, SQL, React.js, Socket.io, Cron
+- **Repository**: https://github.com/sanketpatel32/fresha-salon-app
+
+---
+
+## Technical Skills & Ecosystem
+
+### Programming Languages
+- Python
+- JavaScript
+- TypeScript
+- C++
+- Java
+
+### Frontend
+- React
+- Next.js
+- HTML5
+- CSS3
+- Tailwind CSS
+- Vite
+
+### Backend
+- Node.js
+- Express.js
+- Bun
+- FastAPI
+- Socket.io
+
+### Databases & Cache
+- MongoDB
+- PostgreSQL
+- SQL / MySQL
+- Redis
+
+### AI/ML & NLP
+- PyTorch
+- Transformers
+- Sentence Transformers
+- spaCy
+- NLTK
+
+### Cloud & DevOps
+- AWS (S3, SES, EC2)
+- Azure
+- Docker
+- Git
+- GitHub Actions
+- Linux / Nginx
+
+---
+
+## Verified Certifications
+
+- **Google Data Analytics** - Coursera: https://coursera.org/share/fc06ae2fbf489301aef5779a92191703
+- **Python 101 for Data Science** - Cognitive Class: https://courses.cognitiveclass.ai/certificates/3e7b57e72b4f446dabd4ee4b94165bc3
+- **Microsoft Azure Essentials Professional Certificate** - Microsoft & LinkedIn: https://www.linkedin.com/learning/certificates/528245cf7e04cfdbb1129c60db15a5047c157c4c7ffebdb97fc3213905560c4c
+
+---
+
+## Education & Academic Background
+
+### Sharpner Tech
+- **Degree**: MERN Stack Web Development
+- **Period**: Sept 2024 - Sept 2025
+- **Details**: Full-Stack Web Development Certification
+
+### Birla Institute of Technology, Ranchi (BIT Mesra)
+- **Degree**: Bachelor of Technology - Mechanical Engineering
+- **Period**: 2020 - 2024
+- **Details**: Cumulative GPA: 8.2/10, JEE Mains: 97.84 Percentile
+
+### Higher Secondary (12th)
+- **Degree**: Maharashtra State Board
+- **Period**: 2020
+- **Details**: Percentage: 84.2%

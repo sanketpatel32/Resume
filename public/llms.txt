@@ -1,0 +1,46 @@
+# Sanket Patel - Portfolio & Technical Profile
+
+> Full-Stack Developer & Backend Specialist specializing in Node.js, Express.js, TypeScript, Next.js, RESTful API architectures, real-time systems, and developer security tools.
+
+- **Canonical URL**: https://www.sanketpatel.online/
+- **Email**: sanpatel323@gmail.com
+- **GitHub**: https://github.com/sanketpatel32
+- **LinkedIn**: https://www.linkedin.com/in/sanketpatel32/
+- **Location**: Jamnagar, Gujarat, India (Open to Remote Roles)
+
+## Key Projects & Architecture
+
+- [ScanForge](https://github.com/sanketpatel32/ScanForge): Production-ready DAST platform for REST APIs automating OWASP API Top 10 security scanning with safe/balanced/aggressive scan modes, Bun runners, BullMQ queue monitoring, and multi-tenant workspace isolation.
+- [mdpeek](https://github.com/sanketpatel32/Mdpeek): Lightweight Windows desktop Markdown viewer and editor built with Tauri 2 and Rust with live preview, multi-tab editing, Mermaid/KaTeX support (~5.5 MB installer).
+- [AuraFlow](https://github.com/sanketpatel32/Portal): Self-hosted developer utility portal with 16 integrated developer tools (API testing, SQL/NoSQL clients, real-time Kanban board, cron triggers) powered by Bun, React 19, and WebSockets. Live at https://portal.sanketpatel.online
+- [Salon Management App](https://github.com/sanketpatel32/fresha-salon-app): Full-stack salon booking platform with JWT authentication, role-based workflows, CashFree payment integration, Socket.io real-time updates, and automated reminders.
+
+## Professional Experience
+
+- **The Algorithm** (Sept 2025 - Present) | Software Developer: Designed and developed RESTful APIs using Node.js and Express.js for an AI interview platform. Built real-time tracking with Socket.io, integrated AWS SES and S3, and optimized MongoDB database schemas.
+- **Axis Bank** (May 2023 - July 2023) | Data Science Intern: Developed and deployed customer churn prediction machine learning models for credit card services.
+
+## Technical Skills
+
+- **Languages**: TypeScript, JavaScript, Python, C++, Java, SQL, HTML5, CSS3
+- **Backend**: Node.js, Express.js, Bun, FastAPI, Socket.io, RESTful APIs, Microservices, BullMQ
+- **Frontend**: React 19, Next.js 16, Vite, Tailwind CSS, Framer Motion
+- **Databases & Cache**: PostgreSQL, MongoDB, Redis, MySQL, Drizzle ORM, Prisma
+- **Cloud & DevOps**: AWS (S3, SES, EC2), Azure, Docker, Linux, Git, GitHub Actions, Nginx
+
+## Verified Certifications
+
+- **Google Data Analytics** (Coursera): https://coursera.org/share/fc06ae2fbf489301aef5779a92191703
+- **Python 101 for Data Science** (Cognitive Class): https://courses.cognitiveclass.ai/certificates/3e7b57e72b4f446dabd4ee4b94165bc3
+- **Microsoft Azure Essentials Professional Certificate** (Microsoft / LinkedIn): https://www.linkedin.com/learning/certificates/528245cf7e04cfdbb1129c60db15a5047c157c4c7ffebdb97fc3213905560c4c
+
+## Education
+
+- **Birla Institute of Technology, Mesra**: Bachelor of Technology (2020 - 2024), CGPA: 8.2/10, JEE Mains: 97.84 Percentile
+- **Sharpner Tech**: MERN Stack Web Development (2024 - 2025)
+
+## Navigation & Agent Formats
+
+- [Full LLM Context](https://www.sanketpatel.online/llms-full.txt): Complete detailed text representation of the portfolio
+- [Markdown Home](https://www.sanketpatel.online/index.md): Markdown variant of the homepage
+- [Sitemap](https://www.sanketpatel.online/sitemap.xml): XML sitemap

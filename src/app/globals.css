@@ -112,3 +112,13 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* No-JavaScript crawler & accessibility fallback */
+@media (scripting: none) {
+  [style*="opacity:0"],
+  [style*="opacity: 0"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+

@@ -51,21 +51,24 @@ export default function AboutSection({ profile, contact }: AboutSectionProps) {
           <div className="lg:col-span-8 space-y-8">
             <m.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Full-Stack Developer & Backend Specialist</span>
+              <span>Full-Stack Developer &amp; Backend Specialist</span>
             </m.div>
 
             <m.h1
               variants={itemVariants}
               className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1]"
             >
-              Building robust systems with <span className="gradient-text-emerald">precision & elegance.</span>
+              {profile.name}
+              <span className="block text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-300 mt-3 font-sans">
+                Building robust systems with <span className="gradient-text-emerald">precision &amp; elegance.</span>
+              </span>
             </m.h1>
 
             <m.p
               variants={itemVariants}
               className="text-lg md:text-xl text-[var(--text-muted)] font-normal leading-relaxed max-w-2xl"
             >
-              Hi, I&apos;m <span className="text-white font-medium">{profile.name}</span>. {profile.summary}
+              {profile.summary}
             </m.p>
 
             {/* Highlights Tags */}
@@ -115,6 +118,7 @@ export default function AboutSection({ profile, contact }: AboutSectionProps) {
 
           {/* Quick Metrics & Expertise Card Column */}
           <m.div variants={itemVariants} className="lg:col-span-4 space-y-4">
+            <h2 className="sr-only">Core Qualifications &amp; Highlights</h2>
             <div className="p-6 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl space-y-6">
               <div className="flex items-center gap-3 border-b border-white/10 pb-4">
                 <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">

@@ -58,7 +58,7 @@ export default function Section({
             )}
             {tag && (
               <span className="font-mono text-xs text-[var(--text-muted)] tracking-wider uppercase">
-                // {tag}
+                {`// ${tag}`}
               </span>
             )}
           </div>
