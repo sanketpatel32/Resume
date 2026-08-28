@@ -14,11 +14,19 @@ import {
  * - Clients whose Accept header prefers text/markdown are rewritten to the
  *   markdown route handler (`/api/markdown/**`).
  * - Clients that reject every producible type get a spec-correct 406.
- * - Every HTML response advertises `Vary: Accept` so CDN caches never hand
- *   an HTML variant to an agent asking for markdown (or vice versa).
+ * - Every text/markdown response advertises `Vary: Accept` (set by the
+ *   markdown route handler) so CDN caches never hand an HTML variant to an
+ *   agent asking for markdown.
  *
  * Next.js 16 convention: this file replaces the deprecated middleware.ts
  * (named export `proxy`, Node.js runtime).
+ *
+ * Known limitation: Next 16 does not propagate proxy-attached response
+ * headers onto page (HTML) responses — neither via `NextResponse.next()`
+ * nor via rewrite. The markdown branch is unaffected because the route
+ * handler sets `Vary: Accept` on its own response. HTML pages therefore
+ * carry only Next's internal Vary tokens; `next.config.ts` headers() is
+ * kept as a best-effort signal for paths where config headers do apply.
  */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -30,9 +38,7 @@ export function proxy(request: NextRequest) {
   if (!pathname.endsWith(".md") && hasFileExtension(pathname)) {
     // Static assets (/resume.pdf, /mark.svg, /sitemap.xml, /robots.txt)
     // have no markdown variant — pass through untouched.
-    const passthrough = NextResponse.next();
-    appendVaryAccept(passthrough.headers);
-    return passthrough;
+    return NextResponse.next();
   }
 
   if (pathname.endsWith(".md")) {
@@ -66,9 +72,11 @@ export function proxy(request: NextRequest) {
     );
   }
 
-  const response = NextResponse.next();
-  appendVaryAccept(response.headers);
-  return response;
+  // HTML branch: pass through. Next 16 does not let a proxy attach response
+  // headers to page responses, so `Vary: Accept` cannot be injected here —
+  // the audit-relevant guarantee (markdown responses declare Vary: Accept)
+  // is enforced inside the markdown route handler instead.
+  return NextResponse.next();
 }
 
 export const config = {

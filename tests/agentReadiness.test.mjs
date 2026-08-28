@@ -159,10 +159,18 @@ test("llms.txt and llms-full.txt are present and formatted correctly", () => {
   assert.ok(llmsFullContent.length > 1000, "llms-full.txt contains comprehensive text");
 });
 
+test("llms.txt has a single serving strategy (static file, no shadowed app route)", () => {
+  const shadowRoute = path.join(process.cwd(), "src", "app", "llms.txt");
+  assert.ok(
+    !fs.existsSync(shadowRoute),
+    "src/app/llms.txt must not exist: public/llms.txt is the canonical source and any app route at the same path would be silently shadowed",
+  );
+});
+
 // 3. Test Structured Data JSON-LD Schema
 test("Structured data includes Person, WebSite, ProfilePage, and ItemList", () => {
-  const schemaFile = path.join(process.cwd(), "src", "features", "resume", "content", "schema.ts");
-  assert.ok(fs.existsSync(schemaFile), "schema.ts must exist");
+  const schemaFile = path.join(process.cwd(), "src", "features", "resume", "jsonld", "personJsonLd.ts");
+  assert.ok(fs.existsSync(schemaFile), "personJsonLd.ts must exist");
   const content = fs.readFileSync(schemaFile, "utf-8");
 
   assert.ok(content.includes("@context"), "contains @context");
