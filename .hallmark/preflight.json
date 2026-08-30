@@ -1,0 +1,9 @@
+{
+  "date": "2026-08-30",
+  "fontStack": "Space Grotesk Variable body; Fraunces Variable display",
+  "palette": "OKLCH Studio warm paper, dark ink, restrained green accent",
+  "motion": "Framer Motion and GSAP installed; this page uses entrance and filter crossfade",
+  "spacing": "4pt named CSS token scale",
+  "framework": "Next.js 16 App Router",
+  "preserved": ["content", "routes", "contact form behavior", "section navigation"]
+}

@@ -159,3 +159,67 @@ test("11. GET /llms.txt and /llms-full.txt return 200", { skip: !isServerRunning
   const txt2 = await res2.text();
   assert.ok(txt2.includes("Sanket Patel"));
 });
+
+test("12. GET /about returns 200, HTML, H1, and >500 chars", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/about`, {
+    headers: { Accept: "text/html" },
+  });
+  assert.equal(res.status, 200);
+  const html = await res.text();
+  assert.ok(html.includes("<h1"), "Must include H1 tag");
+  assert.ok(html.length > 500, "Must contain >500 characters");
+  assert.ok(html.includes("Sanket Patel"), "Must mention Sanket Patel");
+});
+
+test("13. GET /contact returns 200, HTML, H1, and >500 chars", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/contact`, {
+    headers: { Accept: "text/html" },
+  });
+  assert.equal(res.status, 200);
+  const html = await res.text();
+  assert.ok(html.includes("<h1"), "Must include H1 tag");
+  assert.ok(html.length > 500, "Must contain >500 characters");
+  assert.ok(html.includes("sanpatel323@gmail.com"), "Must contain contact email");
+});
+
+test("14. GET /privacy returns 200, HTML, H1, and >500 chars", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/privacy`, {
+    headers: { Accept: "text/html" },
+  });
+  assert.equal(res.status, 200);
+  const html = await res.text();
+  assert.ok(html.includes("<h1"), "Must include H1 tag");
+  assert.ok(html.length > 500, "Must contain >500 characters");
+  assert.ok(html.includes("Privacy Policy"), "Must contain Privacy Policy title");
+});
+
+test("15. GET /about.md returns 200 and text/markdown with >500 chars", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/about.md`);
+  assert.equal(res.status, 200);
+  const contentType = res.headers.get("content-type") || "";
+  assert.ok(contentType.includes("text/markdown"));
+  const md = await res.text();
+  assert.ok(md.length > 500);
+  assert.ok(md.includes("About Sanket Patel"));
+});
+
+test("16. GET /contact.md returns 200 and text/markdown with >500 chars", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/contact.md`);
+  assert.equal(res.status, 200);
+  const contentType = res.headers.get("content-type") || "";
+  assert.ok(contentType.includes("text/markdown"));
+  const md = await res.text();
+  assert.ok(md.length > 500);
+  assert.ok(md.includes("sanpatel323@gmail.com"));
+});
+
+test("17. GET /privacy.md returns 200 and text/markdown with >500 chars", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/privacy.md`);
+  assert.equal(res.status, 200);
+  const contentType = res.headers.get("content-type") || "";
+  assert.ok(contentType.includes("text/markdown"));
+  const md = await res.text();
+  assert.ok(md.length > 500);
+  assert.ok(md.includes("Privacy Policy"));
+});
+

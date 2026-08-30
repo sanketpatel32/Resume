@@ -24,10 +24,16 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ```text
 src/
   app/
+    about/page.tsx             # Standalone About trust anchor page
+    contact/page.tsx           # Standalone Contact trust anchor page
+    privacy/page.tsx           # Standalone Privacy Policy trust anchor page
     globals.css                # Theme variables and global styles
-    layout.tsx                 # Root layout with SEO metadata from resume content
+    layout.tsx                 # Root layout with SEO metadata & JSON-LD graph
     page.tsx                   # Thin page entrypoint -> renders ResumePage
-    api/contact/route.ts       # Thin API route orchestrator
+    robots.ts                  # Robots.txt generator with AI crawler permissions
+    sitemap.ts                 # XML sitemap generator
+    api/contact/route.ts       # Thin API route orchestrator (POST endpoint)
+    api/markdown/[[...slug]]/route.ts # Content negotiation markdown handler
 
   features/
     resume/
@@ -35,7 +41,7 @@ src/
         types.ts               # Resume domain types
         sectionNav.ts          # Navigation section IDs/labels
       content/
-        index.ts               # Main content entrypoint (start editing here)
+        index.ts               # Main content entrypoint
         profile.ts
         career.ts
         education.ts
@@ -43,6 +49,10 @@ src/
         projects.ts
         contact.ts
         seo.ts
+        site.ts
+        markdown.ts            # Markdown generator for LLMs & agents
+      jsonld/
+        personJsonLd.ts        # schema.org JSON-LD (Person, Organization, WebSite)
       ui/
         ResumePage.tsx         # Feature page composition
         Navbar.tsx
@@ -59,45 +69,27 @@ src/
           ProjectCard.tsx
           SkillIcon.tsx
 
-    contact/
-      model/
-        types.ts               # Contact request/validation types
-        validation.ts          # validateContactInput(payload)
-      server/
-        brevoClient.ts         # Brevo transport wrapper
-        emailTemplate.ts       # Contact email HTML builder
-        sendContactEmail.ts    # Contact email application service
-      ui/
-        ContactForm.tsx
-      index.ts                 # Feature barrel exports
-
   shared/
     ui/
       Section.tsx              # Generic section wrapper
+      SpotlightBackground.tsx  # Interactive glowing background
     lib/
-      scroll.ts                # Shared smooth-scroll utilities
+      negotiation.ts           # RFC 9110 HTTP content negotiation
+      scroll.ts                # Shared smooth-scroll & cross-page navigation
 ```
 
-## Where to Edit What
+## Agent Readiness & Protocols
 
-- Start in `src/features/resume/content/index.ts` for the full composed content object.
-- Edit `src/features/resume/content/profile.ts` for name/title/summary/highlights and branding identity.
-- Edit `src/features/resume/content/career.ts`, `education.ts`, `skills.ts`, and `projects.ts` for section-specific updates.
-- Edit `src/features/resume/content/contact.ts` for contact links and basic details.
-- Edit `src/features/resume/content/seo.ts` for page metadata/SEO values.
+- **Content Negotiation**: Requesting with `Accept: text/markdown` returns markdown variants for all pages with `Vary: Accept`.
+- **Manifests**: `public/llms.txt` and `public/llms-full.txt` provide structured indexing and deep context with dedicated **When to Use** guidance.
+- **Trust Anchors**: Standalone `/about`, `/contact`, and `/privacy` routes (>500 chars each) with matching `.md` equivalents.
+- **Structured Data**: `personJsonLd.ts` outputs complete schema.org graph including `Person`, `Organization` (with `contactPoint` and `address`), `WebSite`, `ProfilePage`, and `ItemList`.
+- **Programmatic Contact Endpoint**: AI agents can submit opportunities via `POST /api/contact` with JSON body `{"name", "email", "subject", "message"}`.
 
-## Design Features
-
-- Pure black (`#000`) background
-- Emerald accent color (`#6EE7B7`)
-- Smooth scroll animations
-- Reduced motion support
-- Mobile responsive with hamburger menu
-- Accessible contact form with validation
-
-## Build for Production
+## Build & Test
 
 ```bash
-npm run build
-npm start
-```
+npm test        # Unit and E2E agent readiness test suite
+npm run build   # Next.js production build
+npm start       # Start production server
+```

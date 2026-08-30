@@ -168,7 +168,7 @@ test("llms.txt has a single serving strategy (static file, no shadowed app route
 });
 
 // 3. Test Structured Data JSON-LD Schema
-test("Structured data includes Person, WebSite, ProfilePage, and ItemList", () => {
+test("Structured data includes Person, Organization, WebSite, ProfilePage, and ItemList", () => {
   const schemaFile = path.join(process.cwd(), "src", "features", "resume", "jsonld", "personJsonLd.ts");
   assert.ok(fs.existsSync(schemaFile), "personJsonLd.ts must exist");
   const content = fs.readFileSync(schemaFile, "utf-8");
@@ -176,10 +176,15 @@ test("Structured data includes Person, WebSite, ProfilePage, and ItemList", () =
   assert.ok(content.includes("@context"), "contains @context");
   assert.ok(content.includes("https://schema.org"), "context is https://schema.org");
   assert.ok(content.includes('"Person"'), "contains Person type");
+  assert.ok(content.includes('"Organization"'), "contains Organization type");
   assert.ok(content.includes('"WebSite"'), "contains WebSite type");
   assert.ok(content.includes('"ProfilePage"'), "contains ProfilePage type");
   assert.ok(content.includes('"ItemList"'), "contains ItemList type");
+  assert.ok(content.includes("contactPoint"), "contains contactPoint in schema");
+  assert.ok(content.includes("customer service"), "contactPoint contains contactType");
+  assert.ok(content.includes("PostalAddress"), "contains PostalAddress in schema");
   assert.ok(content.includes("Birla Institute of Technology, Mesra"), "contains alma mater");
+  assert.ok(content.includes("Jamnagar"), "contains locality");
 });
 
 // 4. Test SEO Metadata and Alternates
@@ -193,7 +198,8 @@ test("SEO metadata configures canonical domain and markdown alternates", () => {
   assert.ok(content.includes("SITE_URL"), "metadataBase references SITE_URL");
   assert.ok(content.includes("text/markdown"), "alternates contains text/markdown");
   assert.ok(content.includes("/index.md"), "alternates links to /index.md");
-  assert.ok(content.includes("BRAND_NAME"), "title contains BRAND_NAME");
+  assert.ok(content.includes("SITE_NAME") || content.includes("BRAND_NAME"), "title contains brand identifier");
+  assert.ok(content.includes("Sanket Patel Portfolio"), "keywords/title contain brand phrase");
   assert.ok(content.includes("robots"), "robots configuration present");
 });
 
@@ -221,4 +227,45 @@ test("Proxy and next.config.ts configure Vary: Accept", () => {
   assert.ok(proxyContent.includes("406"), "proxy handles 406 Not Acceptable");
   assert.ok(ncContent.includes("Vary") && ncContent.includes("Accept"), "next.config.ts configures Vary: Accept headers");
 });
+
+// 7. Test Trust Anchor Pages Presence & Content Length
+test("Trust anchor pages (About, Contact, Privacy) exist with sufficient content (>500 chars)", () => {
+  const aboutPath = path.join(process.cwd(), "src", "app", "about", "page.tsx");
+  const contactPath = path.join(process.cwd(), "src", "app", "contact", "page.tsx");
+  const privacyPath = path.join(process.cwd(), "src", "app", "privacy", "page.tsx");
+
+  assert.ok(fs.existsSync(aboutPath), "src/app/about/page.tsx must exist");
+  assert.ok(fs.existsSync(contactPath), "src/app/contact/page.tsx must exist");
+  assert.ok(fs.existsSync(privacyPath), "src/app/privacy/page.tsx must exist");
+
+  const aboutContent = fs.readFileSync(aboutPath, "utf-8");
+  const contactContent = fs.readFileSync(contactPath, "utf-8");
+  const privacyContent = fs.readFileSync(privacyPath, "utf-8");
+
+  assert.ok(aboutContent.length > 500, "About page must have >500 characters");
+  assert.ok(contactContent.length > 500, "Contact page must have >500 characters");
+  assert.ok(privacyContent.length > 500, "Privacy page must have >500 characters");
+
+  assert.ok(aboutContent.includes("<h1"), "About page must contain H1");
+  assert.ok(contactContent.includes("<h1"), "Contact page must contain H1");
+  assert.ok(privacyContent.includes("<h1"), "Privacy page must contain H1");
+});
+
+// 8. Test Agent When-to-Use Guidance
+test("llms.txt and llms-full.txt contain dedicated When-to-Use agent guidance", () => {
+  const llmsPath = path.join(process.cwd(), "public", "llms.txt");
+  const llmsFullPath = path.join(process.cwd(), "public", "llms-full.txt");
+
+  const llmsContent = fs.readFileSync(llmsPath, "utf-8");
+  const llmsFullContent = fs.readFileSync(llmsFullPath, "utf-8");
+
+  assert.ok(llmsContent.includes("When to Use"), "llms.txt contains When to Use section");
+  assert.ok(llmsContent.includes("Best-Fit"), "llms.txt contains best-fit jobs");
+  assert.ok(llmsContent.includes("Full-Stack Developer"), "llms.txt names developer roles");
+  assert.ok(llmsContent.includes("/api/contact"), "llms.txt gives programmatic contact instruction");
+
+  assert.ok(llmsFullContent.includes("When to Use"), "llms-full.txt contains When to Use section");
+  assert.ok(llmsFullContent.includes("/api/contact"), "llms-full.txt gives programmatic contact endpoint");
+});
+
 

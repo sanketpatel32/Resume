@@ -30,25 +30,24 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
     <Section
       id="projects"
       number="02"
-      tag="FEATURED WORK"
-      title="Projects & Architecture"
+      tag="Selected work"
+      title="Selected systems"
       description="Production-grade tools, security scanners, desktop applications, and real-time backend systems."
     >
-      {/* Category Filter Tabs */}
-      <div className="flex flex-wrap items-center gap-2 mb-10">
+      <div className="project-filters" role="group" aria-label="Filter projects">
         {[
           { id: "all", label: "All Work" },
-          { id: "featured", label: "★ Featured Systems" },
-          { id: "security", label: "Developer & Security Tools" },
-          { id: "fullstack", label: "Full-Stack Web Apps" },
+          { id: "featured", label: "Featured" },
+          { id: "security", label: "Security" },
+          { id: "fullstack", label: "Full-stack" },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
-            className={`px-4 py-2 text-xs font-mono rounded-lg transition-all cursor-pointer ${
+            className={`filter-button ${
               activeTab === tab.id
-                ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.15)] font-semibold"
-                : "bg-white/[0.03] border border-white/10 text-slate-400 hover:text-white hover:border-white/20"
+                ? "is-active"
+                : ""
             }`}
           >
             {tab.label}
@@ -56,7 +55,6 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
         ))}
       </div>
 
-      {/* Projects Grid */}
       <AnimatePresence mode="wait">
         <m.div
           key={activeTab}
@@ -64,10 +62,10 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.3 }}
-          className="grid gap-6 md:grid-cols-2"
+          className="projects-grid"
         >
           {filteredProjects.map((project, index) => {
-            const isFeatured = project.name.includes("ScanForge") || project.name.includes("mdpeek");
+            const isFeatured = project.name.includes("ScanForge");
             return (
               <ProjectCard
                 key={project.name}

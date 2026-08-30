@@ -64,7 +64,7 @@ const skillIconMap: Record<string, React.ElementType> = {
 
 export default function SkillIcon({ name }: { name: string }) {
   const Icon = skillIconMap[name] || FiCode;
-  return <Icon className="w-4 h-4 text-emerald-400 shrink-0" />;
+  return <Icon className="w-4 h-4 shrink-0" />;
 }
 
 const categoryIconMap: Record<string, React.ElementType> = {
@@ -78,5 +78,5 @@ const categoryIconMap: Record<string, React.ElementType> = {
 
 export function CategoryIcon({ category }: { category: string }) {
   const Icon = categoryIconMap[category] || FiLayers;
-  return <Icon className="w-5 h-5 text-emerald-400" />;
+  return <Icon className="w-5 h-5" />;
 }

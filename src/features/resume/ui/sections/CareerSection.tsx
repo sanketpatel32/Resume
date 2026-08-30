@@ -1,5 +1,3 @@
-"use client";
-
 import type { CareerItem } from "@/features/resume/model/types";
 import TimelineItem from "@/features/resume/ui/cards/TimelineItem";
 import Section from "@/shared/ui/Section";
@@ -13,11 +11,11 @@ export default function CareerSection({ career }: CareerSectionProps) {
     <Section
       id="career"
       number="01"
-      tag="CAREER HISTORY"
-      title="Work Experience"
-      description="Professional software engineering and data science roles focused on building scalable backend architectures and data systems."
+      tag="Career history"
+      title="Experience"
+      description="Professional software engineering and data science roles focused on scalable backend architectures and data systems."
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="career-list">
         {career.map((job, index) => (
           <TimelineItem
             key={`${job.company}-${job.role}`}

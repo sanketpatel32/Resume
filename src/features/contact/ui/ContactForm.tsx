@@ -157,7 +157,7 @@ export default function ContactForm() {
       console.error("Submission error:", error);
       dispatch({
         type: "submit_error",
-        error: error instanceof Error ? error.message : "Something went wrong. Please try again.",
+        error: error instanceof Error ? error.message : "Message could not be sent. Please try again.",
       });
     } finally {
       dispatch({ type: "set_submitting", value: false });
@@ -177,16 +177,16 @@ export default function ContactForm() {
       <m.div
         initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-8 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 text-center space-y-4"
+        className="form-success"
       >
-        <FiCheckCircle className="w-12 h-12 text-emerald-400 mx-auto" />
-        <h3 className="text-xl font-bold text-white">Message Sent Successfully!</h3>
-        <p className="text-slate-300 text-sm max-w-sm mx-auto leading-relaxed">
+        <FiCheckCircle className="form-success-icon" />
+        <h3>Message sent.</h3>
+        <p>
           Thank you for reaching out. I&apos;ve received your note and will reply promptly.
         </p>
         <button
           onClick={() => dispatch({ type: "reset_submission" })}
-          className="mt-4 px-4 py-2 text-xs font-mono text-emerald-400 underline hover:text-emerald-300 transition-colors cursor-pointer"
+          className="text-link"
         >
           Send another message
         </button>
@@ -195,9 +195,9 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="contact-form">
       <div>
-        <label htmlFor="name" className="block text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider mb-2">
+        <label htmlFor="name">
           Your Name
         </label>
         <input
@@ -206,17 +206,17 @@ export default function ContactForm() {
           name="name"
           value={state.formData.name}
           onChange={handleChange}
-          className={`w-full px-4 py-3 bg-white/[0.03] border rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:bg-white/[0.05] transition-all ${
-            state.errors.name ? "border-red-500/70" : "border-white/10"
-          }`}
+          className={`form-input ${state.errors.name ? "has-error" : ""}`}
+          aria-invalid={Boolean(state.errors.name)}
+          aria-describedby="name-error"
           placeholder="Sanket Patel"
           disabled={state.isSubmitting}
         />
-        {state.errors.name && <p className="mt-1 text-xs text-red-400 font-mono">{state.errors.name}</p>}
+        <p id="name-error" className="form-error" aria-live="polite">{state.errors.name ?? ""}</p>
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider mb-2">
+        <label htmlFor="email">
           Email Address
         </label>
         <input
@@ -225,17 +225,17 @@ export default function ContactForm() {
           name="email"
           value={state.formData.email}
           onChange={handleChange}
-          className={`w-full px-4 py-3 bg-white/[0.03] border rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:bg-white/[0.05] transition-all ${
-            state.errors.email ? "border-red-500/70" : "border-white/10"
-          }`}
+          className={`form-input ${state.errors.email ? "has-error" : ""}`}
+          aria-invalid={Boolean(state.errors.email)}
+          aria-describedby="email-error"
           placeholder="name@domain.com"
           disabled={state.isSubmitting}
         />
-        {state.errors.email && <p className="mt-1 text-xs text-red-400 font-mono">{state.errors.email}</p>}
+        <p id="email-error" className="form-error" aria-live="polite">{state.errors.email ?? ""}</p>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider mb-2">
+        <label htmlFor="message">
           Message
         </label>
         <textarea
@@ -244,17 +244,17 @@ export default function ContactForm() {
           value={state.formData.message}
           onChange={handleChange}
           rows={4}
-          className={`w-full px-4 py-3 bg-white/[0.03] border rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:bg-white/[0.05] transition-all resize-none ${
-            state.errors.message ? "border-red-500/70" : "border-white/10"
-          }`}
-          placeholder="Hi Sanket, I'd like to discuss a project..."
+          className={`form-input form-textarea ${state.errors.message ? "has-error" : ""}`}
+          aria-invalid={Boolean(state.errors.message)}
+          aria-describedby="message-error"
+          placeholder="Hi Sanket, I’d like to discuss a project…"
           disabled={state.isSubmitting}
         />
-        {state.errors.message && <p className="mt-1 text-xs text-red-400 font-mono">{state.errors.message}</p>}
+        <p id="message-error" className="form-error" aria-live="polite">{state.errors.message ?? ""}</p>
       </div>
 
       {state.submitError && (
-        <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-mono">
+        <div className="form-submit-error" role="alert">
           {state.submitError}
         </div>
       )}
@@ -262,14 +262,14 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={state.isSubmitting}
-        className="w-full py-3.5 px-6 bg-emerald-500 text-black font-semibold rounded-xl hover:bg-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.3)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 text-sm group"
+        className="button button-primary form-submit"
       >
         {state.isSubmitting ? (
-          "Sending Message..."
+          "Sending message…"
         ) : (
           <>
-            <span>Send Message</span>
-            <FiSend className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <span>Send message</span>
+            <FiSend aria-hidden="true" />
           </>
         )}
       </button>
