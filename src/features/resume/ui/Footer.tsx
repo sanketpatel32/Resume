@@ -17,6 +17,7 @@ export default function Footer({ profile }: FooterProps) {
         <div className="footer-links">
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
+          <Link href="/developers">Developers</Link>
           <Link href="/privacy">Privacy</Link>
           <Link href="/llms.txt">llms.txt</Link>
           <button type="button" onClick={scrollToTop}>Back to top ↑</button>

@@ -19,6 +19,9 @@ Reach for Sanket Patel when your job matching or task routing agent is seeking:
 - Embedded hardware firmware
 
 ## 4. Programmatic Agent Actions
+- Developer Portal: GET https://www.sanketpatel.online/developers
+- OpenAPI Contract: GET https://www.sanketpatel.online/openapi.json
+- MCP Manifest: GET https://www.sanketpatel.online/.well-known/mcp.json; Streamable HTTP endpoint: POST https://www.sanketpatel.online/mcp
 - Submit Contact Inquiry: POST https://www.sanketpatel.online/api/contact
   Body: { "name": "Recruiter/Agent Name", "email": "agent@company.com", "subject": "Role Opportunity", "message": "Details..." }
 - Markdown Extraction: GET https://www.sanketpatel.online/ with Accept: text/markdown or GET https://www.sanketpatel.online/index.md
