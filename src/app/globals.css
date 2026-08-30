@@ -123,8 +123,8 @@ p {
 .mobile-nav-list { display: grid; gap: var(--space-2xs); padding-block: var(--space-md); }
 .mobile-nav-link { min-height: 2.75rem; text-align: left; font-size: var(--text-lg); white-space: nowrap; }
 .mobile-nav-link.is-active { color: var(--color-accent); }
-.hero-section { min-height: 100dvh; display: grid; align-content: start; padding-top: 7rem; border-bottom: var(--rule-thin) solid var(--color-rule); }
-.hero-grid { min-height: calc(100dvh - 7rem); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(12rem, 0.55fr); gap: var(--space-3xl); align-items: end; padding-bottom: var(--space-3xl); }
+.hero-section { display: grid; align-content: start; padding-top: 7rem; border-bottom: var(--rule-thin) solid var(--color-rule); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(12rem, 0.55fr); gap: var(--space-3xl); align-items: start; padding-bottom: var(--space-2xl); }
 .hero-copy { min-width: 0; max-width: 52rem; }
 .hero-index-label, .project-type, .footer-meta, .footer-bottom, .career-date, .education-dates { color: var(--color-muted); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; }
 .hero-copy h1 { max-width: 11ch; color: var(--color-ink); font-size: var(--text-display); line-height: 0.9; }
