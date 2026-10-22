@@ -1,9 +1,87 @@
 [
-  {
-    "date": "2026-08-30",
-    "macrostructure": "Marquee Hero",
-    "theme": "Studio",
-    "enrichment": "none",
-    "brief": "Hiring-manager portfolio with projects as the visual centre, quiet credibility lists, and a direct contact path."
-  }
+ {
+  "idea": "Real Sanket projects form a map visitors inspect",
+  "theme": "custom",
+  "waived": [
+   "39b: project-sized diagram nodes"
+  ],
+  "scope": "page",
+  "mode": "redesign",
+  "imagery": "real mdpeek application screenshot on project selection",
+  "footer": "connection endpoint",
+  "date": "2026-10-23",
+  "entry": "/",
+  "photos": [],
+  "vibe": "warm expressive connected exact",
+  "nav": "connecting bar",
+  "axes": "light/display-condensed/warm",
+  "shape": "Systems atlas",
+  "prompt": "I think it is not very creative; I want something unique",
+  "fingerprint": [
+   "ownership network",
+   "distributed interactive nodes",
+   "continuing spine",
+   "project inspector",
+   "orange field and lilac toolkit",
+   "no decorative motion"
+  ],
+  "sweep": "0 Floor failures; 0 open Reflex; 0 warnings; 39b waived; F15 answered; final independent finding resolved",
+  "sections": [
+   "Ownership map",
+   "Project records",
+   "Experience",
+   "Toolkit",
+   "Credentials",
+   "Education",
+   "Contact",
+   "Footer"
+  ],
+  "signature": "Full-canvas project ownership network",
+  "hero": "custom",
+  "depth": "full"
+ },
+ {
+  "nav": "slab",
+  "scope": "page",
+  "signature": "Switch projects and inspect their real architecture",
+  "sweep": "Floor 0 FAIL; Reflex 0 open; 0 WARN; 1 Finish answered; redesign note58 factual skills inventory retained",
+  "mode": "redesign",
+  "footer": "statement",
+  "photos": [],
+  "fingerprint": [
+   "identity masthead",
+   "interactive project selector",
+   "ruled index",
+   "keycap actions",
+   "real screenshot",
+   "immediate state changes"
+  ],
+  "axes": "light/grotesk-sans/cool",
+  "prompt": "Design my personal website using GitHub projects; be more innovative",
+  "theme": "Cobalt",
+  "entry": "/",
+  "shape": "Workbench",
+  "depth": "full",
+  "sections": [
+   "Workbench",
+   "Project index",
+   "Experience disclosures",
+   "Skills",
+   "Credentials",
+   "Education",
+   "Contact",
+   "Footer"
+  ],
+  "hero": "Index",
+  "waived": [],
+  "imagery": "real mdpeek repository screenshot; documented architecture diagrams",
+  "date": "2026-10-23"
+ },
+ {
+  "date": "2026-08-30",
+  "macrostructure": "Marquee Hero",
+  "theme": "Studio",
+  "enrichment": "none",
+  "brief": "Hiring-manager portfolio with projects as the visual centre, quiet credibility lists, and a direct contact path."
+ }
 ]

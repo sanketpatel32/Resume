@@ -10,20 +10,23 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ name, description, tech, links, isFeatured = false }: ProjectCardProps) {
+  const [title, subtitle] = name.split(" - ");
   return (
     <article className={`project-card ${isFeatured ? "project-card-featured" : ""}`}>
       <div className="project-card-head">
-        <span className="project-type">{isFeatured ? "Featured system" : "Selected work"}</span>
-        <div className="project-links">
+        <h3>{title}</h3>
+        {(links.github || links.live) && <div className="project-links">
           {links.github && <a href={links.github} target="_blank" rel="noopener noreferrer" aria-label={`${name} on GitHub`}><FiGithub aria-hidden="true" /></a>}
           {links.live && <a href={links.live} target="_blank" rel="noopener noreferrer" aria-label={`${name} live preview`}><FiExternalLink aria-hidden="true" /></a>}
-        </div>
+        </div>}
       </div>
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <ul className="project-tech" aria-label="Technologies">
+      <div className="project-description">
+        {subtitle && <p className="project-subtitle">{subtitle}</p>}
+        <details className="project-notes"><summary>Read the engineering notes</summary><p>{description}</p></details>
+      </div>
+      {tech.length > 0 && <ul className="project-tech" aria-label="Technologies">
         {tech.map((item) => <li key={item}>{item}</li>)}
-      </ul>
+      </ul>}
     </article>
   );
 }

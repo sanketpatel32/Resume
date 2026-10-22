@@ -4,24 +4,23 @@ import { useState } from "react";
 import type { ProjectItem } from "@/features/resume/model/types";
 import ProjectCard from "@/features/resume/ui/cards/ProjectCard";
 import Section from "@/shared/ui/Section";
-import { m, AnimatePresence } from "framer-motion";
 
 interface ProjectsSectionProps {
   projects: ProjectItem[];
 }
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
-  const [activeTab, setActiveTab] = useState<"all" | "featured" | "security" | "fullstack">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "featured" | "security" | "fullstack">("featured");
 
   const filteredProjects = projects.filter((project) => {
     if (activeTab === "featured") {
-      return project.name.includes("ScanForge") || project.name.includes("mdpeek");
+      return project.name.startsWith("LayersRank") || project.name.startsWith("Claire") || project.name.includes("Blunt Code") || project.name.includes("mdpeek") || project.name.includes("AuraFlow");
     }
     if (activeTab === "security") {
-      return project.name.includes("ScanForge") || project.name.includes("AuraFlow") || project.name.includes("mdpeek");
+      return project.name.includes("ScanForge") || project.name.includes("Blunt Code");
     }
     if (activeTab === "fullstack") {
-      return project.name.includes("Salon") || project.name.includes("AuraFlow");
+      return project.name.startsWith("LayersRank") || project.name.startsWith("Claire") || project.name.includes("Salon") || project.name.includes("AuraFlow");
     }
     return true;
   });
@@ -31,18 +30,20 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
       id="projects"
       number="02"
       tag="Selected work"
-      title="Selected systems"
-      description="Production-grade tools, security scanners, desktop applications, and real-time backend systems."
+      title="Inside the systems"
+      description="Complete applications built from scratch, alongside open-source developer tools."
     >
       <div className="project-filters" role="group" aria-label="Filter projects">
         {[
-          { id: "all", label: "All Work" },
-          { id: "featured", label: "Featured" },
+          { id: "featured", label: "Selected projects" },
+          { id: "all", label: "All projects" },
           { id: "security", label: "Security" },
           { id: "fullstack", label: "Full-stack" },
         ].map((tab) => (
           <button
             key={tab.id}
+            type="button"
+            aria-pressed={activeTab === tab.id}
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
             className={`filter-button ${
               activeTab === tab.id
@@ -55,17 +56,9 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
         ))}
       </div>
 
-      <AnimatePresence mode="wait">
-        <m.div
-          key={activeTab}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -15 }}
-          transition={{ duration: 0.3 }}
-          className="projects-grid"
-        >
+        <div className="projects-grid" aria-live="polite" aria-atomic="false">
           {filteredProjects.map((project, index) => {
-            const isFeatured = project.name.includes("ScanForge");
+            const isFeatured = project.name.includes("Blunt Code");
             return (
               <ProjectCard
                 key={project.name}
@@ -74,12 +67,11 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                 tech={project.tech}
                 links={project.links}
                 index={index}
-                isFeatured={isFeatured && activeTab === "all"}
+                isFeatured={isFeatured}
               />
             );
           })}
-        </m.div>
-      </AnimatePresence>
+        </div>
     </Section>
   );
 }

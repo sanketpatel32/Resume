@@ -223,3 +223,24 @@ test("17. GET /privacy.md returns 200 and text/markdown with >500 chars", { skip
   assert.ok(md.includes("Privacy Policy"));
 });
 
+test("Private application entries credit full ownership without exposing project links", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
+  assert.equal(res.status, 200);
+  const html = await res.text();
+  const jsonLd = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
+  assert.ok(jsonLd, "Project structured data must be present");
+  const graph = JSON.parse(jsonLd[1])["@graph"];
+  const projects = graph.find((entry) => entry["@type"] === "ItemList").itemListElement;
+  const articles = html.match(/<article\b[^>]*>[\s\S]*?<\/article>/g) || [];
+
+  for (const name of ["LayersRank", "Claire"]) {
+    const project = projects.find((entry) => entry.item.name.startsWith(name)).item;
+    assert.match(project.description, /complete.*from scratch/i);
+    assert.equal(project.codeRepository, undefined, `${name} must not advertise a repository`);
+    assert.equal(project.url, undefined, `${name} must not advertise a demo URL`);
+    const card = articles.find((article) => article.includes(`<h3>${name}</h3>`));
+    assert.ok(card, `${name} must appear in the default selected work`);
+    assert.doesNotMatch(card, /href=/, `${name} card must not expose external links`);
+  }
+});
+

@@ -9,7 +9,7 @@ export const seo: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Official portfolio of Sanket Patel, Full-Stack Developer and Backend Specialist based in Jamnagar, India. Explore production projects (ScanForge, mdpeek, AuraFlow), REST API architectures, technical skills, and engineering experience.",
+    "Official portfolio of Sanket Patel, Full-Stack Developer based in Jamnagar, India. Built LayersRank and Claire from scratch, with end-to-end application ownership, backend engineering, and open-source developer tools.",
   keywords: [
     "Sanket Patel",
     "Sanket Patel Portfolio",
@@ -26,6 +26,8 @@ export const seo: Metadata = {
     "TypeScript",
     "Next.js",
     "React",
+    "LayersRank",
+    "Claire",
     "ScanForge",
     "mdpeek",
     "AuraFlow",
@@ -45,7 +47,7 @@ export const seo: Metadata = {
     type: "profile",
     title: `${SITE_NAME} | ${profile.title} & Backend Specialist`,
     description:
-      "Official portfolio of Sanket Patel, Full-Stack Developer and Backend Specialist. Building scalable backend architectures, RESTful APIs, and developer security tools.",
+      "Sanket Patel, Full-Stack Developer. Built LayersRank and Claire from scratch with end-to-end application ownership, alongside open-source developer tools.",
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "en_US",
@@ -62,7 +64,7 @@ export const seo: Metadata = {
     card: "summary",
     title: `${SITE_NAME} | ${profile.title} & Backend Specialist`,
     description:
-      "Official portfolio of Sanket Patel, Full-Stack Developer and Backend Specialist. Building scalable backend architectures, RESTful APIs, and developer security tools.",
+      "Sanket Patel, Full-Stack Developer. Built LayersRank and Claire from scratch with end-to-end application ownership, alongside open-source developer tools.",
     images: ["/logo.png"],
   },
   robots: {

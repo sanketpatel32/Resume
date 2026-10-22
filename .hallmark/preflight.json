@@ -1,9 +1,31 @@
 {
-  "date": "2026-08-30",
-  "fontStack": "Space Grotesk Variable body; Fraunces Variable display",
-  "palette": "OKLCH Studio warm paper, dark ink, restrained green accent",
-  "motion": "Framer Motion and GSAP installed; this page uses entrance and filter crossfade",
-  "spacing": "4pt named CSS token scale",
-  "framework": "Next.js 16 App Router",
-  "preserved": ["content", "routes", "contact form behavior", "section navigation"]
+  "preserve": [
+    "routes",
+    "section IDs",
+    "resume download",
+    "contact handler",
+    "career and credentials",
+    "existing projects under All projects"
+  ],
+  "introduce": [
+    "Custom orange systems atlas",
+    "Antonio display with IBM Plex Sans body",
+    "Project ownership map and factual inspector",
+    "Mobile ownership spine",
+    "One-click real mdpeek screenshot",
+    "Connecting line through resume sections"
+  ],
+  "scanned": "2026-10-23",
+  "assumptions": {
+    "action": "Inspect projects and contact Sanket",
+    "audience": "Recruiters and collaborators",
+    "tone": "Expressive, warm, connected; custom concept after both earlier versions were rejected as too conventional"
+  },
+  "findings": {
+    "material": "Resume content, public/resume.pdf, and sanketpatel32 GitHub repositories",
+    "framework": "Next.js 16, React 19, TypeScript (package.json)",
+    "lockedSystem": "No design.md found",
+    "fontsBefore": "Space Grotesk and Fraunces (src/app/layout.tsx:5 at HEAD)",
+    "paletteBefore": "Warm paper and green (tokens.css:4 at HEAD)"
+  }
 }

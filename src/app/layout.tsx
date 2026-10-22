@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { resumeContent } from "@/features/resume/content";
 import { personJsonLd } from "@/features/resume/jsonld/personJsonLd";
-import "@fontsource-variable/space-grotesk";
-import "@fontsource-variable/fraunces";
+import "@fontsource-variable/antonio";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
 import "./globals.css";
 
 export const metadata: Metadata = resumeContent.seo;

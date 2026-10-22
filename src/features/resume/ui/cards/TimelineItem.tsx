@@ -21,9 +21,9 @@ export default function TimelineItem({ company, role, dates, location, bullets }
           </div>
           {location && <span className="career-location"><FiMapPin aria-hidden="true" /> {location}</span>}
         </div>
-        <ul>
+        <details className="career-notes"><summary>What I worked on</summary><ul>
           {bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
-        </ul>
+        </ul></details>
       </div>
     </article>
   );

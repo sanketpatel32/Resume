@@ -37,3 +37,7 @@ next-env.d.ts
 # agents / tooling cache
 .agents/
 skills-lock.json
+.hallmark/shots/
+.hallmark/before/
+.hallmark/compare.html
+.scannerwork/

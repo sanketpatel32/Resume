@@ -1,6 +1,6 @@
 # Sanket Patel - Full-Stack Developer & Backend Specialist
 
-> I specialize in building robust, scalable backend APIs and server-side applications. My focus is on designing clean RESTful architectures, optimizing database performance, and creating reliable systems that power seamless user experiences.
+> I build complete applications from scratch, including LayersRank and Claire. My work spans user interfaces, backend APIs, database architecture, real-time features, and cloud integrations, with ownership of the application end to end.
 
 - **Website**: https://www.sanketpatel.online/
 - **Email**: sanpatel323@gmail.com
@@ -15,6 +15,7 @@
 
 ## Core Highlights
 
+- End-to-End Application Development
 - Backend API Development
 - Node.js & Express.js
 - RESTful API Design
@@ -44,6 +45,14 @@
 ---
 
 ## Featured Projects & Architecture
+
+### LayersRank - Built from scratch
+- **Description**: Built the complete AI hiring and assessment platform from scratch: admin, employer, and candidate portals; job and interview workflows; AI-assisted scoring; proctoring; reports; and real-time updates. Owned the frontend, backend, database, and integrations end to end.
+- **Tech Stack**: React, TypeScript, Vite, Redux Toolkit, Bun, Express, MongoDB, Socket.IO, AWS SES
+
+### Claire - Built from scratch
+- **Description**: Built the complete voice AI and workflow automation platform from scratch, owning the web interface, product API, and real-time voice services. Implemented the visual workflow builder, knowledge retrieval, inbound and outbound calling, tenant access controls, and analytics.
+- **Tech Stack**: React, TypeScript, Vite, Python, FastAPI, PostgreSQL, LangGraph, LiveKit, Redis, Pinecone
 
 ### ScanForge - AI-Powered API Testing & Security Scanner
 - **Description**: Production-ready DAST platform for REST APIs that automates OWASP API Top 10 security testing with safe/balanced/aggressive scan modes, evidence-backed findings, and multi-tenant workspace isolation. Built as a TypeScript monorepo with local-first Bun runners, real-time queue monitoring, and enterprise-grade security controls.

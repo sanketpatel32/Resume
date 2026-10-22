@@ -8,19 +8,19 @@ export const skills: SkillsContent = {
     },
     {
       name: "Frontend",
-      items: ["React", "Next.js", "HTML", "CSS", "Tailwind CSS", "Vite"],
+      items: ["React", "Next.js", "HTML", "CSS", "Tailwind CSS", "Vite", "Redux Toolkit", "TanStack Query"],
     },
     {
       name: "Backend",
-      items: ["Node.js", "Express.js", "FastAPI", "Socket.io"],
+      items: ["Node.js", "Express.js", "Bun", "FastAPI", "Socket.io", "LiveKit"],
     },
     {
       name: "Databases",
-      items: ["MongoDB", "SQL", "PostgreSQL"],
+      items: ["MongoDB", "SQL", "PostgreSQL", "Redis", "Pinecone"],
     },
     {
       name: "AI/ML & NLP",
-      items: ["PyTorch", "Transformers", "Sentence Transformers", "spaCy", "NLTK"],
+      items: ["PyTorch", "Transformers", "Sentence Transformers", "spaCy", "NLTK", "LangGraph", "RAG"],
     },
     {
       name: "Cloud & DevOps",

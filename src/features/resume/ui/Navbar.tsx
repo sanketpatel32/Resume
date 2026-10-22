@@ -51,6 +51,8 @@ export default function Navbar() {
         </button>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
+          <button type="button" onClick={() => navigate("projects")} className="nav-link">Work</button>
+          <button type="button" onClick={() => navigate("career")} className="nav-link">Experience</button>
           <button type="button" onClick={() => navigate("contact")} className="nav-contact">
             Contact
           </button>
