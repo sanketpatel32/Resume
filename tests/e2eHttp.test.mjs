@@ -233,7 +233,7 @@ test("Private application entries credit full ownership without exposing project
   const projects = graph.find((entry) => entry["@type"] === "ItemList").itemListElement;
   const articles = html.match(/<article\b[^>]*>[\s\S]*?<\/article>/g) || [];
 
-  for (const name of ["LayersRank", "Claire"]) {
+  for (const name of ["AI Hiring Platform", "Voice AI Platform"]) {
     const project = projects.find((entry) => entry.item.name.startsWith(name)).item;
     assert.match(project.description, /complete.*from scratch/i);
     assert.equal(project.codeRepository, undefined, `${name} must not advertise a repository`);

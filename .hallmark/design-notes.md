@@ -50,21 +50,23 @@ No PR was created. PR readiness remains blocked by the named unavailable or fail
 
 No empty image slots or stock-photo placeholders. The mdpeek preview uses the real 1600 × 950 repository asset. A genuine Blunt Code application capture at 1440 × 900 or larger would be the most useful additional material for future expansion.
 
-## LayersRank and Claire content update
+## Anonymous application work and portfolio revision
 
-The user confirmed complete authorship of both applications, requested their technology stacks, and explicitly excluded repository/public demo links or GitHub changes. Their local frontend/backend/realtime manifests and README files were inspected read-only. Only high-level capabilities and technology names were added; no private code, provider credentials, repository URLs, hostnames, customer material, or screenshots were copied.
+The user requires both private applications to remain unnamed. Public entries use generic descriptions: AI Hiring Platform and Voice AI Platform. Technology names and complete application ownership are retained. No private repository URLs, hostnames, source, customer material, screenshots, or credentials are included. The private source repositories were only inspected read-only; this correction changes the portfolio alone.
 
-- LayersRank: complete hiring/assessment application. Verified React, TypeScript, Vite, Redux Toolkit, Bun, Express, MongoDB, Socket.IO, and AWS SES from the frontend/backend manifests and README files.
-- Claire: complete voice AI/workflow application. Verified React, TypeScript, Vite, Python, FastAPI, PostgreSQL, LangGraph, LiveKit, Redis, and Pinecone from the frontend/backend/realtime manifests and workspace architecture documentation.
-- Updated profile, hero copy, selected work, map nodes, skills, metadata, and static agent summaries to emphasize full application ownership. The map now leads with LayersRank and Claire; mdpeek remains the genuine application-preview node. Both new project entries use empty link objects, and their cards and structured data omit repository/demo links.
-- `npm run lint`: PASS, zero errors, same existing privacy-page unused-variable warning.
-- `./node_modules/.bin/tsc --noEmit`: PASS.
-- `npm test`: PASS, 28/28, zero skipped. Added an HTTP regression proving both complete-app claims appear in selected work and neither project exposes repository/demo links in cards or JSON-LD.
-- `npm run build`: PASS, optimized output and all static routes generated.
-- React Doctor: PASS, no issues, same command as above with output directory `resume-react-doctor-content`.
-- `jscpd src --reporters console --threshold 5`: PASS, 0.75% duplicated lines, existing untouched clones.
-- Hallmark render check on updated components and stylesheet: zero failures/warnings, same existing diagram-node waiver and redesign notes; fresh phone and desktop renders.
-- Browser inspection: both new selected-work cards have zero links, verified stacks render, and selecting Claire shows its facts with zero external inspector links. Switching Claire does not open the mdpeek image.
-- Existing formatter/SonarQube and dependency-advisory blockers remain recorded above. Dependencies did not change in this content update. No commits, pushes, PRs, deployments, or changes to either source application were made.
+The prior project graph was replaced by a real mdpeek screenshot and a concise introduction. Selected work now presents each application’s purpose and authorship before optional implementation details, with private work given equal prominence. Warm paper and charcoal replace the orange canvas; typography, focus indicators, mobile layout, and shared spacing were refined. All routes, filters, résumé download, and contact behavior remain connected.
 
-The user subsequently authorized committing and pushing the portfolio repository. This authorization covers the approved high-level application descriptions and technology names, not the LayersRank or Claire source repositories.
+This is a correction to the current tree. Earlier Git commits retain their original content; history has not been rewritten.
+
+Verification for the anonymous product-folio revision:
+- `git status --short`, tracked/unstaged diff, new-file review, and `git diff --check`: reviewed; portfolio-only scope, no release metadata change, no secrets or private source added.
+- `npm run lint`: PASS, zero errors; existing unused BRAND_NAME warning on the privacy page.
+- `npx tsc --noEmit` and the TypeScript production-build phase: PASS.
+- `npm test`: PASS, 28/28, no skips, against the production server.
+- `npm run build`: PASS, 19 static pages generated.
+- React Doctor installed temporary tool, changed scope against HEAD: PASS, seven files, no issues.
+- `jscpd src --reporters console --threshold 5`: PASS, 0.77% lines duplicated, three existing clones in unchanged files.
+- Hallmark sloplint with render on the stylesheet and three revised UI components: zero FAIL. Static wordmark contrast warning dismissed: computed foreground Lab L96.5, background L10.7; rendered contrast gate passes. 91-word selected-work screen accepted as a concise technical comparison. F15 notes earlier overridden declarations; rendered section gaps share the token.
+- Desktop, wide-screen, and 375px captures reviewed. Phone browser has no horizontal overflow; hero image loads; private cards expose zero links.
+- Read-only privacy scan: no original private application names in the current tracked tree or seven served HTML/Markdown/AI-readable representations.
+- Existing BLOCKED checks remain: dedicated formatter absent; SonarQube service unavailable, no final quality gate; existing dependency advisories unchanged. No PR created, no dependency changes, no history rewrite.

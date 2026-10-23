@@ -95,36 +95,36 @@
 @media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; } }
 @media (max-width: 40rem) { :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }
 
-/* Custom atlas palette: orange is the map, lilac marks the toolkit. */
+/* Warm paper, charcoal type, and a restrained rust accent. */
 :root {
-  --color-paper: oklch(96% 0.022 70);
-  --color-paper-2: oklch(91% 0.035 300);
-  --color-paper-3: oklch(91% 0.036 70);
-  --color-ink: oklch(21% 0.026 35);
-  --color-ink-2: oklch(33% 0.035 35);
-  --color-muted: oklch(45% 0.035 35);
-  --color-rule: oklch(78% 0.042 55);
-  --color-rule-2: oklch(63% 0.045 45);
-  --color-field: oklch(76% 0.16 48);
-  --color-field-ink: oklch(21% 0.026 35);
-  --color-field-line: oklch(40% 0.08 42);
-  --color-graphite: oklch(23% 0.028 35);
-  --color-graphite-2: oklch(29% 0.028 35);
-  --color-graphite-ink: oklch(96% 0.022 70);
-  --color-graphite-muted: oklch(78% 0.03 65);
-  --color-accent: oklch(35% 0.105 38);
-  --color-accent-2: oklch(83% 0.12 65);
-  --color-accent-wash: oklch(91% 0.04 50);
-  --color-accent-ink: oklch(97% 0.018 70);
-  --color-accent-deep: oklch(26% 0.06 35);
-  --color-accent-edge: oklch(26% 0.06 35);
-  --color-focus: oklch(28% 0.04 35);
-  --color-focus-inverse: oklch(94% 0.03 70);
-  --font-display: "Antonio Variable", "Arial Narrow", sans-serif;
+  --color-paper: oklch(97% 0.009 80);
+  --color-paper-2: oklch(93% 0.014 80);
+  --color-paper-3: oklch(95% 0.013 80);
+  --color-ink: oklch(23% 0.012 60);
+  --color-ink-2: oklch(36% 0.012 60);
+  --color-muted: oklch(47% 0.015 60);
+  --color-rule: oklch(85% 0.015 75);
+  --color-rule-2: oklch(78% 0.018 75);
+  --color-field: var(--color-paper);
+  --color-field-ink: var(--color-ink);
+  --color-field-line: var(--color-rule-2);
+  --color-graphite: oklch(23% 0.012 60);
+  --color-graphite-2: oklch(29% 0.012 60);
+  --color-graphite-ink: oklch(97% 0.009 80);
+  --color-graphite-muted: oklch(77% 0.015 75);
+  --color-accent: oklch(43% 0.12 38);
+  --color-accent-2: oklch(80% 0.09 55);
+  --color-accent-wash: oklch(92% 0.025 50);
+  --color-accent-ink: oklch(98% 0.006 80);
+  --color-accent-deep: oklch(33% 0.085 38);
+  --color-accent-edge: var(--color-accent-deep);
+  --color-focus: var(--color-accent);
   --font-outlier: var(--font-body);
   --radius-card: 0px;
   --radius-input: 0px;
   --radius-pill: 0px;
   --shadow-key-accent: none;
   --shadow-key-press: none;
+  --section-gap-s: 88px;
 }
+@media (max-width: 40rem) { :root { --section-gap-s: 56px; } }

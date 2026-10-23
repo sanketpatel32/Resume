@@ -14,13 +14,13 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
 
   const filteredProjects = projects.filter((project) => {
     if (activeTab === "featured") {
-      return project.name.startsWith("LayersRank") || project.name.startsWith("Claire") || project.name.includes("Blunt Code") || project.name.includes("mdpeek") || project.name.includes("AuraFlow");
+      return project.name.startsWith("AI Hiring Platform") || project.name.startsWith("Voice AI Platform") || project.name.includes("Blunt Code") || project.name.includes("mdpeek") || project.name.includes("AuraFlow");
     }
     if (activeTab === "security") {
       return project.name.includes("ScanForge") || project.name.includes("Blunt Code");
     }
     if (activeTab === "fullstack") {
-      return project.name.startsWith("LayersRank") || project.name.startsWith("Claire") || project.name.includes("Salon") || project.name.includes("AuraFlow");
+      return project.name.startsWith("AI Hiring Platform") || project.name.startsWith("Voice AI Platform") || project.name.includes("Salon") || project.name.includes("AuraFlow");
     }
     return true;
   });
@@ -30,13 +30,13 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
       id="projects"
       number="02"
       tag="Selected work"
-      title="Inside the systems"
-      description="Complete applications built from scratch, alongside open-source developer tools."
+      title="Built, end to end."
+      description="Private product work and open-source tools. Full application ownership."
     >
       <div className="project-filters" role="group" aria-label="Filter projects">
         {[
-          { id: "featured", label: "Selected projects" },
-          { id: "all", label: "All projects" },
+          { id: "featured", label: "Selected" },
+          { id: "all", label: "All" },
           { id: "security", label: "Security" },
           { id: "fullstack", label: "Full-stack" },
         ].map((tab) => (
@@ -58,7 +58,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
 
         <div className="projects-grid" aria-live="polite" aria-atomic="false">
           {filteredProjects.map((project, index) => {
-            const isFeatured = project.name.includes("Blunt Code");
+            const isFeatured = !project.links.github && !project.links.live;
             return (
               <ProjectCard
                 key={project.name}

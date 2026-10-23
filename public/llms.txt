@@ -1,6 +1,6 @@
 # Sanket Patel - Portfolio & Technical Profile
 
-> Full-Stack Developer who built LayersRank and Claire from scratch with end-to-end ownership of the complete applications, alongside backend systems and open-source developer tools.
+> Full-Stack Developer building complete hiring and voice AI applications, backend systems, and open-source developer tools.
 
 - **Canonical URL**: https://www.sanketpatel.online/
 - **Email**: sanpatel323@gmail.com
@@ -10,8 +10,8 @@
 
 ## Key Projects & Architecture
 
-- **LayersRank**: Built the complete AI hiring and assessment platform from scratch, including frontend portals, backend APIs, interviews, scoring, proctoring, and reporting. Tech: React, TypeScript, Vite, Redux Toolkit, Bun, Express, MongoDB, Socket.IO, AWS SES. No repository or demo link is provided.
-- **Claire**: Built the complete voice AI and workflow automation platform from scratch across its web interface, product API, and real-time voice services. Tech: React, TypeScript, Vite, Python, FastAPI, PostgreSQL, LangGraph, LiveKit, Redis, Pinecone. No repository or demo link is provided.
+- **AI Hiring Platform**: Built the complete AI hiring and assessment platform from scratch, including frontend portals, backend APIs, interviews, scoring, proctoring, and reporting. Tech: React, TypeScript, Vite, Redux Toolkit, Bun, Express, MongoDB, Socket.IO, AWS SES.
+- **Voice AI Platform**: Built the complete voice AI and workflow automation platform from scratch across its web interface, product API, and real-time voice services. Tech: React, TypeScript, Vite, Python, FastAPI, PostgreSQL, LangGraph, LiveKit, Redis, Pinecone.
 - [ScanForge](https://github.com/sanketpatel32/ScanForge): Production-ready DAST platform for REST APIs automating OWASP API Top 10 security scanning with safe/balanced/aggressive scan modes, Bun runners, BullMQ queue monitoring, and multi-tenant workspace isolation.
 - [mdpeek](https://github.com/sanketpatel32/Mdpeek): Lightweight Windows desktop Markdown viewer and editor built with Tauri 2 and Rust with live preview, multi-tab editing, Mermaid/KaTeX support (~5.5 MB installer).
 - [AuraFlow](https://github.com/sanketpatel32/Portal): Self-hosted developer utility portal with 16 integrated developer tools (API testing, SQL/NoSQL clients, real-time Kanban board, cron triggers) powered by Bun, React 19, and WebSockets. Live at https://portal.sanketpatel.online

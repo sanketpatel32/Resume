@@ -4,7 +4,7 @@ export const profile: Profile = {
   name: "Sanket Patel",
   title: "Full-Stack Developer",
   summary:
-    "I build complete applications from scratch, including LayersRank and Claire. My work spans user interfaces, backend APIs, database architecture, real-time features, and cloud integrations, with ownership of the application end to end.",
+    "I’m a full-stack developer who takes applications from the first interface to the backend behind it. I’ve built complete hiring and voice AI platforms, and I make open-source tools for developers. My work spans React, TypeScript, Python, Go, databases, and real-time systems.",
   highlights: [
     "End-to-End Application Development",
     "Backend API Development",

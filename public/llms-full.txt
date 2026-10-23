@@ -1,6 +1,6 @@
 # Sanket Patel - Full-Stack Developer & Backend Specialist
 
-> I build complete applications from scratch, including LayersRank and Claire. My work spans user interfaces, backend APIs, database architecture, real-time features, and cloud integrations, with ownership of the application end to end.
+> I’m a full-stack developer who builds complete hiring and voice AI applications, backend systems, and open-source tools for developers.
 
 - **Website**: https://www.sanketpatel.online/
 - **Email**: sanpatel323@gmail.com
@@ -46,12 +46,12 @@
 
 ## Featured Projects & Architecture
 
-### LayersRank - Built from scratch
-- **Description**: Built the complete AI hiring and assessment platform from scratch: admin, employer, and candidate portals; job and interview workflows; AI-assisted scoring; proctoring; reports; and real-time updates. Owned the frontend, backend, database, and integrations end to end.
+### AI Hiring Platform - Hiring, from application to assessment
+- **Description**: Built the complete hiring application from scratch. Owned the candidate, employer, and admin experiences, backend APIs, database, and integrations. Implemented interview workflows, AI-assisted scoring, proctoring, reports, and real-time updates.
 - **Tech Stack**: React, TypeScript, Vite, Redux Toolkit, Bun, Express, MongoDB, Socket.IO, AWS SES
 
-### Claire - Built from scratch
-- **Description**: Built the complete voice AI and workflow automation platform from scratch, owning the web interface, product API, and real-time voice services. Implemented the visual workflow builder, knowledge retrieval, inbound and outbound calling, tenant access controls, and analytics.
+### Voice AI Platform - Conversations connected to workflows
+- **Description**: Built the complete voice AI application from scratch. Owned the web interface, product API, and real-time voice services. Connected a visual workflow builder with knowledge retrieval, inbound and outbound calling, tenant access controls, and analytics.
 - **Tech Stack**: React, TypeScript, Vite, Python, FastAPI, PostgreSQL, LangGraph, LiveKit, Redis, Pinecone
 
 ### ScanForge - AI-Powered API Testing & Security Scanner
