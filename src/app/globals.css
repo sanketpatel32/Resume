@@ -1,6 +1,7 @@
 /* Hallmark · shape: Product folio · genre: editorial · theme: custom · job: hire
  * idea: real applications and clear ownership · display: Antonio · body: IBM Plex Sans
- * hero: product-led · signature: real mdpeek workspace · v2.0.0 */
+ * hero: product-led · signature: typography and clear application ownership · v2.0.0 */
+/* Hallmark · waive 44c · compact text-only hero by user request; selected work starts sooner after removing project imagery. */
 /* Hallmark · edit critique: removed the decorative project graph; brought project purpose and ownership into view. */
 /* Hallmark · answered F15 · shared column-gap token below the hero; static scanner reports earlier overridden declarations. */
 @import "tailwindcss";
@@ -422,22 +423,16 @@ input, textarea { caret-color: var(--color-accent); }
 }
 
 
-/* Product-led portfolio: the work takes the place of the decorative map. */
+/* Text-led portfolio: clear ownership and direct access to the work. */
 .site-nav { background: var(--color-paper); color: var(--color-ink); }
 .nav-inner { border-bottom: 0; }
 .wordmark-mark { background: var(--color-ink); color: var(--color-graphite-ink); border-color: var(--color-ink); border-radius: 0; font-family: var(--font-body); }
 .nav-contact { background: var(--color-ink); color: var(--color-paper); }
-.product-hero { padding-top: 6.5rem; padding-bottom: 0; }
+.product-hero { padding-top: 6.5rem; padding-bottom: 0; min-height: 0; }
 .product-hero h1 { font-size: clamp(6rem, 11.5vw, 11rem); line-height: 1.1; letter-spacing: -0.045em; text-transform: uppercase; font-weight: 600; margin-bottom: var(--space-xl); }
-.product-hero-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); align-items: center; gap: var(--gap-columns); padding-bottom: var(--space-xl); }
-.product-hero-statement { font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.2; font-weight: 500; letter-spacing: -0.025em; }
-.product-hero-summary { margin-top: var(--space-lg); color: var(--color-ink-2); max-width: 31ch; font-size: var(--text-md); line-height: 1.6; }
+.product-hero-grid { padding-block: var(--space-xl) var(--space-2xl); border-top: 1px solid var(--color-rule-2); }
+.product-hero-statement { max-width: 30ch; font-size: clamp(1.5rem, 3vw, 2.75rem); line-height: 1.2; font-weight: 500; letter-spacing: -0.025em; }
 .product-hero .hero-actions { margin-top: var(--space-lg); gap: var(--space-lg); }
-.product-hero-work { margin: 0; min-width: 0; }
-.product-hero-work > a { display: block; border: 1px solid var(--color-rule-2); background: var(--color-graphite); color: var(--color-graphite-ink); }
-.product-hero-work img { display: block; width: 100%; height: auto; }
-.product-hero-work figcaption { display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); padding-top: var(--space-sm); font-size: var(--text-sm); }
-.product-hero-work figcaption span span { color: var(--color-muted); }
 .product-hero-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-md); border-top: 1px solid var(--color-rule-2); padding-block: var(--space-sm); font-size: var(--text-sm); color: var(--color-muted); }
 .product-hero-footer button { background: none; border: 0; cursor: pointer; }
 .resume-section { padding-block: var(--section-gap-s); border-bottom: 0; }
@@ -473,17 +468,14 @@ input, textarea { caret-color: var(--color-accent); }
 @media (max-width: 52rem) {
   .product-hero { padding-top: var(--space-3xl); }
   .product-hero h1 { font-size: clamp(4rem, 15.5vw, 8rem); margin-bottom: var(--space-lg); }
-  .product-hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
   .product-hero-statement br { display: none; }
   .product-hero-statement { max-width: 22ch; font-size: var(--text-xl); }
-  .product-hero-summary { max-width: 40ch; margin-top: var(--space-md); }
   .product-hero-footer p:nth-child(2) { display: none; }
   .skills-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project-card-featured { padding: var(--space-lg); }
 }
 @media (max-width: 40rem) {
   .product-hero h1 { font-size: clamp(3.5rem, 14.8vw, 6rem); }
-  .product-hero-work figcaption { font-size: var(--text-xs); }
   .projects-grid, .project-card { grid-template-columns: minmax(0, 1fr); }
   .project-card-featured { grid-column: 1; }
   .project-card h3 { font-size: 2.5rem; }

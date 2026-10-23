@@ -70,3 +70,10 @@ Verification for the anonymous product-folio revision:
 - Desktop, wide-screen, and 375px captures reviewed. Phone browser has no horizontal overflow; hero image loads; private cards expose zero links.
 - Read-only privacy scan: no original private application names in the current tracked tree or seven served HTML/Markdown/AI-readable representations.
 - Existing BLOCKED checks remain: dedicated formatter absent; SonarQube service unavailable, no final quality gate; existing dependency advisories unchanged. No PR created, no dependency changes, no history rewrite.
+
+## Text-only hero correction
+
+User preference: do not add project pictures or screenshots. Removed the project figure, its link/caption, image import, unused figure styles, and public screenshot asset. The hero now uses a single text column with the existing work and résumé actions. Earlier screenshot descriptions in this record describe superseded versions.
+
+Verification: `npm run build` including TypeScript passed; `npm run lint` passed with the existing privacy-page warning; `npm test` passed 28/28, no skips. Read-only HTTP assertions confirm no image element on the homepage and a 404 for the removed asset. Render check has zero failures; compact-hero Reflex 44c explicitly waived to honor the text-only direction and bring work into view sooner. Previous static contrast/91-word comparison warnings remain assessed as above. Existing formatter/SonarQube blockers remain; no dependencies changed. Git scope/diff and secrets reviewed, `git diff --check` clean. React Doctor and duplicate results are recorded below.
+- React Doctor changed-scope diagnostics: no issues. Duplicate analysis: PASS, 0.77% existing duplication in unchanged files.
