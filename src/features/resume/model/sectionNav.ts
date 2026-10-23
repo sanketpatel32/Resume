@@ -5,10 +5,10 @@ interface NavItem {
 
 export const sectionNav: NavItem[] = [
   { id: "about", label: "About" },
-  { id: "career", label: "Career" },
-  { id: "projects", label: "Projects" },
+  { id: "projects", label: "Work" },
+  { id: "career", label: "Experience" },
   { id: "skills", label: "Skills" },
-  { id: "certifications", label: "Certifications" },
+  { id: "certifications", label: "Credentials" },
   { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];

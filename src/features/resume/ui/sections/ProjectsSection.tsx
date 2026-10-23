@@ -15,7 +15,7 @@ export default function ProjectsSection({ projects, focus, onFocusChange }: Proj
   const filteredProjects = getFocusedProjects(projects, focus);
 
   return (
-    <Section id="projects" number="02" title="Less talk. More built." description="Private product work and open-source tools. Full application ownership.">
+    <Section id="projects" number="01" title="Less talk. More built." description="Private product work and open-source tools. Full application ownership.">
       <div className="work-index-bar">
         <div className="project-filters" role="group" aria-label="Filter projects">
           {workLenses.map((item) => <button key={item.id} type="button" aria-pressed={focus === item.id} onClick={() => onFocusChange(item.id)} className={`filter-button ${focus === item.id ? "is-active" : ""}`}>{item.label}</button>)}

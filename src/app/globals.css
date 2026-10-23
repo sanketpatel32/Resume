@@ -16,7 +16,6 @@
   --font-mono: var(--font-body);
   --color-accent-soft: var(--color-accent-wash);
   --dur-mid: 320ms;
-  --radius-input: 6px;
 }
 
 * {
@@ -340,8 +339,6 @@ p {
 .whole-intro h1 span { display: inline-block; }
 .whole-intro > p { max-width: 36ch; font-size: var(--text-md); line-height: 1.6; margin-top: var(--space-lg); color: var(--color-graphite-muted); }
 .whole-hero .hero-actions { margin-top: var(--space-lg); gap: var(--space-lg); }
-
-
 .whole-hero .text-link { color: var(--color-graphite-ink); text-decoration-color: var(--color-graphite-muted); }
 .whole-hero :focus-visible { outline-color: var(--color-focus-inverse); }
 .stack-explorer { padding-inline: var(--space-sm); }
@@ -349,7 +346,8 @@ p {
 .stack-slice-interfaces { background: var(--color-signal); transform: rotate(-4deg); z-index: 3; }
 .stack-slice-systems { background: var(--color-signal-2); transform: rotate(2deg); z-index: 2; }
 .stack-slice-tools { background: var(--color-signal-3); transform: rotate(-2deg); z-index: 1; }
-.stack-slice:has([aria-expanded="true"]), .stack-slice:hover { transform: rotate(0deg) translateX(-8px); z-index: 4; }
+.stack-slice:has([aria-expanded="true"]) { transform: rotate(0deg) translateX(-8px); z-index: 4; }
+@media (hover: hover) { .stack-slice:hover { transform: rotate(0deg) translateX(-8px); z-index: 4; } }
 .stack-slice > button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); min-height: 8rem; border: 0; color: inherit; background: none; cursor: pointer; padding: var(--space-lg); text-align: left; }
 .stack-slice > button > span { font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 4.25rem); line-height: 1.1; font-weight: 600; letter-spacing: -0.035em; }
 .stack-slice > button > svg { width: 2rem; height: 2rem; flex-shrink: 0; }
@@ -368,10 +366,10 @@ p {
 .project-filters { gap: var(--space-lg); border: 0; margin: 0; }
 .filter-button { padding-inline: 0; min-height: 3.5rem; font-size: var(--text-sm); border-bottom: 3px solid transparent; }
 .filter-button.is-active { color: var(--color-ink); border-color: var(--color-ink); }
-.filter-button:hover { color: var(--color-accent); }
+.filter-button:hover:not(.is-active) { color: var(--color-accent); }
 .work-count { font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: tabular-nums; }
 .projects-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
-.project-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-lg) var(--gap-columns); min-height: 20rem; padding: var(--space-xl) 0; border: 0; border-bottom: 1px solid var(--color-rule-2); background: none; border-radius: 0; }
+.project-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-lg) var(--gap-columns); min-height: 20rem; padding: var(--space-xl) var(--space-lg); border: 0; border-bottom: 1px solid var(--color-rule-2); background: none; border-radius: 0; }
 .project-card-featured { grid-column: auto; background: var(--color-paper-2); color: var(--color-ink); padding-inline: var(--space-lg); border: 1px solid var(--color-rule-2); }
 .project-card-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: start; gap: var(--space-lg); }
 .project-position { font-size: var(--text-sm); padding-top: var(--space-xs); color: var(--color-muted); }
@@ -421,6 +419,7 @@ p {
 @media (max-width: 65rem) {
   .whole-intro h1 { font-size: clamp(5rem, 10.5vw, 8rem); }
   .stack-slice > button { min-height: 7rem; padding-inline: var(--space-md); }
+  .stack-slice-detail { padding-inline: var(--space-md); }
   .stack-slice > button > span { font-size: 3rem; }
   .whole-baseline > span { display: none; }
 }
@@ -451,6 +450,7 @@ p {
   .stack-slice > button > span { font-size: 2.5rem; }
   .project-filters { gap: var(--space-md); }
   .work-count { display: none; }
+  .project-card { padding-inline: var(--space-md); }
   .project-card-featured { padding-inline: var(--space-md); }
   .project-card h3 { font-size: 2.5rem; }
   .project-card-head { gap: var(--space-sm); }
@@ -459,7 +459,7 @@ p {
   .career-title-row { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .stack-slice { transition: none; }
+  .stack-slice { transition: none; transform: none; }
   .stack-slice:has([aria-expanded="true"]), .stack-slice:hover { transform: none; }
 }
 

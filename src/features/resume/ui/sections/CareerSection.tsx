@@ -10,7 +10,7 @@ export default function CareerSection({ career }: CareerSectionProps) {
   return (
     <Section
       id="career"
-      number="01"
+      number="02"
       tag="Career history"
       title="Experience"
       description="Professional software engineering and data science roles focused on scalable backend architectures and data systems."
