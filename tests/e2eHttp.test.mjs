@@ -227,6 +227,7 @@ test("Private application entries credit full ownership without exposing project
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   assert.equal(res.status, 200);
   const html = await res.text();
+  assert.doesNotMatch(html, /<img\b/i, "The portfolio must not show project images");
   const jsonLd = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
   assert.ok(jsonLd, "Project structured data must be present");
   const graph = JSON.parse(jsonLd[1])["@graph"];

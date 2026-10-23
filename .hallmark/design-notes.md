@@ -77,3 +77,21 @@ User preference: do not add project pictures or screenshots. Removed the project
 
 Verification: `npm run build` including TypeScript passed; `npm run lint` passed with the existing privacy-page warning; `npm test` passed 28/28, no skips. Read-only HTTP assertions confirm no image element on the homepage and a 404 for the removed asset. Render check has zero failures; compact-hero Reflex 44c explicitly waived to honor the text-only direction and bring work into view sooner. Previous static contrast/91-word comparison warnings remain assessed as above. Existing formatter/SonarQube blockers remain; no dependencies changed. Git scope/diff and secrets reviewed, `git diff --check` clean. React Doctor and duplicate results are recorded below.
 - React Doctor changed-scope diagnostics: no issues. Duplicate analysis: PASS, 0.77% existing duplication in unchanged files.
+
+## The whole thing: interactive portfolio
+
+Rebuilt the page around the user’s complete application ownership. A bold citron headline and three tactile coloured layers introduce interfaces, systems, and developer tools. Opening a layer reveals its purpose and filters the real project index below. The index filters control the same state; Everything resets the complete collection. No project images, screenshot assets, private application names, private URLs, invented results, or customer material were added.
+
+The rest of the page follows the same composition: numbered project rows with implementation details and verified stacks, blue experience, dark technical toolkit, and citron contact. Existing ancillary routes, contact submission logic, résumé download, and public links remain connected. The shell uses one shared column-gap token and the existing two fonts. Removed superseded style layers while retaining ancillary-route styling. No dependencies or release/version metadata changed.
+
+Verification on the complete implementation diff:
+- `npm run build`: PASS, TypeScript checked, 19 static pages generated.
+- `npm run lint`: PASS, zero errors; existing unused BRAND_NAME privacy-page warning remains.
+- `npm test`: PASS, 30/30, no skipped tests, against the production server. Added focused tests for private work across interface/system views, the developer-tool collection, and Everything reset. The HTTP privacy regression also rejects project images.
+- React Doctor temporary installed CLI, `--scope changed --base HEAD`: PASS, four changed UI files, empty diagnostic array.
+- `jscpd src --reporters console --threshold 5`: PASS, 0.77% lines duplicated, three pre-existing clones in unchanged files.
+- Hallmark render checks: zero Floor failures. Colour posture, large object-controls, and icon-versus-complete-stack visual detection are explicitly waived with evidence in the stamp. Prose-measure warnings are concise captions; the 82-word screen is accepted. The article orphan warning counts number/title/link controls inside a row, not project cards. Shared spacing assessed under F15.
+- Production browser: opening Developer tools shows exactly Blunt Code, mdpeek, and AuraFlow; Everything restores seven projects and collapses the hero layers. Enter on Systems opens its details, selects the matching filter, and shows four matching projects. Phone menu opens, Escape closes it. At 375px, there is no horizontal overflow. Homepage has zero image elements; both private cards have zero links.
+- Privacy scan: original private application names absent from the current tracked tree and seven served HTML/Markdown/AI-readable representations. Earlier Git history remains untouched.
+- `git status --short`, staged/unstaged diff and new-file review, and `git diff --check`: scope reviewed; no secrets or unnecessary sensitive data. No PR or external messages.
+- Existing BLOCKED checks remain: no dedicated formatter configuration, unavailable SonarQube service/final quality gate, and existing dependency advisories. No new tools or dependencies installed.

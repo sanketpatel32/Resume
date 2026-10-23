@@ -9,7 +9,7 @@ interface ProjectCardProps {
   isFeatured?: boolean;
 }
 
-export default function ProjectCard({ name, description, tech, links, isFeatured = false }: ProjectCardProps) {
+export default function ProjectCard({ name, description, tech, links, index, isFeatured = false }: ProjectCardProps) {
   const [title, subtitle] = name.split(" - ");
   const sentenceEnd = description.indexOf(". ");
   const overview = sentenceEnd < 0 ? description : description.slice(0, sentenceEnd + 1);
@@ -17,6 +17,7 @@ export default function ProjectCard({ name, description, tech, links, isFeatured
   return (
     <article className={`project-card ${isFeatured ? "project-card-featured" : ""}`}>
       <div className="project-card-head">
+        <span className="project-position" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
         <h3>{title}</h3>
         {(links.github || links.live) && <div className="project-links">
           {links.github && <a href={links.github} target="_blank" rel="noopener noreferrer" aria-label={`${name} on GitHub`}><FiGithub aria-hidden="true" /></a>}

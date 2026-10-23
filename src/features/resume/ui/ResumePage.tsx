@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import type { WorkFocus } from "@/features/resume/model/work";
 import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
 import { resumeContent } from "@/features/resume/content";
 import Footer from "@/features/resume/ui/Footer";
@@ -13,14 +15,15 @@ import ProjectsSection from "@/features/resume/ui/sections/ProjectsSection";
 import SkillsSection from "@/features/resume/ui/sections/SkillsSection";
 
 export default function ResumePage() {
+  const [focus, setFocus] = useState<WorkFocus>("all");
   return (
     <LazyMotion features={domAnimation}>
       <MotionConfig reducedMotion="user">
         <Navbar />
 
         <main id="main-content" className="hallmark-shell">
-          <AboutSection profile={resumeContent.profile} contact={resumeContent.contact} />
-          <ProjectsSection projects={resumeContent.projects} />
+          <AboutSection profile={resumeContent.profile} contact={resumeContent.contact} focus={focus} onFocusChange={setFocus} />
+          <ProjectsSection projects={resumeContent.projects} focus={focus} onFocusChange={setFocus} />
           <CareerSection career={resumeContent.career} />
           <SkillsSection skills={resumeContent.skills} />
           <CertificationsSection certifications={resumeContent.certifications} />
