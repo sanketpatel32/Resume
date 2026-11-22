@@ -118,6 +118,7 @@ export default function AboutSection({ profile, contact, focus, onFocusChange }:
           .to(".stack-slice-systems", { xPercent: 130, rotate: 14, duration: 0.45, ease: "power2.in" }, 0.02)
           .to(".stack-slice-tools", { xPercent: 150, rotate: -12, duration: 0.45, ease: "power2.in" }, 0.06)
           .to(".stack-invitation", { opacity: 0, duration: 0.15 }, 0)
+          .to(citron.querySelector("button"), { opacity: 0, duration: 0.12 }, 0.06)
           .fromTo(curtain, { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: false }, 0.2)
           .to(citron, { opacity: 0, duration: 0.01 }, 0.21)
           .fromTo(

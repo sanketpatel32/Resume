@@ -68,7 +68,7 @@ void main() {
   float edge = uReveal * 1.35 - n;
   if (edge < 0.0) discard;
   float shown = smoothstep(0.0, 0.015, edge);
-  float band = smoothstep(0.0, 0.015, edge) - smoothstep(0.06, 0.09, edge);
+  float band = smoothstep(0.0, 0.008, edge) - smoothstep(0.022, 0.036, edge);
   vec3 col = mix(uBg, tex, shown);
   col = mix(col, uAccent, clamp(band, 0.0, 1.0));
 
