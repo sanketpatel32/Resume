@@ -54,10 +54,11 @@
 - **Description**: Built the complete voice AI application from scratch. Owned the web interface, product API, and real-time voice services. Connected a visual workflow builder with knowledge retrieval, inbound and outbound calling, tenant access controls, and analytics.
 - **Tech Stack**: React, TypeScript, Vite, Python, FastAPI, PostgreSQL, LangGraph, LiveKit, Redis, Pinecone
 
-### ScanForge - AI-Powered API Testing & Security Scanner
-- **Description**: Production-ready DAST platform for REST APIs that automates OWASP API Top 10 security testing with safe/balanced/aggressive scan modes, evidence-backed findings, and multi-tenant workspace isolation. Built as a TypeScript monorepo with local-first Bun runners, real-time queue monitoring, and enterprise-grade security controls.
-- **Tech Stack**: TypeScript, Bun, Turborepo, Next.js 16, React 19, Express 5, oRPC, PostgreSQL, MongoDB, Redis, BullMQ, Drizzle ORM, Better Auth, Docker
-- **Repository**: https://github.com/sanketpatel32/ScanForge
+### Blunt Code - Local Code Quality & Security
+- **Description**: Code-quality and security checks kept local. A Go backend stores findings in SQLite, with a React interface, headless CLI, baseline comparisons, and SARIF exports. No cloud account or telemetry.
+- **Tech Stack**: Go, React, TypeScript, SQLite, Tailwind CSS, SonarQube, Semgrep
+- **Repository**: https://github.com/sanketpatel32/Blunt-code
+- **Live Deployment**: https://sanketpatel32.github.io/Blunt-code/
 
 ### mdpeek - Markdown Viewer & Editor
 - **Description**: Lightweight Windows desktop app for viewing and editing Markdown with live preview, multi-file tabs, syntax highlighting, Mermaid and KaTeX support, file associations, auto-updates, and session restore. Built as a ~5.5 MB installer without bundling Chromium.
@@ -70,10 +71,17 @@
 - **Repository**: https://github.com/sanketpatel32/Portal
 - **Live Deployment**: https://portal.sanketpatel.online
 
-### Salon Management Web App
-- **Description**: Full-stack salon appointment platform with secure JWT-based authentication, service and staff management, real-time booking, and payment integration (CashFree). Features automated email/SMS reminders, rescheduling, customer reviews, and admin dashboard.
-- **Tech Stack**: Node.js, Express.js, SQL, React.js, Socket.io, Cron
-- **Repository**: https://github.com/sanketpatel32/fresha-salon-app
+### Miracode - Personal AI Code Reviewer
+- **Description**: Personal fork of the Miracode/Mira self-hosted AI code reviewer tuned for solo use: free OpenRouter models by default, manual repo URL onboarding without a GitHub App install, dashboard toasts and empty states, and a uv-based dev loop.
+- **Tech Stack**: Python, FastAPI, uv, OpenRouter, GitHub API, React
+- **Repository**: https://github.com/sanketpatel32/Code-reviewer
+- **Live Deployment**: https://docs.miracode.ai
+
+### Small Server - API Playground & Webhook Lab
+- **Description**: A single-binary REST playground for webhooks, agents, and frontend development with SQLite JSON storage, public and key-gated CRUD routes, an HTTP testing lab, and embedded OpenAPI docs.
+- **Tech Stack**: Go, SQLite, OpenAPI, Docker, Fly.io, Cloudflare R2
+- **Repository**: https://github.com/sanketpatel32/Small-server
+- **Live Deployment**: https://small-server.fly.dev
 
 ---
 
@@ -158,7 +166,7 @@ Reach for Sanket Patel when your job search, recruiting pipeline, or automated a
 ### Primary Best-Fit Engineering Roles
 1. **Full-Stack Software Engineer**: Production React 19, Next.js 16 (App Router), TypeScript, and Tailwind CSS applications.
 2. **Backend Specialist & API Architect**: Designing high-throughput, modular RESTful APIs with Node.js, Express 5, and Bun.
-3. **DAST & Security Tooling Engineer**: Automated vulnerability detection, OWASP API Top 10 scanners, and worker sandboxing (proven with ScanForge).
+3. **Developer Tooling Engineer**: Local-first code analysis, API playgrounds, and self-hosted developer workflows (proven with Blunt Code and Small Server).
 4. **Desktop & Systems Developer**: Lightweight, secure cross-platform desktop applications using Tauri 2 and Rust without heavy Chromium runtimes (proven with mdpeek).
 5. **Real-Time & Distributed Systems Engineer**: Background task processing with BullMQ & Redis, live bi-directional synchronization with Socket.io / WebSockets, and database performance tuning (PostgreSQL, MongoDB).
 

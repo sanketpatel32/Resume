@@ -89,7 +89,7 @@ export default function AboutPage() {
               I am a software engineer focused on architecting resilient backend systems, RESTful microservices, and interactive web applications. My foundation blends analytical rigor from an engineering degree at <strong>Birla Institute of Technology (BIT Mesra)</strong> with intensive, hands-on production software development.
             </p>
             <p>
-              My approach prioritizes system clarity, performance optimization, and developer ergonomics. Whether designing automated DAST security testing frameworks like <strong>ScanForge</strong>, building lightweight cross-platform desktop editors like <strong>mdpeek</strong>, or managing high-throughput real-time communication at <strong>The Algorithm</strong>, I focus on clean architectural boundaries and reliable code.
+              My approach prioritizes system clarity, performance optimization, and developer ergonomics. Whether building local-first developer tooling like <strong>Blunt Code</strong> and <strong>Small Server</strong>, shipping lightweight cross-platform desktop editors like <strong>mdpeek</strong>, or managing high-throughput real-time communication at <strong>The Algorithm</strong>, I focus on clean architectural boundaries and reliable code.
             </p>
           </div>
 

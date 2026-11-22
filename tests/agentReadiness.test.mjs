@@ -151,7 +151,7 @@ test("llms.txt and llms-full.txt are present and formatted correctly", () => {
   const llmsFullContent = fs.readFileSync(llmsFullPath, "utf-8");
 
   assert.ok(llmsContent.includes("Sanket Patel"), "llms.txt contains brand name");
-  assert.ok(llmsContent.includes("ScanForge"), "llms.txt contains ScanForge project");
+  assert.ok(llmsContent.includes("Small Server"), "llms.txt contains Small Server project");
   assert.ok(llmsContent.includes("mdpeek"), "llms.txt contains mdpeek project");
   assert.ok(llmsContent.includes("https://www.sanketpatel.online/"), "llms.txt contains canonical URL");
 

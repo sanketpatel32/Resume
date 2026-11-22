@@ -13,6 +13,7 @@ import ContactSection from "@/features/resume/ui/sections/ContactSection";
 import EducationSection from "@/features/resume/ui/sections/EducationSection";
 import ProjectsSection from "@/features/resume/ui/sections/ProjectsSection";
 import SkillsSection from "@/features/resume/ui/sections/SkillsSection";
+import DitherField from "@/shared/ui/DitherField";
 
 export default function ResumePage() {
   const [focus, setFocus] = useState<WorkFocus>("all");
@@ -22,13 +23,22 @@ export default function ResumePage() {
         <Navbar />
 
         <main id="main-content" className="hallmark-shell">
-          <AboutSection profile={resumeContent.profile} contact={resumeContent.contact} focus={focus} onFocusChange={setFocus} />
-          <ProjectsSection projects={resumeContent.projects} focus={focus} onFocusChange={setFocus} />
-          <CareerSection career={resumeContent.career} />
-          <SkillsSection skills={resumeContent.skills} />
-          <CertificationsSection certifications={resumeContent.certifications} />
-          <EducationSection education={resumeContent.education} />
-          <ContactSection contact={resumeContent.contact} />
+          <AboutSection
+            profile={resumeContent.profile}
+            contact={resumeContent.contact}
+            focus={focus}
+            onFocusChange={setFocus}
+          />
+
+          <div className="below-hero-canvas">
+            <DitherField className="below-hero-texture" />
+            <ProjectsSection projects={resumeContent.projects} focus={focus} onFocusChange={setFocus} />
+            <CareerSection career={resumeContent.career} />
+            <SkillsSection skills={resumeContent.skills} />
+            <CertificationsSection certifications={resumeContent.certifications} />
+            <EducationSection education={resumeContent.education} />
+            <ContactSection contact={resumeContent.contact} />
+          </div>
         </main>
 
         <Footer profile={resumeContent.profile} />

@@ -6,7 +6,7 @@ interface CertificationsSectionProps { certifications: CertificationItem[]; }
 
 export default function CertificationsSection({ certifications }: CertificationsSectionProps) {
   return (
-    <Section id="certifications" number="04" tag="Verified credentials" title="Credentials" description="Publicly verifiable professional certificates and specialized course completions.">
+    <Section id="certifications" number="04" kicker="Verified, linkable proof." title="Credentials" description="Publicly verifiable professional certificates and specialized course completions.">
       <div className="credential-list">
         {certifications.map((certification) => (
           <article className="credential-row" key={`${certification.name}-${certification.issuer}`}>

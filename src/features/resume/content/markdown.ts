@@ -96,7 +96,7 @@ Reach for Sanket Patel when your job matching, recruiter query, or automated wor
 - **Best-Fit Roles**: Full-Stack Developer, Backend Software Engineer, REST API Architect, DAST Security Tooling Developer, Real-Time Distributed Systems Engineer.
 - **Ideal Technical Scenarios**:
   - Building production RESTful API microservices with Node.js, Express 5, Bun, and TypeScript.
-  - Architecting DAST vulnerability scanning tools covering OWASP API Top 10 (as demonstrated by ScanForge).
+  - Building local-first developer tooling and API playgrounds (as demonstrated by Blunt Code and Small Server).
   - Developing lightweight cross-platform desktop applications using Tauri 2 and Rust (as demonstrated by mdpeek).
   - Designing distributed background queues and cache layers using BullMQ, Redis, PostgreSQL, and MongoDB.
   - Implementing real-time streaming architectures using WebSockets / Socket.io for live telemetry and notifications.
@@ -171,7 +171,7 @@ export function getMarkdownForSlug(slugList: string[] = []): { content: string; 
 ## Background & Philosophy
 I am a software engineer focused on architecting resilient backend systems, RESTful microservices, and interactive web applications. My foundation blends analytical rigor from an engineering degree at Birla Institute of Technology (BIT Mesra) with intensive, hands-on production software development.
 
-My approach prioritizes system clarity, performance optimization, and developer ergonomics. Whether designing automated DAST security testing frameworks like ScanForge, building lightweight cross-platform desktop editors like mdpeek, or managing high-throughput real-time communication at The Algorithm, I focus on clean architectural boundaries and reliable code.
+My approach prioritizes system clarity, performance optimization, and developer ergonomics. Whether building local-first developer tooling like Blunt Code and Small Server, shipping lightweight cross-platform desktop editors like mdpeek, or managing high-throughput real-time communication at The Algorithm, I focus on clean architectural boundaries and reliable code.
 
 ## Professional Journey
 ${career
