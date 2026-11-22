@@ -51,6 +51,25 @@ export interface ProjectItem {
   links: ProjectLinks;
 }
 
+export type StoryLayer = "interfaces" | "systems" | "tools";
+
+export type StoryScene = "pipeline" | "voice" | "tiles";
+
+export type StoryVisual =
+  | { kind: "image"; src: string; alt: string; caption: string }
+  | { kind: "scene"; scene: StoryScene; caption: string };
+
+export interface ProjectStory {
+  project: string;
+  slug: string;
+  layers: StoryLayer[];
+  problem: string;
+  built: string[];
+  impact: string[];
+  visual: StoryVisual;
+  note?: string;
+}
+
 export interface ContactInfo {
   email: string;
   phone: string;
