@@ -20,7 +20,7 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ projects, focus, onFocusChange }: ProjectsSectionProps) {
   const root = useRef<HTMLElement>(null);
-  const { motion } = useExperience();
+  const { motion, gl } = useExperience();
   const filteredProjects = getFocusedProjects(projects, focus);
   const entries = filteredProjects.flatMap((project) => {
     const story = getStory(project.name);
@@ -53,7 +53,7 @@ export default function ProjectsSection({ projects, focus, onFocusChange }: Proj
             scrollTrigger: { trigger: study, start: "top 78%", toggleActions: "play none none reverse" },
           });
         }
-        if (frame) {
+        if (frame && !gl) {
           gsap.fromTo(frame, { clipPath: "inset(14% 10% 14% 10%)", scale: 1.08 }, {
             clipPath: "inset(0% 0% 0% 0%)",
             scale: 1,
@@ -81,7 +81,7 @@ export default function ProjectsSection({ projects, focus, onFocusChange }: Proj
       });
       ScrollTrigger.refresh();
     },
-    { scope: root, dependencies: [motion, focus], revertOnUpdate: true },
+    { scope: root, dependencies: [motion, gl, focus], revertOnUpdate: true },
   );
 
   return (
