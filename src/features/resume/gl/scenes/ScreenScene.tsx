@@ -67,8 +67,9 @@ void main() {
   float n = noise2(vUv * vec2(7.0, 4.5)) * 0.55 + (1.0 - vUv.y) * 0.45;
   float edge = uReveal * 1.35 - n;
   if (edge < 0.0) discard;
-  float shown = smoothstep(0.0, 0.015, edge);
-  float band = smoothstep(0.0, 0.008, edge) - smoothstep(0.022, 0.036, edge);
+  float px = max(fwidth(edge), 1e-4);
+  float shown = smoothstep(px, px * 4.0, edge);
+  float band = 1.0 - smoothstep(px * 1.5, px * 3.5, edge);
   vec3 col = mix(uBg, tex, shown);
   col = mix(col, uAccent, clamp(band, 0.0, 1.0));
 
