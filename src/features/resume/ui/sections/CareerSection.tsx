@@ -11,11 +11,12 @@ export default function CareerSection({ career }: CareerSectionProps) {
     <Section
       id="career"
       number="02"
-      tag="Career history"
+      kicker="Where the systems meet the job description."
       title="Experience"
-      description="Professional software engineering and data science roles focused on scalable backend architectures and data systems."
+      description="Software development and data science roles — APIs, real-time product work, and production constraints."
+      className="career-manuscript"
     >
-      <div className="career-list">
+      <div className="career-list career-scroll">
         {career.map((job, index) => (
           <TimelineItem
             key={`${job.company}-${job.role}`}

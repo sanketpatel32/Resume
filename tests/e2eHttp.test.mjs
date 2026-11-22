@@ -53,7 +53,7 @@ test("2. GET / with Accept: text/markdown returns 200, text/markdown, and Vary: 
 
   const md = await res.text();
   assert.ok(md.includes("# Sanket Patel"), "Markdown must include # Sanket Patel");
-  assert.ok(md.includes("ScanForge"), "Markdown must include ScanForge");
+  assert.ok(md.includes("Miracode"), "Markdown must include Miracode");
   assert.ok(md.includes("The Algorithm"), "Markdown must include The Algorithm");
 });
 
@@ -75,10 +75,10 @@ test("4. GET /projects.md returns 200 and Markdown with project descriptions", {
   assert.ok(contentType.includes("text/markdown"), `Content-Type must include text/markdown, got: ${contentType}`);
 
   const md = await res.text();
-  assert.ok(md.includes("ScanForge"), "Must include ScanForge");
+  assert.ok(md.includes("Miracode"), "Must include Miracode");
   assert.ok(md.includes("mdpeek"), "Must include mdpeek");
   assert.ok(md.includes("AuraFlow"), "Must include AuraFlow");
-  assert.ok(md.includes("Salon Management"), "Must include Salon Management");
+  assert.ok(md.includes("Small Server"), "Must include Small Server");
 });
 
 test("5. GET /nonexistent-path with Accept: text/html returns real HTTP 404 with recovery links", { skip: !isServerRunning }, async () => {
@@ -239,7 +239,7 @@ test("Private application entries credit full ownership without exposing project
     assert.match(project.description, /complete.*from scratch/i);
     assert.equal(project.codeRepository, undefined, `${name} must not advertise a repository`);
     assert.equal(project.url, undefined, `${name} must not advertise a demo URL`);
-    const card = articles.find((article) => article.includes(`<h3>${name}</h3>`));
+    const card = articles.find((article) => article.includes(`>${name}</h3>`) && article.includes("project-poster"));
     assert.ok(card, `${name} must appear in the default selected work`);
     assert.doesNotMatch(card, /href=/, `${name} card must not expose external links`);
   }

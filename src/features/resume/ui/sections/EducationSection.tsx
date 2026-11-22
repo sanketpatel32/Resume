@@ -5,7 +5,7 @@ interface EducationSectionProps { education: EducationItem[]; }
 
 export default function EducationSection({ education }: EducationSectionProps) {
   return (
-    <Section id="education" number="05" tag="Education" title="Education" description="Engineering foundations and focused full-stack software development study.">
+    <Section id="education" number="05" kicker="Foundations before the build." title="Education" description="Engineering foundations and focused full-stack software development study.">
       <div className="education-list">
         {education.map((edu) => (
           <article className="education-row" key={edu.school}>

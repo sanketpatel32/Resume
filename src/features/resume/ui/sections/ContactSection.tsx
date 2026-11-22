@@ -5,7 +5,9 @@ import { ContactForm } from "@/features/contact";
 import type { ContactInfo } from "@/features/resume/model/types";
 import Section from "@/shared/ui/Section";
 
-interface ContactSectionProps { contact: ContactInfo; }
+interface ContactSectionProps {
+  contact: ContactInfo;
+}
 
 export default function ContactSection({ contact }: ContactSectionProps) {
   const socialLinks = [
@@ -20,13 +22,40 @@ export default function ContactSection({ contact }: ContactSectionProps) {
   ];
 
   return (
-    <Section id="contact" number="06" tag="Get in touch" title="Let’s talk" description="Have a question, collaboration idea, or open engineering role? Reach out directly or drop a message below.">
-      <div className="contact-grid">
+    <Section
+      id="contact"
+      number="06"
+      kicker="Recruiters, collaborators, and curious engineers."
+      title="Let’s talk"
+      description="Have a question, collaboration idea, or open engineering role? Reach out directly or drop a message below."
+      className="contact-crafted"
+    >
+      <div className="contact-grid contact-crafted-grid">
         <div className="contact-links">
           <h3>Direct contact</h3>
           {socialLinks.map(({ label, value, href, icon: Icon }) => {
-            const row = <span className="contact-row"><Icon aria-hidden="true" /><span><b>{label}</b><small>{value}</small></span>{href && <FiArrowUpRight aria-hidden="true" />}</span>;
-            return href ? <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>{row}</a> : <span key={label}>{row}</span>;
+            const row = (
+              <span className="contact-row">
+                <Icon aria-hidden="true" />
+                <span>
+                  <b>{label}</b>
+                  <small>{value}</small>
+                </span>
+                {href && <FiArrowUpRight aria-hidden="true" />}
+              </span>
+            );
+            return href ? (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
+                {row}
+              </a>
+            ) : (
+              <span key={label}>{row}</span>
+            );
           })}
         </div>
         <div className="contact-form-panel">

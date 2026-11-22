@@ -26,6 +26,6 @@ test("The work explorer keeps complete private applications in interface and sys
 });
 
 test("Developer tools is a focused collection, and Everything restores the complete index", () => {
-  assert.deepEqual(getFocusedProjects(projects, "tools").map((item) => item.name.split(" - ")[0]), ["Blunt Code", "mdpeek", "AuraFlow"]);
+  assert.deepEqual(getFocusedProjects(projects, "tools").map((item) => item.name.split(" - ")[0]), ["Blunt Code", "mdpeek", "AuraFlow", "Small Server"]);
   assert.equal(getFocusedProjects(projects, "all"), projects);
 });
