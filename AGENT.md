@@ -1,6 +1,6 @@
 # Sanket Patel Portfolio
 
-A modern, responsive portfolio website built with Next.js 16, TypeScript, Tailwind CSS, and Framer Motion.
+An art-directed portfolio built with Next.js 16, TypeScript, Tailwind CSS, GSAP and react-three-fiber. The homepage is one continuous descent through the stack: the hero's three layers become strata the visitor scrolls through, from the surface down to a glowing core (contact).
 
 ## Quick Start
 
@@ -16,7 +16,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
+- **Motion**: GSAP ScrollTrigger + Lenis (scroll story), Framer Motion (contact form)
+- **WebGL**: three.js via @react-three/fiber and drei, custom GLSL shaders, lazy-loaded
 - **Icons**: React Icons (Feather)
 
 ## Project Structure
@@ -27,7 +28,8 @@ src/
     about/page.tsx             # Standalone About trust anchor page
     contact/page.tsx           # Standalone Contact trust anchor page
     privacy/page.tsx           # Standalone Privacy Policy trust anchor page
-    globals.css                # Theme variables and global styles
+    globals.css                # Shared chrome: nav, buttons, forms, footer, developer portal
+    descent.css                # Homepage art direction (chapters, case studies, path, core)
     layout.tsx                 # Root layout with SEO metadata & JSON-LD graph
     page.tsx                   # Thin page entrypoint -> renders ResumePage
     robots.ts                  # Robots.txt generator with AI crawler permissions
@@ -40,6 +42,7 @@ src/
       model/
         types.ts               # Resume domain types
         sectionNav.ts          # Navigation section IDs/labels
+        path.ts                # Merges career and education into one timeline
       content/
         index.ts               # Main content entrypoint
         profile.ts
@@ -47,31 +50,35 @@ src/
         education.ts
         skills.ts
         projects.ts
+        stories.ts             # Case-study copy and visuals for each project
         contact.ts
         seo.ts
         site.ts
         markdown.ts            # Markdown generator for LLMs & agents
       jsonld/
         personJsonLd.ts        # schema.org JSON-LD (Person, Organization, WebSite)
+      experience/              # Motion/WebGL gating, intro, scroll & pointer signals
+      gl/                      # Lazy WebGL runtime (strata backdrop, per-project scenes, shaders)
       ui/
         ResumePage.tsx         # Feature page composition
         Navbar.tsx
         Footer.tsx
+        descent/               # Intro, custom cursor, depth gauge, split text
         sections/
-          AboutSection.tsx
-          CareerSection.tsx
-          EducationSection.tsx
-          SkillsSection.tsx
+          AboutSection.tsx     # Hero (surface) and its cinematic exit
+          ManifestoSection.tsx
           ProjectsSection.tsx
-          ContactSection.tsx
+          CareerSection.tsx    # Horizontal experience path
+          SkillsSection.tsx
+          CertificationsSection.tsx
+          ContactSection.tsx   # The core
         cards/
-          TimelineItem.tsx
-          ProjectCard.tsx
+          CaseStudy.tsx
+          ProjectVisual.tsx
           SkillIcon.tsx
 
   shared/
     ui/
-      Section.tsx              # Generic section wrapper
       SpotlightBackground.tsx  # Interactive glowing background
     lib/
       negotiation.ts           # RFC 9110 HTTP content negotiation
@@ -92,4 +99,4 @@ src/
 npm test        # Unit and E2E agent readiness test suite
 npm run build   # Next.js production build
 npm start       # Start production server
-```
+```

@@ -1,69 +1,119 @@
 "use client";
 
-import { FiArrowUpRight, FiGithub, FiGlobe, FiInstagram, FiLinkedin, FiMail, FiMapPin, FiPhone, FiYoutube } from "react-icons/fi";
+import { useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { FiArrowUpRight, FiCheck, FiCopy, FiGithub, FiLinkedin, FiMail, FiPhone, FiYoutube, FiInstagram, FiGlobe } from "react-icons/fi";
 import { ContactForm } from "@/features/contact";
 import type { ContactInfo } from "@/features/resume/model/types";
-import Section from "@/shared/ui/Section";
+import { useExperience } from "@/features/resume/experience/context";
+import SplitText from "@/features/resume/ui/descent/SplitText";
+import { LazySceneView as SceneView } from "@/features/resume/gl/lazy";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface ContactSectionProps {
   contact: ContactInfo;
 }
 
 export default function ContactSection({ contact }: ContactSectionProps) {
-  const socialLinks = [
-    { label: "Email", value: contact.email, href: `mailto:${contact.email}`, icon: FiMail },
-    { label: "Phone", value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, "")}`, icon: FiPhone },
-    { label: "Location", value: contact.location, href: null, icon: FiMapPin },
-    { label: "GitHub", value: "github.com/sanketpatel32", href: contact.github, icon: FiGithub },
-    { label: "LinkedIn", value: "linkedin.com/in/sanketpatel32", href: contact.linkedin, icon: FiLinkedin },
-    { label: "Instagram", value: "@sanket_patel32", href: contact.instagram, icon: FiInstagram },
-    { label: "YouTube", value: "@camouflage32p", href: contact.youtube, icon: FiYoutube },
-    { label: "Website", value: "sanketpatel.online", href: contact.website, icon: FiGlobe },
-  ];
+  const root = useRef<HTMLElement>(null);
+  const { motion, gl } = useExperience();
+  const [copied, setCopied] = useState(false);
+
+  const links = [
+    { label: "GitHub", href: contact.github, icon: FiGithub },
+    { label: "LinkedIn", href: contact.linkedin, icon: FiLinkedin },
+    { label: "Website", href: contact.website, icon: FiGlobe },
+    { label: "YouTube", href: contact.youtube, icon: FiYoutube },
+    { label: "Instagram", href: contact.instagram, icon: FiInstagram },
+  ].filter((link): link is { label: string; href: string; icon: typeof FiGithub } => Boolean(link.href));
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contact.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${contact.email}`;
+    }
+  };
+
+  useGSAP(
+    () => {
+      const section = root.current;
+      if (!section || !motion) return;
+      gsap.fromTo(".core-title [data-split-unit]", { yPercent: 110 }, {
+        yPercent: 0,
+        duration: 1.2,
+        stagger: 0.025,
+        ease: "expo.out",
+        scrollTrigger: { trigger: ".core-title", start: "top 80%", toggleActions: "play none none reverse" },
+      });
+      gsap.fromTo(".core-orb", { scale: 0.6, opacity: 0 }, {
+        scale: 1,
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: { trigger: section, start: "top bottom", end: "top 20%", scrub: 0.6 },
+      });
+    },
+    { scope: root, dependencies: [motion], revertOnUpdate: true },
+  );
 
   return (
-    <Section
-      id="contact"
-      number="06"
-      kicker="Recruiters, collaborators, and curious engineers."
-      title="Let’s talk"
-      description="Have a question, collaboration idea, or open engineering role? Reach out directly or drop a message below."
-      className="contact-crafted"
-    >
-      <div className="contact-grid contact-crafted-grid">
-        <div className="contact-links">
-          <h3>Direct contact</h3>
-          {socialLinks.map(({ label, value, href, icon: Icon }) => {
-            const row = (
-              <span className="contact-row">
-                <Icon aria-hidden="true" />
-                <span>
-                  <b>{label}</b>
-                  <small>{value}</small>
-                </span>
-                {href && <FiArrowUpRight aria-hidden="true" />}
-              </span>
-            );
-            return href ? (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              >
-                {row}
-              </a>
-            ) : (
-              <span key={label}>{row}</span>
-            );
-          })}
+    <section ref={root} id="contact" className="chapter core" data-chapter="The core" data-tone="core" aria-labelledby="contact-heading">
+      <div className="core-orb" aria-hidden="true">
+        <div className="core-orb-fallback" data-gl-fallback />
+        {gl && <SceneView className="core-gl" request={{ kind: "core" }} />}
+      </div>
+      <div className="resume-container core-inner">
+        <p className="chapter-tag"><span>L6</span> The core</p>
+        <h2 id="contact-heading" className="core-title">
+          <span className="core-line"><SplitText text="Let’s build" /></span>{" "}
+          <span className="core-line core-line-accent"><SplitText text="the whole thing." /></span>
+        </h2>
+        <p className="core-lead">
+          Hiring, collaborating or just curious? You have reached the bottom of the stack. This is where I
+          answer.
+        </p>
+
+        <div className="core-email-row">
+          <a className="core-email" href={`mailto:${contact.email}`} data-magnetic="0.15" data-cursor="Write">
+            <FiMail aria-hidden="true" />
+            <span>{contact.email}</span>
+          </a>
+          <button type="button" className="core-copy" onClick={copyEmail} data-magnetic="0.4" aria-live="polite">
+            {copied ? <FiCheck aria-hidden="true" /> : <FiCopy aria-hidden="true" />}
+            {copied ? "Copied" : "Copy"}
+          </button>
         </div>
-        <div className="contact-form-panel">
-          <h3>Send a direct message</h3>
-          <p>Fill in the details below and I will respond to your inbox as soon as possible.</p>
-          <ContactForm />
+
+        <div className="core-grid">
+          <div className="core-direct">
+            <a className="core-phone" href={`tel:${contact.phone.replace(/\s/g, "")}`}>
+              <FiPhone aria-hidden="true" /> {contact.phone}
+            </a>
+            <p className="core-location">{contact.location} · IST (UTC+5:30)</p>
+            <ul className="core-links">
+              {links.map(({ label, href, icon: Icon }) => (
+                <li key={label}>
+                  <a href={href} target="_blank" rel="noopener noreferrer" data-magnetic="0.35">
+                    <Icon aria-hidden="true" />
+                    <span>{label}</span>
+                    <FiArrowUpRight aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="core-form">
+            <h3>Send a direct message</h3>
+            <p>It goes straight to my inbox.</p>
+            <ContactForm />
+          </div>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
