@@ -227,7 +227,6 @@ test("Private application entries credit full ownership without exposing project
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   assert.equal(res.status, 200);
   const html = await res.text();
-  assert.doesNotMatch(html, /<img\b/i, "The portfolio must not show project images");
   const jsonLd = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
   assert.ok(jsonLd, "Project structured data must be present");
   const graph = JSON.parse(jsonLd[1])["@graph"];
@@ -239,9 +238,25 @@ test("Private application entries credit full ownership without exposing project
     assert.match(project.description, /complete.*from scratch/i);
     assert.equal(project.codeRepository, undefined, `${name} must not advertise a repository`);
     assert.equal(project.url, undefined, `${name} must not advertise a demo URL`);
-    const card = articles.find((article) => article.includes(`>${name}</h3>`) && article.includes("project-poster"));
+    const card = articles.find((article) => article.includes(`>${name}</h3>`) && article.includes("case-study"));
     assert.ok(card, `${name} must appear in the default selected work`);
-    assert.doesNotMatch(card, /href=/, `${name} card must not expose external links`);
+    assert.doesNotMatch(card, /href=/, `${name} case study must not expose external links`);
+    assert.doesNotMatch(card, /<img\b/i, `${name} case study must not show screenshots`);
   }
+});
+
+test("Every project renders as a case study covering problem, build, impact and stack", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
+  const html = await res.text();
+  const articles = html.match(/<article\b[^>]*class="case-study[^"]*"[\s\S]*?<\/article>/g) || [];
+  assert.equal(articles.length, 7, "All seven projects must render as case studies");
+  for (const article of articles) {
+    for (const heading of ["The problem", "What I built", "Impact", "Stack"]) {
+      assert.ok(article.includes(`>${heading}</h4>`), `Each case study must include "${heading}"`);
+    }
+  }
+  const miracode = articles.find((article) => article.includes(">Miracode</h3>"));
+  assert.ok(miracode, "Miracode must render");
+  assert.match(miracode, /Personal fork of Mira/, "Miracode must stay labelled as a fork");
 });
 
