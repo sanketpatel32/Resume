@@ -15,9 +15,10 @@ static Markdown guidance for this repository only.
 - **Source:** `github.com/pbakaus/impeccable`, tag `skill-v4.10.0`,
   commit `b49177d32788f2dc585c42831d845dacf1ebed2c` (verified `refs/tags/skill-v4.10.0^{}`).
 - **License:** Apache License, Version 2.0. Copyright Paul Bakaus.
-  Upstream `LICENSE` applies to every adapted extract below; upstream
-  `NOTICE.md` covers third-party material and is retained by reference.
-  See `github.com/pbakaus/impeccable/blob/skill-v4.10.0/LICENSE` and
+  Upstream `LICENSE` applies to every adapted extract below and ships
+  verbatim beside this file; upstream `NOTICE.md` covers third-party
+  material and ships beside it too. Sources:
+  `github.com/pbakaus/impeccable/blob/skill-v4.10.0/LICENSE` and
   `…/NOTICE.md`.
 - **Scope:** craft-floor, brand/material-honesty and critique guidance only.
   All engine commands, hooks, agents, live mode and detection tooling were

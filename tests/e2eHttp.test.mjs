@@ -223,40 +223,74 @@ test("17. GET /privacy.md returns 200 and text/markdown with >500 chars", { skip
   assert.ok(md.includes("Privacy Policy"));
 });
 
-test("Private application entries credit full ownership without exposing project links", { skip: !isServerRunning }, async () => {
+test("Private application work stays credited in metadata but unnamed and unlinked on the page", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   assert.equal(res.status, 200);
   const html = await res.text();
+  // Rendered <body> only — the JSON-LD résumé graph intentionally still
+  // describes the full project list for agents, and head metadata
+  // (keywords) still names every shipped project.
+  const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(
+    /<script[\s\S]*?<\/script>/g,
+    "",
+  );
   const jsonLd = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
   assert.ok(jsonLd, "Project structured data must be present");
   const graph = JSON.parse(jsonLd[1])["@graph"];
   const projects = graph.find((entry) => entry["@type"] === "ItemList").itemListElement;
-  const articles = html.match(/<article\b[^>]*>[\s\S]*?<\/article>/g) || [];
+  const articles = body.match(/<article\b[^>]*>[\s\S]*?<\/article>/g) || [];
+
+  const privateRow = articles.find((article) => article.includes("is-private"));
+  assert.ok(privateRow, "Private work must be acknowledged in the index");
+  assert.doesNotMatch(privateRow, /href=/, "Private work must not expose external links");
+  assert.doesNotMatch(privateRow, /<img\b/i, "Private work must not show screenshots");
 
   for (const name of ["AI Hiring Platform", "Voice AI Platform"]) {
+    assert.ok(!body.includes(name), `${name} must stay unnamed on the homepage`);
     const project = projects.find((entry) => entry.item.name.startsWith(name)).item;
     assert.match(project.description, /complete.*from scratch/i);
     assert.equal(project.codeRepository, undefined, `${name} must not advertise a repository`);
     assert.equal(project.url, undefined, `${name} must not advertise a demo URL`);
-    const card = articles.find((article) => article.includes(`>${name}</h3>`) && article.includes("case-study"));
-    assert.ok(card, `${name} must appear in the default selected work`);
-    assert.doesNotMatch(card, /href=/, `${name} case study must not expose external links`);
-    assert.doesNotMatch(card, /<img\b/i, `${name} case study must not show screenshots`);
   }
 });
 
-test("Every project renders as a case study covering problem, build, impact and stack", { skip: !isServerRunning }, async () => {
+test("Homepage exhibits and index render real content with no retired work or hidden DOM", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const html = await res.text();
-  const articles = html.match(/<article\b[^>]*class="case-study[^"]*"[\s\S]*?<\/article>/g) || [];
-  assert.equal(articles.length, 7, "All seven projects must render as case studies");
-  for (const article of articles) {
-    for (const heading of ["The problem", "What I built", "Impact", "Stack"]) {
-      assert.ok(article.includes(`>${heading}</h4>`), `Each case study must include "${heading}"`);
-    }
-  }
-  const miracode = articles.find((article) => article.includes(">Miracode</h3>"));
-  assert.ok(miracode, "Miracode must render");
+  const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(
+    /<script[\s\S]*?<\/script>/g,
+    "",
+  );
+
+  assert.ok(!/mdpeek/i.test(body), "mdpeek must not appear anywhere on the homepage");
+  assert.ok(!body.includes("sr-only"), "No hidden contract DOM on the page");
+
+  // Blunt Code exhibit: the map, both readers, and its honesty label.
+  assert.ok(body.includes(">Blunt Code</h2>"), "Blunt Code must be the flagship exhibit");
+  assert.ok(body.includes("One report, two readers"), "Exhibit premise must be stated");
+  assert.ok(body.includes("Local SQLite"), "The storage node must be drawn");
+  assert.ok(body.includes(">Human</span>") && body.includes(">Markdown</span>"), "Human branch must be labelled");
+  assert.ok(body.includes(">Tools</span>") && body.includes(">SARIF</span>"), "Tools branch must be labelled");
+  assert.ok(body.includes("2.1.0"), "A schema-faithful SARIF excerpt must ship");
+  assert.ok(body.includes("Illustrative report, no scan is run"), "The no-scan label must be present");
+
+  // System Design Quest exhibit: the real lesson 17 content.
+  assert.ok(body.includes("A nightly scan meets the cache"), "Lesson 17 must be named");
+  assert.ok(body.includes("least frequently used"), "LFU must be an expanded choice");
+  assert.ok(body.includes("least recently used"), "LRU must be an expanded choice");
+  assert.ok(body.includes("TTL"), "TTL must be a choice");
+  assert.ok(body.includes("best-sellers cached"), "The real prompt must ship");
+
+  // Skip link and a small index of the other verified public work.
+  assert.ok(body.includes("Skip to content"), "Skip link must be present");
+  const rows = body.match(/<article\b[^>]*class="ft-idx[^"]*"[\s\S]*?<\/article>/g) || [];
+  assert.equal(rows.length, 4, "Index lists Miracode, AuraFlow, Small Server and the private record");
+  const miracode = rows.find((article) => article.includes(">Miracode</h3>"));
+  assert.ok(miracode, "Miracode must be indexed");
   assert.match(miracode, /Personal fork of Mira/, "Miracode must stay labelled as a fork");
+  assert.ok(miracode.includes("href="), "Miracode must link its source");
+  const smallServer = rows.find((article) => article.includes(">Small Server</h3>"));
+  assert.ok(smallServer, "Small Server must be indexed");
+  assert.ok(smallServer.includes("/lab/cache"), "Small Server must carry its evidence line");
 });
 

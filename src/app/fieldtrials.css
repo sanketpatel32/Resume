@@ -1,9 +1,9 @@
-/* FIELD TRIALS — stage 1 art direction, revision A.
- * A typeset instrument manual whose experiment actually works:
+/* FIELD TRIALS — stage 2 art direction.
+ * A typeset instrument manual whose experiments actually work:
  * uncoated paper, greenish near-black ink, one vermilion ink,
  * hairline rules only where they divide meaning.
  * Headline serif: Georgia (system). Body: IBM Plex Sans (installed).
- * Display caps (register/footer accents): Antonio Variable (installed). */
+ * Display caps (index/footer accents): Antonio Variable (installed). */
 
 :root {
   --ft-paper: #f3f0e7;
@@ -55,23 +55,8 @@ html:has(.fieldtrials) body {
   margin-inline: auto;
 }
 
-.ft-skip {
-  position: absolute;
-  inset-inline-start: 1rem;
-  top: 0.6rem;
-  z-index: 60;
-  padding: 0.55rem 0.9rem;
-  background: var(--ft-ink);
-  color: var(--ft-paper);
-  font-size: 0.85rem;
-  text-decoration: none;
-  transform: translateY(-220%);
-}
-
-.ft-skip:focus-visible {
-  transform: none;
-  outline-offset: 2px;
-}
+/* The global .skip-link (layout.tsx / globals.css) already provides the
+ * visible-on-focus skip link — one, not duplicated here. */
 
 /* ——— Header ——— */
 
@@ -117,7 +102,7 @@ html:has(.fieldtrials) body {
   text-decoration: underline 1px var(--ft-vermilion);
 }
 
-/* ——— Opening: text left, specimen right, one shared baseline ——— */
+/* ——— Opening: text left, exhibit right, one shared baseline ——— */
 
 .ft-opening {
   display: grid;
@@ -127,20 +112,12 @@ html:has(.fieldtrials) body {
   padding-block: clamp(2rem, 4.5vh, 3.5rem) clamp(1.75rem, 4vh, 3rem);
 }
 
-.ft-byline strong {
-  display: block;
-  font-size: 1.05rem;
-  font-weight: 650;
+.ft-byline {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--ft-ink);
-}
-
-.ft-byline span {
-  display: block;
-  margin-block-start: 0.2rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ft-ink-3);
 }
 
 .ft-opening h1 {
@@ -171,7 +148,7 @@ html:has(.fieldtrials) body {
   text-underline-offset: 0.24em;
 }
 
-/* ——— The specimen (mdpeek browser demo) ——— */
+/* ——— Specimen shell (shared by both exhibits) ——— */
 
 .ft-specimen {
   margin: 0;
@@ -193,239 +170,6 @@ html:has(.fieldtrials) body {
   color: var(--ft-ink-2);
 }
 
-.ft-demo {
-  margin-block-start: 1.1rem;
-}
-
-.ft-demo-workspace {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  border-block: 1px solid var(--ft-rule-strong);
-}
-
-/* source → result: one hairline divider, one accent mark at the shared
- * label baseline */
-.ft-demo-workspace::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 50%;
-  top: 0.85rem;
-  width: 0.42rem;
-  height: 0.42rem;
-  translate: -50%;
-  rotate: 45deg;
-  background: var(--ft-vermilion);
-}
-
-.ft-write {
-  min-width: 0;
-  padding-inline-end: 1.1rem;
-  border-inline-end: 1px solid var(--ft-rule);
-}
-
-.ft-result {
-  min-width: 0;
-  padding-inline-start: 1.1rem;
-}
-
-.ft-pane-label {
-  padding-block: 0.6rem 0.45rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ft-ink-3);
-}
-
-.ft-source {
-  display: block;
-  width: 100%;
-  min-height: 10.5rem;
-  padding: 0.35rem 0 0.9rem;
-  border: 0;
-  background: transparent;
-  color: var(--ft-ink);
-  font-family: var(--ft-mono);
-  font-size: 0.8rem;
-  line-height: 1.7;
-  resize: vertical;
-}
-
-.ft-source:focus-visible {
-  outline-offset: 0;
-}
-
-.ft-preview {
-  padding: 0.35rem 0 1rem;
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: var(--ft-ink-2);
-}
-
-.ft-preview h1,
-.ft-preview h2,
-.ft-preview h3,
-.ft-preview h4 {
-  font-family: var(--font-body);
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--ft-ink);
-  margin-block: 1.1rem 0.4rem;
-}
-
-.ft-preview h1 { font-size: 1.4rem; font-weight: 700; margin-block-start: 0; }
-.ft-preview h2 { font-size: 1.12rem; font-weight: 700; }
-.ft-preview h3 { font-size: 1rem; font-weight: 650; }
-.ft-preview h4 { font-size: 0.9rem; font-weight: 650; }
-
-.ft-preview p { margin-block: 0.5rem; }
-
-.ft-preview ul,
-.ft-preview ol {
-  padding-inline-start: 1.25rem;
-  margin-block: 0.5rem;
-}
-
-.ft-preview li { margin-block: 0.2rem; }
-.ft-preview li::marker { color: var(--ft-vermilion); }
-
-.ft-preview li.task {
-  list-style: none;
-  margin-inline-start: -1.25rem;
-}
-
-.ft-preview li.task label {
-  display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  cursor: pointer;
-}
-
-.ft-preview li.task input {
-  accent-color: var(--ft-vermilion);
-}
-
-.ft-preview blockquote {
-  margin: 0.7rem 0;
-  padding: 0.1rem 0 0.1rem 0.9rem;
-  border-left: 2px solid var(--ft-vermilion);
-  color: var(--ft-ink-2);
-}
-
-.ft-preview code {
-  font-family: var(--ft-mono);
-  font-size: 0.8em;
-  background: var(--ft-paper-2);
-  padding: 0.05em 0.3em;
-}
-
-.ft-preview pre {
-  margin-block: 0.7rem;
-  padding: 0.7rem 0.9rem;
-  background: var(--ft-paper-2);
-  overflow-x: auto;
-}
-
-.ft-preview pre code {
-  background: transparent;
-  padding: 0;
-}
-
-.ft-preview table {
-  border-collapse: collapse;
-  margin-block: 0.7rem;
-  font-size: 0.82rem;
-}
-
-.ft-preview th,
-.ft-preview td {
-  border: 1px solid var(--ft-rule);
-  padding: 0.3rem 0.7rem;
-  text-align: left;
-}
-
-.ft-preview th {
-  color: var(--ft-ink);
-  background: var(--ft-paper-2);
-  font-weight: 600;
-}
-
-.ft-preview a {
-  color: var(--ft-vermilion);
-  text-underline-offset: 0.2em;
-}
-
-.ft-preview hr {
-  border: 0;
-  border-top: 1px solid var(--ft-rule);
-  margin-block: 0.9rem;
-}
-
-.ft-demo-below {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  padding-block: 0.7rem;
-  border-bottom: 1px solid var(--ft-rule);
-}
-
-.ft-samples {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.ft-samples legend {
-  float: left;
-  padding: 0;
-  margin-inline-end: 0.15rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ft-ink-3);
-  line-height: 2rem;
-}
-
-.ft-samples label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  min-height: 2rem;
-  font-size: 0.84rem;
-  color: var(--ft-ink-3);
-  cursor: pointer;
-}
-
-.ft-samples label.is-active {
-  color: var(--ft-ink);
-  text-decoration: underline 1.5px var(--ft-vermilion);
-  text-underline-offset: 0.3em;
-}
-
-.ft-samples input[type="radio"] {
-  accent-color: var(--ft-vermilion);
-  margin: 0;
-}
-
-.ft-edit-toggle {
-  display: none;
-  align-items: center;
-  min-height: 2.75rem;
-  padding: 0 0.95rem;
-  border: 1px solid var(--ft-rule-strong);
-  background: transparent;
-  color: var(--ft-ink);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
 .ft-specimen-caption {
   margin-block-start: 0.75rem;
   font-size: 0.76rem;
@@ -439,12 +183,234 @@ html:has(.fieldtrials) body {
   text-underline-offset: 0.2em;
 }
 
+/* ——— Blunt Code: the map (SQLite → two readers) ——— */
+
+.ft-figure {
+  margin-block-start: 1.1rem;
+}
+
+/* Local SQLite ───────┬── HUMAN · Markdown
+ *                   └── TOOLS · SARIF
+ * One horizontal trunk, two labelled branches. */
+.ft-map {
+  display: grid;
+  grid-template-columns: auto minmax(2rem, 4.5rem) minmax(0, 1fr);
+  align-items: center;
+}
+
+.ft-map-src {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ft-ink);
+  white-space: nowrap;
+}
+
+.ft-map-trunk {
+  position: relative;
+  height: 100%;
+  min-height: 2.5rem;
+}
+
+.ft-map-trunk::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--ft-ink);
+}
+
+.ft-map-out {
+  position: relative;
+  margin: 0;
+  padding: 0.4rem 0;
+  list-style: none;
+}
+
+/* the fork spine between the two branch baselines */
+.ft-map-out::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 25%;
+  bottom: 25%;
+  width: 1px;
+  background: var(--ft-ink);
+}
+
+.ft-map-branch {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-block: 0.55rem;
+  font-size: 0.92rem;
+}
+
+.ft-map-branch::before {
+  content: "";
+  align-self: center;
+  width: 2rem;
+  height: 1px;
+  background: var(--ft-ink);
+  flex: none;
+}
+
+.ft-map-reader {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ft-ink-3);
+}
+
+.ft-map-fmt {
+  color: var(--ft-ink);
+}
+
+/* the branch matching the view on show is marked, not merely coloured */
+.ft-figure[data-view="report"] .ft-map-branch[data-branch="report"]::before,
+.ft-figure[data-view="export"] .ft-map-branch[data-branch="export"]::before {
+  background: var(--ft-vermilion);
+  height: 2px;
+}
+
+.ft-figure[data-view="report"] .ft-map-branch[data-branch="report"] .ft-map-reader,
+.ft-figure[data-view="export"] .ft-map-branch[data-branch="export"] .ft-map-reader {
+  color: var(--ft-vermilion);
+}
+
+/* ——— Blunt Code: the view control ——— */
+
+.ft-viewbar {
+  display: flex;
+  gap: 0;
+  margin: 0 0 0.4rem;
+  border-block: 1px solid var(--ft-rule-strong);
+}
+
+.ft-viewbar button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0.8rem 1rem 0.8rem 0;
+  min-height: 2.75rem;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ft-ink-3);
+  cursor: pointer;
+}
+
+.ft-viewbar button + button {
+  margin-inline-start: 1.4rem;
+}
+
+.ft-viewbar button[aria-pressed="true"] {
+  color: var(--ft-ink);
+  text-decoration: underline 1.5px var(--ft-vermilion);
+  text-underline-offset: 0.55em;
+}
+
+.ft-viewbar button[aria-pressed="false"]:hover {
+  color: var(--ft-ink);
+}
+
+/* ——— Blunt Code: the two readers ——— */
+
+.ft-readers {
+  border-bottom: 1px solid var(--ft-rule-strong);
+  min-height: 11rem;
+}
+
+.ft-figure:not(:has(.ft-viewbar)) .ft-map {
+  /* no-JS: the map opens the figure directly under its heading */
+  border-top: 1px solid var(--ft-rule-strong);
+  margin-block-start: 0.4rem;
+  padding-block-start: 0.5rem;
+}
+
+.ft-proof {
+  padding-block: 0.9rem 1.1rem;
+}
+
+.ft-proof-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ft-proof-head h3 {
+  margin: 0;
+  font-family: var(--ft-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ft-ink);
+}
+
+.ft-proof-head p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ft-ink-3);
+}
+
+.ft-legend {
+  margin-block-start: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ft-ink-3);
+}
+
+.ft-legend span {
+  margin-inline-end: 0.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ft-proof-item {
+  margin-block-start: 0.9rem;
+  padding-block-start: 0.75rem;
+  border-top: 1px solid var(--ft-rule);
+}
+
+.ft-proof-item-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.ft-sev {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ft-vermilion);
+}
+
+.ft-proof-item-note {
+  margin-block-start: 0.3rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ft-ink-2);
+}
+
+.ft-sarif pre {
+  margin: 0;
+  padding-block: 0.9rem 1.1rem;
+  font-family: var(--ft-mono);
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: var(--ft-ink-2);
+  overflow-x: auto;
+}
+
 /* ——— The build note (compact, one real decision) ——— */
 
-/* .case-study container props from descent.css are reset here so the
- * required test-contract class carries none of the old composition. */
 .ft-build {
-  display: block;
   margin-block-start: clamp(2.5rem, 5.5vh, 4rem);
   padding-block: 1.6rem 0;
   border-top: 1px solid var(--ft-rule-strong);
@@ -464,37 +430,51 @@ html:has(.fieldtrials) body {
   color: var(--ft-ink-2);
 }
 
-/* ——— Chapter 02 handoff: a question, not a billboard ——— */
+/* ——— Chapter 02: System Design Quest, opposite composition ——— */
 
-.ft-next {
+.ft-quest {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 1rem clamp(2rem, 4vw, 4rem);
+  gap: 1.25rem clamp(2rem, 4vw, 4rem);
   align-items: start;
   margin-block-start: clamp(2.5rem, 5.5vh, 4rem);
   padding-block: 1.8rem 0;
   border-top: 1px solid var(--ft-rule-strong);
 }
 
-.ft-next-q {
+/* DOM order is intro → figure; on desktop the intro sits right */
+.ft-quest-intro {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.ft-quest-fig {
+  grid-column: 1;
+  grid-row: 1;
   margin: 0;
-  max-width: 22ch;
+  min-width: 0;
+}
+
+.ft-quest-kicker {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ft-ink-3);
+}
+
+.ft-quest-intro h2 {
+  margin-block-start: 0.3rem;
   font-family: var(--ft-serif);
-  font-style: italic;
-  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  line-height: 1.25;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.15;
   color: var(--ft-ink);
 }
 
-.ft-next h2 {
-  font-size: 1.05rem;
-  font-weight: 650;
-  color: var(--ft-ink);
-}
-
-.ft-next-body > p:not(.ft-links) {
-  max-width: 42ch;
-  margin-block-start: 0.5rem;
+.ft-quest-sub {
+  max-width: 36ch;
+  margin-block-start: 0.55rem;
   font-size: 0.93rem;
   line-height: 1.6;
   color: var(--ft-ink-2);
@@ -518,7 +498,198 @@ html:has(.fieldtrials) body {
   text-underline-offset: 0.22em;
 }
 
-/* ——— Register ——— */
+/* ——— The flow band: popular items → scan → stays cached ——— */
+
+.ft-flow {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  gap: 0 1.25rem;
+  margin: 0;
+  padding: 0.5rem 0 0;
+  list-style: none;
+  border-top: 1px solid var(--ft-rule-strong);
+}
+
+.ft-flow-step {
+  position: relative;
+  padding-block: 0.55rem 1.9rem;
+}
+
+.ft-flow-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ft-ink-3);
+}
+
+.ft-flow-glyph {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0.7rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55rem;
+  height: 1.1rem;
+  border-bottom: 1px solid var(--ft-ink);
+}
+
+.ft-flow-glyph i {
+  width: 0.42rem;
+  height: 0.7rem;
+  background: var(--ft-ink);
+}
+
+/* cold items stop at the scan */
+.ft-flow-items i {
+  height: 0.95rem;
+  background: var(--ft-vermilion);
+}
+
+.ft-flow-items i.cold {
+  height: 0.7rem;
+  background: var(--ft-ink);
+}
+
+/* the scan touches every item once: even dots on the line */
+.ft-flow-scan {
+  justify-content: space-between;
+}
+
+.ft-flow-scan i {
+  width: 0.3rem;
+  height: 0.3rem;
+  translate: 0 50%;
+  rotate: 45deg;
+  background: var(--ft-ink);
+}
+
+/* the vermilion route continues into what stays cached */
+.ft-flow-kept {
+  border-bottom-color: var(--ft-vermilion);
+}
+
+.ft-flow-kept i {
+  height: 0.95rem;
+  background: var(--ft-vermilion);
+}
+
+/* ——— The predict card ——— */
+
+.ft-card {
+  padding-block: 1rem 0.4rem;
+}
+
+.ft-card-prompt {
+  margin: 0;
+  max-width: 58ch;
+  font-family: var(--ft-serif);
+  font-size: 1.12rem;
+  line-height: 1.45;
+  color: var(--ft-ink);
+}
+
+.ft-card-choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-block-start: 0.9rem;
+}
+
+.ft-card-choices button {
+  appearance: none;
+  border: 1px solid var(--ft-rule-strong);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.7rem 0.8rem;
+  min-height: 2.75rem;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--ft-ink);
+  cursor: pointer;
+}
+
+.ft-card-choices button:hover:not(:disabled) {
+  border-color: var(--ft-ink);
+}
+
+.ft-card-choices button[data-state="right"] {
+  border-color: var(--ft-vermilion);
+  box-shadow: inset 0 0 0 1px var(--ft-vermilion);
+}
+
+.ft-card-choices button[data-state="wrong"] {
+  color: var(--ft-ink-3);
+}
+
+.ft-card-choices button:disabled {
+  cursor: default;
+}
+
+.ft-card-tag {
+  font-weight: 500;
+  color: var(--ft-ink-3);
+}
+
+.ft-card-static {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-block-start: 0.9rem;
+  padding: 0;
+  list-style: none;
+}
+
+.ft-card-static li {
+  border-top: 1px solid var(--ft-rule);
+  padding-block-start: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ft-ink-2);
+}
+
+.ft-card-outcome {
+  margin-block-start: 0.9rem;
+  padding-block-start: 0.8rem;
+  border-top: 1px solid var(--ft-rule);
+}
+
+.ft-card-verdict {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--ft-ink);
+}
+
+.ft-card-why {
+  margin-block-start: 0.45rem;
+  max-width: 58ch;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ft-ink-2);
+}
+
+.ft-card-again {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  margin-block-start: 0.6rem;
+  padding: 0.55rem 0.8rem 0.55rem 0;
+  min-height: 2.75rem;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ft-vermilion);
+  text-decoration: underline 1px;
+  text-underline-offset: 0.24em;
+  cursor: pointer;
+}
+
+/* ——— Index ——— */
 
 .ft-register {
   margin-block-start: clamp(2.5rem, 5.5vh, 4rem);
@@ -540,65 +711,59 @@ html:has(.fieldtrials) body {
   color: var(--ft-ink-3);
 }
 
-/* .case-study grid/padding reset: register rows are plain document entries */
-.ft-reg {
-  display: block;
-  margin-block-start: 1.9rem;
-  padding-block: 1.2rem 0;
+.ft-idx {
+  margin-block-start: 1.1rem;
+  padding-block: 0.9rem 0;
   border-top: 1px solid var(--ft-rule);
 }
 
-.ft-reg-head {
+.ft-idx-head {
   display: grid;
-  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem 1rem;
   align-items: baseline;
 }
 
-.ft-reg-no {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 560;
-  color: var(--ft-vermilion);
+.ft-idx-title h3 {
+  display: inline;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--ft-ink);
 }
 
-.ft-reg-title h3 {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 540;
-  text-transform: uppercase;
-}
-
-.ft-reg-sub {
+.ft-idx-sub {
+  display: inline;
+  margin-inline-start: 0.6rem;
   font-size: 0.88rem;
   color: var(--ft-ink-2);
-  margin-block-start: 0.15rem;
 }
 
-.ft-reg-flags {
+.ft-idx-flag {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-block-start: 0.3rem;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-block-start: 0.25rem;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ft-ink-3);
 }
 
-.ft-reg-flags span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
+.ft-idx-evidence {
+  margin-block-start: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--ft-ink-3);
 }
 
-.ft-reg-links {
+.ft-idx-links {
   display: flex;
   gap: 1rem;
   margin: 0;
+  font-size: 0.82rem;
+  color: var(--ft-ink-3);
 }
 
-.ft-reg-links a {
+.ft-idx-links a {
   font-size: 0.82rem;
   color: var(--ft-vermilion);
   text-decoration: underline 1px;
@@ -606,49 +771,7 @@ html:has(.fieldtrials) body {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-}
-
-.ft-reg-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1.1rem 2.5rem;
-  margin-block-start: 1rem;
-  padding-inline-start: 3.4rem;
-}
-
-.ft-reg-body h4 {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ft-ink-3);
-}
-
-.ft-reg-body p,
-.ft-reg-body ul {
-  margin-block-start: 0.5rem;
-  font-size: 0.93rem;
-  line-height: 1.6;
-  color: var(--ft-ink-2);
-}
-
-.ft-reg-body ul {
-  padding-inline-start: 1.1rem;
-}
-
-.ft-reg-body li + li {
-  margin-block-start: 0.3rem;
-}
-
-.ft-reg-body li::marker {
-  color: var(--ft-vermilion);
-}
-
-.ft-stack {
-  font-size: 0.85rem;
-  color: var(--ft-ink-2);
+  min-height: 2.4rem;
 }
 
 /* ——— Footer ——— */
@@ -705,44 +828,16 @@ html:has(.fieldtrials) body {
 }
 
 @media (max-width: 860px) {
-  /* phones: one side of the specimen at a time, result first */
-  .ft-demo {
-    display: flex;
-    flex-direction: column;
-  }
-  .ft-demo-below {
-    order: -1;
-    border-bottom: 0;
-    border-top: 1px solid var(--ft-rule);
-    margin-block-start: 0.9rem;
-    padding-block: 0.6rem;
-  }
-  .ft-demo-workspace {
-    grid-template-columns: minmax(0, 1fr);
-    border-block: 1px solid var(--ft-rule-strong);
-  }
-  .ft-demo-workspace::before {
-    display: none;
-  }
-  .ft-write,
-  .ft-result {
-    padding-inline: 0;
-    border-inline-end: 0;
-  }
-  .ft-demo[data-side="result"] .ft-write {
-    display: none;
-  }
-  .ft-demo[data-side="write"] .ft-result {
-    display: none;
-  }
-  .ft-edit-toggle {
-    display: inline-flex;
-  }
-  .ft-next {
+  .ft-quest {
     grid-template-columns: minmax(0, 1fr);
   }
-  .ft-next-q {
-    max-width: 24ch;
+  .ft-quest-intro {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .ft-quest-fig {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
 
@@ -783,66 +878,78 @@ html:has(.fieldtrials) body {
     font-size: 0.85rem;
     margin-block-start: 0.2rem;
   }
-  .ft-demo {
+  .ft-figure {
     margin-block-start: 0.7rem;
   }
-  .ft-demo-below {
-    flex-wrap: nowrap;
-    gap: 0.6rem;
-    padding-block: 0.45rem;
-    margin-block-start: 0.4rem;
-  }
-  .ft-samples {
-    gap: 0.6rem;
-    min-width: 0;
-  }
-  .ft-samples legend {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-  .ft-edit-toggle {
-    margin-inline-start: auto;
-    white-space: nowrap;
-    padding: 0 0.7rem;
-  }
-  .ft-source {
-    min-height: 9rem;
-  }
-  .ft-reg-head {
-    grid-template-columns: 2rem minmax(0, 1fr);
-  }
-  .ft-reg-links {
-    grid-column: 2;
-    margin-block-start: 0.4rem;
-  }
-  .ft-reg-body {
+
+  /* the map collapses to an ordered vertical flow */
+  .ft-map {
     grid-template-columns: minmax(0, 1fr);
-    padding-inline-start: 3rem;
-    gap: 1rem;
+    gap: 0;
+  }
+  .ft-map {
+    margin-block-start: 0.6rem;
+  }
+  .ft-map-src {
+    padding-block: 0.1rem 0.3rem;
+  }
+  .ft-map-trunk {
+    height: 0.9rem;
+    min-height: 0;
+    width: 0;
+    margin-inline-start: 1rem;
+  }
+  .ft-map-trunk::before {
+    inset-block: 0;
+    inset-inline: auto;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: auto;
+  }
+  .ft-map-out {
+    padding-block-start: 0;
+  }
+
+  .ft-viewbar {
+    margin-block-start: 0.5rem;
+  }
+  .ft-map {
+    margin-block-start: 0.6rem;
+  }
+  .ft-readers {
+    min-height: 0;
+  }
+  .ft-sarif pre {
+    font-size: 0.72rem;
+  }
+
+  .ft-flow {
+    gap: 0 0.8rem;
+  }
+  .ft-flow-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+  .ft-flow-glyph {
+    gap: 0.35rem;
+  }
+  .ft-flow-glyph i {
+    width: 0.34rem;
+  }
+  .ft-card-choices,
+  .ft-card-static {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ft-idx-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ft-idx-links {
+    margin-block-start: 0.3rem;
   }
   .ft-footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.8rem;
-  }
-}
-
-@media (max-width: 400px) {
-  /* one control per line: the action first, the example picker after */
-  .ft-demo-below {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.45rem;
-  }
-  .ft-edit-toggle {
-    order: -1;
-    margin-inline-start: 0;
-  }
-  .ft-samples {
-    flex-wrap: wrap;
   }
 }
