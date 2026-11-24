@@ -21,7 +21,7 @@ const SARIF_EXCERPT = `{
       "results": [
         {
           "level": "note",
-          "message": { "text": "Illustrative entry" }
+          "message": { "text": "Sample checklist: review project notes" }
         }
       ]
     }
@@ -86,10 +86,10 @@ export default function BluntCodeFigure() {
           <div className="ft-proof-item">
             <p className="ft-proof-item-head">
               <span className="ft-sev">note</span>
-              <strong>Illustrative entry</strong>
+              <strong>Sample checklist: review project notes</strong>
             </p>
             <p className="ft-proof-item-note">
-              A placeholder item in the shape of a finding — no code was
+              A synthetic example in the shape of a finding — no code was
               scanned.
             </p>
           </div>

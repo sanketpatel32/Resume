@@ -4,14 +4,17 @@ import { resumeContent } from "@/features/resume/content";
 import { getStory } from "@/features/resume/content/stories";
 import BluntCodeFigure from "./BluntCodeFigure";
 import SdqCard from "./SdqCard";
+import OssExplorer from "./OssExplorer";
 
 /**
- * FIELD TRIALS — stage 2: two owned exhibits set into the page.
- * Opening: editorial text left, the Blunt Code specimen right — one
- * report read two ways. Below: the real decision behind it, then a
- * System Design Quest practice card (lesson 17) on the opposite
- * composition, then a small index of the remaining public work.
- * The private platforms stay unnamed and unlinked throughout.
+ * FIELD TRIALS — stage 3: two owned exhibits, the index, and the
+ * open-source contribution plot. Opening: editorial text left, the
+ * Blunt Code specimen right — one report read two ways. Below: the
+ * real decision behind it, then a System Design Quest practice card
+ * (lesson 17) on the opposite composition, a small index of the
+ * remaining public work, and a snapshot-based explorer of merged PRs
+ * to other people's codebases. Private platforms stay unnamed and
+ * unlinked throughout.
  */
 
 const PUBLIC_INDEX_SLUGS = new Set(["miracode", "auraflow", "small-server"]);
@@ -34,13 +37,7 @@ export default function FieldTrialsPage() {
           </Link>
           <nav className="ft-nav" aria-label="Primary">
             <a href="#work">Work</a>
-            <a
-              href="https://github.com/sanketpatel32"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open source
-            </a>
+            <a href="#open-source">Open source</a>
             <a href="/resume.pdf">Résumé</a>
           </nav>
         </header>
@@ -60,10 +57,10 @@ export default function FieldTrialsPage() {
             </div>
 
             <figure className="ft-specimen" id="work">
-              <figcaption className="ft-specimen-head">
+              <div className="ft-specimen-head">
                 <h2>Blunt Code</h2>
-                <p>One report, two readers.</p>
-              </figcaption>
+                <p>A local code review tool. One report, two readers.</p>
+              </div>
               <BluntCodeFigure />
               <figcaption className="ft-specimen-caption">
                 Illustrative report, no scan is run.{" "}
@@ -79,7 +76,7 @@ export default function FieldTrialsPage() {
           </section>
 
           <article className="ft-build" aria-labelledby="ft-build-title">
-            <h3 id="ft-build-title">Blunt Code</h3>
+            <h3 id="ft-build-title">Why SQLite?</h3>
             <p className="ft-build-para">
               I kept the data in SQLite and gave the CLI and web UI the same
               local history. Reports can leave the machine when you export
@@ -200,11 +197,13 @@ export default function FieldTrialsPage() {
               </header>
             </article>
           </section>
+
+          <OssExplorer />
         </main>
 
         <footer className="ft-footer">
           <p className="ft-footer-id">
-            {profile.name} — field trials, stage 02 · © {new Date().getFullYear()}
+            {profile.name} — field trials, stage 03 · © {new Date().getFullYear()}
           </p>
           <nav className="ft-footer-nav" aria-label="Site">
             <Link href="/about">About</Link>

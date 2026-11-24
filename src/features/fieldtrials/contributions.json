@@ -1,0 +1,594 @@
+{
+  "meta": {
+    "description": "Merged pull requests by sanketpatel32 to public GitHub repositories outside his own namespace. Checked-in snapshot, not live data.",
+    "query": "is:pr is:merged is:public author:sanketpatel32 -user:sanketpatel32",
+    "cutoffUTC": "2026-11-24T16:59:30.115Z",
+    "generatedAtUTC": "2026-11-24T16:59:32.117Z",
+    "total": 80,
+    "repoCount": 17
+  },
+  "repos": [
+    {
+      "repo": "flisk-sh/flisk",
+      "count": 30,
+      "merges": [
+        {
+          "number": 5030,
+          "date": "2026-11-22",
+          "title": "fix(logs): validate --service name before contacting Tilt",
+          "url": "https://github.com/flisk-sh/flisk/pull/5030"
+        },
+        {
+          "number": 5032,
+          "date": "2026-11-22",
+          "title": "fix(up): report no resources before validating --only",
+          "url": "https://github.com/flisk-sh/flisk/pull/5032"
+        },
+        {
+          "number": 5037,
+          "date": "2026-11-22",
+          "title": "feat(repos): let repos clone take named repositories",
+          "url": "https://github.com/flisk-sh/flisk/pull/5037"
+        },
+        {
+          "number": 5290,
+          "date": "2026-11-22",
+          "title": "docs: backfill missing changelog releases and fix the (undefined) heading (#5282)",
+          "url": "https://github.com/flisk-sh/flisk/pull/5290"
+        },
+        {
+          "number": 5291,
+          "date": "2026-11-22",
+          "title": "fix(mcp): return the standard envelope from resource_create and enforce the real name rule (#5235)",
+          "url": "https://github.com/flisk-sh/flisk/pull/5291"
+        },
+        {
+          "number": 5292,
+          "date": "2026-11-22",
+          "title": "perf(up): build each service image once per start (#4237)",
+          "url": "https://github.com/flisk-sh/flisk/pull/5292"
+        },
+        {
+          "number": 5293,
+          "date": "2026-11-22",
+          "title": "feat(resource): accept --local for worker, mcp and agent (#5277)",
+          "url": "https://github.com/flisk-sh/flisk/pull/5293"
+        },
+        {
+          "number": 5297,
+          "date": "2026-11-22",
+          "title": "test(cli): cover rust backend language module",
+          "url": "https://github.com/flisk-sh/flisk/pull/5297"
+        },
+        {
+          "number": 5298,
+          "date": "2026-11-22",
+          "title": "test(cli): scaffold test for the lit frontend provider",
+          "url": "https://github.com/flisk-sh/flisk/pull/5298"
+        },
+        {
+          "number": 5299,
+          "date": "2026-11-22",
+          "title": "test(cli): scaffold test for the solid frontend provider",
+          "url": "https://github.com/flisk-sh/flisk/pull/5299"
+        },
+        {
+          "number": 5300,
+          "date": "2026-11-22",
+          "title": "test(cli): scaffold tests for the qwik frontend provider",
+          "url": "https://github.com/flisk-sh/flisk/pull/5300"
+        },
+        {
+          "number": 5301,
+          "date": "2026-11-22",
+          "title": "test(cli): scaffold tests for the preact frontend provider",
+          "url": "https://github.com/flisk-sh/flisk/pull/5301"
+        },
+        {
+          "number": 5302,
+          "date": "2026-11-22",
+          "title": "test(cli): scaffold test for the react frontend provider",
+          "url": "https://github.com/flisk-sh/flisk/pull/5302"
+        },
+        {
+          "number": 5303,
+          "date": "2026-11-22",
+          "title": "test(cli): scaffold test for the vue frontend provider",
+          "url": "https://github.com/flisk-sh/flisk/pull/5303"
+        },
+        {
+          "number": 5305,
+          "date": "2026-11-22",
+          "title": "test(cli): direct tests for resolveProjectCapabilities and isGatewayEnabled in utils/capabilities.ts",
+          "url": "https://github.com/flisk-sh/flisk/pull/5305"
+        },
+        {
+          "number": 5306,
+          "date": "2026-11-22",
+          "title": "test(cli): scaffold test for the svelte frontend provider",
+          "url": "https://github.com/flisk-sh/flisk/pull/5306"
+        },
+        {
+          "number": 5307,
+          "date": "2026-11-22",
+          "title": "test(cli): add tests for tanstack-router frontend provider",
+          "url": "https://github.com/flisk-sh/flisk/pull/5307"
+        },
+        {
+          "number": 5308,
+          "date": "2026-11-22",
+          "title": "test(cli): direct tests for explainConfigFile",
+          "url": "https://github.com/flisk-sh/flisk/pull/5308"
+        },
+        {
+          "number": 5309,
+          "date": "2026-11-22",
+          "title": "test(cli): unit tests for the go backend language module",
+          "url": "https://github.com/flisk-sh/flisk/pull/5309"
+        },
+        {
+          "number": 5310,
+          "date": "2026-11-22",
+          "title": "test(cli): unit tests for runVariables in utils/native-up.ts",
+          "url": "https://github.com/flisk-sh/flisk/pull/5310"
+        },
+        {
+          "number": 5311,
+          "date": "2026-11-22",
+          "title": "test(cli): cover grouping and unhealthy helpers in status-groups tests",
+          "url": "https://github.com/flisk-sh/flisk/pull/5311"
+        },
+        {
+          "number": 5312,
+          "date": "2026-11-22",
+          "title": "feat(cli): add Examples blocks to eject, projects and agent sessions help",
+          "url": "https://github.com/flisk-sh/flisk/pull/5312"
+        },
+        {
+          "number": 5316,
+          "date": "2026-11-22",
+          "title": "fix(status): claim no shared Postgres in a local-process project",
+          "url": "https://github.com/flisk-sh/flisk/pull/5316"
+        },
+        {
+          "number": 5320,
+          "date": "2026-11-22",
+          "title": "test(engine): cover the Vite frontend env-file copy through the image build",
+          "url": "https://github.com/flisk-sh/flisk/pull/5320"
+        },
+        {
+          "number": 5321,
+          "date": "2026-11-22",
+          "title": "test(engine): pin the router port in generated .ts API fallbacks (#3647)",
+          "url": "https://github.com/flisk-sh/flisk/pull/5321"
+        },
+        {
+          "number": 5323,
+          "date": "2026-11-22",
+          "title": "docs(networks): describe local-process URLs and test the create layout",
+          "url": "https://github.com/flisk-sh/flisk/pull/5323"
+        },
+        {
+          "number": 5324,
+          "date": "2026-11-22",
+          "title": "ci(bench): flisk-kiri shim retags image ids Kiri already has instead of reloading",
+          "url": "https://github.com/flisk-sh/flisk/pull/5324"
+        },
+        {
+          "number": 5326,
+          "date": "2026-11-22",
+          "title": "refactor(discovery): one service.json validation rule table + corpus contract test",
+          "url": "https://github.com/flisk-sh/flisk/pull/5326"
+        },
+        {
+          "number": 5327,
+          "date": "2026-11-22",
+          "title": "docs+feat(agents): run Flisk in cloud coding agents and scaffold a no-Docker --type agent",
+          "url": "https://github.com/flisk-sh/flisk/pull/5327"
+        },
+        {
+          "number": 5330,
+          "date": "2026-11-22",
+          "title": "refactor(up): turn the flisk up action into an ordered step pipeline (#4862)",
+          "url": "https://github.com/flisk-sh/flisk/pull/5330"
+        }
+      ]
+    },
+    {
+      "repo": "MNSBaanu/OpenPlan",
+      "count": 15,
+      "merges": [
+        {
+          "number": 24,
+          "date": "2026-11-22",
+          "title": "fix: add Ctrl+F1 to the About dialog shortcut list",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/24"
+        },
+        {
+          "number": 26,
+          "date": "2026-11-22",
+          "title": "feat: add a Home renovation starter template",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/26"
+        },
+        {
+          "number": 27,
+          "date": "2026-11-22",
+          "title": "fix: give Resource Sheet fields accessible names",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/27"
+        },
+        {
+          "number": 41,
+          "date": "2026-11-23",
+          "title": "Fix status bar overflow on phones (issue #13)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/41"
+        },
+        {
+          "number": 42,
+          "date": "2026-11-23",
+          "title": "Enlarge status-bar tap targets on touch (issue #31)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/42"
+        },
+        {
+          "number": 43,
+          "date": "2026-11-23",
+          "title": "Show that the ribbon tab row scrolls (issue #34)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/43"
+        },
+        {
+          "number": 44,
+          "date": "2026-11-23",
+          "title": "Table/Chart switch for Gantt on phones (issue #29)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/44"
+        },
+        {
+          "number": 45,
+          "date": "2026-11-23",
+          "title": "Pinch to zoom the Gantt timescale (issue #35)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/45"
+        },
+        {
+          "number": 46,
+          "date": "2026-11-23",
+          "title": "Say which rate lines were ignored and why (issue #21)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/46"
+        },
+        {
+          "number": 47,
+          "date": "2026-11-23",
+          "title": "Unit tests for saved versions (issue #19)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/47"
+        },
+        {
+          "number": 48,
+          "date": "2026-11-23",
+          "title": "Ctrl+P opens OpenPlan's Print dialog (issue #16)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/48"
+        },
+        {
+          "number": 49,
+          "date": "2026-11-23",
+          "title": "Document how OpenPlan calculates dates (issue #22)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/49"
+        },
+        {
+          "number": 50,
+          "date": "2026-11-23",
+          "title": "Add screenshots to the web app manifest (issue #37)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/50"
+        },
+        {
+          "number": 51,
+          "date": "2026-11-23",
+          "title": "Keep dialogs inside the visible viewport on phones (issue #32)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/51"
+        },
+        {
+          "number": 52,
+          "date": "2026-11-23",
+          "title": "Add an \"Upcoming tasks\" report (issue #17)",
+          "url": "https://github.com/MNSBaanu/OpenPlan/pull/52"
+        }
+      ]
+    },
+    {
+      "repo": "LibrePhotos/librephotos",
+      "count": 8,
+      "merges": [
+        {
+          "number": 3101,
+          "date": "2026-11-23",
+          "title": "feat(web): wall display schedule for the slideshow (night sleep, keep awake, burn-in)",
+          "url": "https://github.com/LibrePhotos/librephotos/pull/3101"
+        },
+        {
+          "number": 3102,
+          "date": "2026-11-23",
+          "title": "feat(statistics): a photos-per-day heatmap and a Places density view",
+          "url": "https://github.com/LibrePhotos/librephotos/pull/3102"
+        },
+        {
+          "number": 3103,
+          "date": "2026-11-23",
+          "title": "feat: sort search results and the videos page by file size",
+          "url": "https://github.com/LibrePhotos/librephotos/pull/3103"
+        },
+        {
+          "number": 3104,
+          "date": "2026-11-23",
+          "title": "feat: convert the dates of selected photos between time zones",
+          "url": "https://github.com/LibrePhotos/librephotos/pull/3104"
+        },
+        {
+          "number": 3105,
+          "date": "2026-11-23",
+          "title": "Statistics: cameras, lenses and exposure",
+          "url": "https://github.com/LibrePhotos/librephotos/pull/3105"
+        },
+        {
+          "number": 3106,
+          "date": "2026-11-23",
+          "title": "Expiring photo share links (#3012)",
+          "url": "https://github.com/LibrePhotos/librephotos/pull/3106"
+        },
+        {
+          "number": 3107,
+          "date": "2026-11-23",
+          "title": "QR codes on share links (#3031)",
+          "url": "https://github.com/LibrePhotos/librephotos/pull/3107"
+        },
+        {
+          "number": 3108,
+          "date": "2026-11-23",
+          "title": "Read JPEG XL metadata compressed in brob boxes (#3074)",
+          "url": "https://github.com/LibrePhotos/librephotos/pull/3108"
+        }
+      ]
+    },
+    {
+      "repo": "rasonyang/ai-native-callcenter",
+      "count": 6,
+      "merges": [
+        {
+          "number": 654,
+          "date": "2026-11-22",
+          "title": "docs: the deploy guide names grok and says when aicc_bot reads UP (#552)",
+          "url": "https://github.com/rasonyang/ai-native-callcenter/pull/654"
+        },
+        {
+          "number": 670,
+          "date": "2026-11-23",
+          "title": "deps: golang.org/x/net v0.62.0, klauspost/compress v1.20.2 (#548)",
+          "url": "https://github.com/rasonyang/ai-native-callcenter/pull/670"
+        },
+        {
+          "number": 671,
+          "date": "2026-11-23",
+          "title": "outbound: bound every poll-wait and settle the messy mix on claims, not a sleep (#584)",
+          "url": "https://github.com/rasonyang/ai-native-callcenter/pull/671"
+        },
+        {
+          "number": 673,
+          "date": "2026-11-23",
+          "title": "provider: split the request watchdog from the caller-turn watch in the deadline test (#540)",
+          "url": "https://github.com/rasonyang/ai-native-callcenter/pull/673"
+        },
+        {
+          "number": 675,
+          "date": "2026-11-23",
+          "title": "provider: answer the opening inside the fake's request-read loop (#397)",
+          "url": "https://github.com/rasonyang/ai-native-callcenter/pull/675"
+        },
+        {
+          "number": 683,
+          "date": "2026-11-23",
+          "title": "web: the campaign import dialog offers a fill-in template and says what a file needs (#586)",
+          "url": "https://github.com/rasonyang/ai-native-callcenter/pull/683"
+        }
+      ]
+    },
+    {
+      "repo": "C4rohan/Lampline",
+      "count": 5,
+      "merges": [
+        {
+          "number": 122,
+          "date": "2026-11-23",
+          "title": "templates: add the restaurant-reservations starter agent",
+          "url": "https://github.com/C4rohan/Lampline/pull/122"
+        },
+        {
+          "number": 123,
+          "date": "2026-11-24",
+          "title": "Add a tough-caller persona pack for tests and evals",
+          "url": "https://github.com/C4rohan/Lampline/pull/123"
+        },
+        {
+          "number": 124,
+          "date": "2026-11-24",
+          "title": "vk test --format junit: strict-schema counts and a CI publish example",
+          "url": "https://github.com/C4rohan/Lampline/pull/124"
+        },
+        {
+          "number": 125,
+          "date": "2026-11-24",
+          "title": "Transfer: choose the SIP header prefix for the caller's details",
+          "url": "https://github.com/C4rohan/Lampline/pull/125"
+        },
+        {
+          "number": 128,
+          "date": "2026-11-24",
+          "title": "Docs: quick start on Windows with WSL 2",
+          "url": "https://github.com/C4rohan/Lampline/pull/128"
+        }
+      ]
+    },
+    {
+      "repo": "architsharm/agentfox",
+      "count": 3,
+      "merges": [
+        {
+          "number": 230,
+          "date": "2026-11-23",
+          "title": "fix: rename dev-login env vars to AGENTFOX_ prefix",
+          "url": "https://github.com/architsharm/agentfox/pull/230"
+        },
+        {
+          "number": 231,
+          "date": "2026-11-23",
+          "title": "fix: fetch /api/projects once in app layout",
+          "url": "https://github.com/architsharm/agentfox/pull/231"
+        },
+        {
+          "number": 232,
+          "date": "2026-11-23",
+          "title": "feat: add --json output to policy list",
+          "url": "https://github.com/architsharm/agentfox/pull/232"
+        }
+      ]
+    },
+    {
+      "repo": "nextcloud/spreed",
+      "count": 2,
+      "merges": [
+        {
+          "number": 20466,
+          "date": "2026-11-24",
+          "title": "chore(occ): Migrate room participant invitations to InvitationList",
+          "url": "https://github.com/nextcloud/spreed/pull/20466"
+        },
+        {
+          "number": 20467,
+          "date": "2026-11-24",
+          "title": "fix(federation): Notify fully subscribed users about reactions",
+          "url": "https://github.com/nextcloud/spreed/pull/20467"
+        }
+      ]
+    },
+    {
+      "repo": "soroban-forge-labs/soroban-lens",
+      "count": 2,
+      "merges": [
+        {
+          "number": 275,
+          "date": "2026-11-22",
+          "title": "feat: mark estimated event totals in UI",
+          "url": "https://github.com/soroban-forge-labs/soroban-lens/pull/275"
+        },
+        {
+          "number": 276,
+          "date": "2026-11-23",
+          "title": "fix: unbreak the ingest build after the #274 merge",
+          "url": "https://github.com/soroban-forge-labs/soroban-lens/pull/276"
+        }
+      ]
+    },
+    {
+      "repo": "ArcReel/ArcReel",
+      "count": 1,
+      "merges": [
+        {
+          "number": 3995,
+          "date": "2026-11-23",
+          "title": "docs(guide): 补充 Agent 协议要求与外部网关接入说明",
+          "url": "https://github.com/ArcReel/ArcReel/pull/3995"
+        }
+      ]
+    },
+    {
+      "repo": "CherryHQ/cherry-studio",
+      "count": 1,
+      "merges": [
+        {
+          "number": 25286,
+          "date": "2026-11-24",
+          "title": "fix(shell-env): strip NUL bytes from captured shell environment",
+          "url": "https://github.com/CherryHQ/cherry-studio/pull/25286"
+        }
+      ]
+    },
+    {
+      "repo": "Code-Amadeus/Amadeus",
+      "count": 1,
+      "merges": [
+        {
+          "number": 313,
+          "date": "2026-11-23",
+          "title": "fix(work): remember foreground-published status answers for repeat queries",
+          "url": "https://github.com/Code-Amadeus/Amadeus/pull/313"
+        }
+      ]
+    },
+    {
+      "repo": "jason5ng32/MyIP",
+      "count": 1,
+      "merges": [
+        {
+          "number": 579,
+          "date": "2026-11-23",
+          "title": "Feat(connectivity): refresh the India site list (#515)",
+          "url": "https://github.com/jason5ng32/MyIP/pull/579"
+        }
+      ]
+    },
+    {
+      "repo": "lingdojo/kana-dojo",
+      "count": 1,
+      "merges": [
+        {
+          "number": 20972,
+          "date": "2026-06-17",
+          "title": "docs: add community note line #10",
+          "url": "https://github.com/lingdojo/kana-dojo/pull/20972"
+        }
+      ]
+    },
+    {
+      "repo": "marcus-beauregard/staticgen",
+      "count": 1,
+      "merges": [
+        {
+          "number": 20,
+          "date": "2026-11-22",
+          "title": "feat: render heading levels 3 through 6",
+          "url": "https://github.com/marcus-beauregard/staticgen/pull/20"
+        }
+      ]
+    },
+    {
+      "repo": "shamilahmdt/devtasks",
+      "count": 1,
+      "merges": [
+        {
+          "number": 232,
+          "date": "2026-06-18",
+          "title": "Add client-side QR Code Generator to Dev Utilities.",
+          "url": "https://github.com/shamilahmdt/devtasks/pull/232"
+        }
+      ]
+    },
+    {
+      "repo": "Stellar-Hive/stellar-stream-hive-frontend",
+      "count": 1,
+      "merges": [
+        {
+          "number": 319,
+          "date": "2026-11-22",
+          "title": "test: cover AmountInput formatting and token selection",
+          "url": "https://github.com/Stellar-Hive/stellar-stream-hive-frontend/pull/319"
+        }
+      ]
+    },
+    {
+      "repo": "streamcoreai/streamcore-server",
+      "count": 1,
+      "merges": [
+        {
+          "number": 89,
+          "date": "2026-11-23",
+          "title": "docs: add issue templates, PR template, and extend CONTRIBUTING",
+          "url": "https://github.com/streamcoreai/streamcore-server/pull/89"
+        }
+      ]
+    }
+  ]
+}

@@ -294,3 +294,58 @@ test("Homepage exhibits and index render real content with no retired work or hi
   assert.ok(smallServer.includes("/lab/cache"), "Small Server must carry its evidence line");
 });
 
+test("Open-source explorer renders the checked-in snapshot with real links", { skip: !isServerRunning }, async () => {
+  const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
+  const html = await res.text();
+  const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(
+    /<script[\s\S]*?<\/script>/g,
+    "",
+  );
+
+  const { default: snapshot } = await import(
+    "../src/features/fieldtrials/contributions.json",
+    { with: { type: "json" } }
+  );
+
+  assert.ok(body.includes('id="open-source"'), "Explorer section must exist");
+  assert.ok(
+    body.includes("Other codebases") && body.includes("did not start"),
+    "Premise must be stated",
+  );
+  assert.ok(
+    body.includes("snapshot, not live") && body.includes("UTC"),
+    "The snapshot must be explained as snapshot, with a UTC stamp",
+  );
+
+  // Every repository and every PR link from the validated snapshot renders.
+  const rows = body.match(/<details\b[^>]*class="ft-oss-row"/g) || [];
+  assert.equal(rows.length, snapshot.meta.repoCount, "All snapshot repos render as rows");
+  for (const repo of snapshot.repos) {
+    assert.ok(body.includes(repo.repo), `${repo.repo} must be named`);
+    for (const m of repo.merges) {
+      assert.ok(
+        body.includes(`href="${m.url}"`),
+        `PR link must be present: ${m.url}`,
+      );
+    }
+  }
+
+  // Top entries are upfront, the rest behind a native disclosure.
+  const topRepo = snapshot.repos[0].repo;
+  const showAll = body.indexOf("Show all");
+  const topIdx = body.indexOf(topRepo);
+  assert.ok(topIdx !== -1 && showAll !== -1 && topIdx < showAll,
+    "Top repos render before the Show-all disclosure");
+  assert.match(
+    body,
+    new RegExp(
+      `Show all\\s*(?:<!-- -->)?\\s*${snapshot.meta.repoCount}\\s*(?:<!-- -->)?\\s*repositories`,
+    ),
+    "Show-all must name the full repository count",
+  );
+  assert.ok(
+    /<summary[^>]*aria-label="[^"]*merged pull request/.test(body),
+    "Rows must carry accessible name + count labels",
+  );
+});
+

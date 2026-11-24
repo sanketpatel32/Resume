@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 /**
  * System Design Quest specimen — lesson 17, "A nightly scan meets the
@@ -49,6 +49,19 @@ export default function SdqCard() {
     () => false,
   );
   const [picked, setPicked] = useState<string | null>(null);
+  const againRef = useRef<HTMLButtonElement>(null);
+  const choiceRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  // Post-commit focus target: "again" after a pick, the chosen button
+  // after Try again — focus must never fall through to <body>.
+  const focusTarget = useRef<string | null>(null);
+
+  useEffect(() => {
+    const target = focusTarget.current;
+    if (!target) return;
+    focusTarget.current = null;
+    if (target === "again") againRef.current?.focus();
+    else choiceRefs.current[target]?.focus();
+  }, [picked]);
 
   const choice = CHOICES.find((c) => c.id === picked);
   const right = picked === CORRECT_ID;
@@ -77,10 +90,16 @@ export default function SdqCard() {
                 <button
                   key={c.id}
                   type="button"
+                  ref={(el) => {
+                    choiceRefs.current[c.id] = el;
+                  }}
                   disabled={picked !== null}
                   aria-pressed={picked === c.id}
                   data-state={state}
-                  onClick={() => setPicked(c.id)}
+                  onClick={() => {
+                    focusTarget.current = "again";
+                    setPicked(c.id);
+                  }}
                 >
                   {c.label}
                   {picked !== null && c.id === CORRECT_ID && (
@@ -106,7 +125,11 @@ export default function SdqCard() {
               <button
                 type="button"
                 className="ft-card-again"
-                onClick={() => setPicked(null)}
+                ref={againRef}
+                onClick={() => {
+                  focusTarget.current = picked;
+                  setPicked(null);
+                }}
               >
                 Try again
               </button>
