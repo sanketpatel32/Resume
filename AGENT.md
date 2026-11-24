@@ -1,6 +1,6 @@
 # Sanket Patel Portfolio
 
-An art-directed portfolio built with Next.js 16, TypeScript, Tailwind CSS, GSAP and react-three-fiber. The homepage is one continuous descent through the stack: the hero's three layers become strata the visitor scrolls through, from the surface down to a glowing core (contact).
+An art-directed portfolio built with Next.js 16, TypeScript and Tailwind CSS. The homepage (Dossier) is a dark "merge ledger": verified upstream open-source work leads, with a git-log hero panel, problem/change/outcome case studies, and a full contribution ledger. The earlier descent/ResumePage composition remains in the tree but is no longer routed.
 
 ## Quick Start
 
@@ -29,9 +29,9 @@ src/
     contact/page.tsx           # Standalone Contact trust anchor page
     privacy/page.tsx           # Standalone Privacy Policy trust anchor page
     globals.css                # Shared chrome: nav, buttons, forms, footer, developer portal
-    descent.css                # Homepage art direction (chapters, case studies, path, core)
+    dossier.css                # Homepage art direction (merge-ledger dossier theme)
     layout.tsx                 # Root layout with SEO metadata & JSON-LD graph
-    page.tsx                   # Thin page entrypoint -> renders ResumePage
+    page.tsx                   # Thin page entrypoint -> renders Dossier
     robots.ts                  # Robots.txt generator with AI crawler permissions
     sitemap.ts                 # XML sitemap generator
     api/contact/route.ts       # Thin API route orchestrator (POST endpoint)
@@ -51,6 +51,8 @@ src/
         skills.ts
         projects.ts
         stories.ts             # Case-study copy and visuals for each project
+        contributions.ts       # Verified merged upstream PRs (ledger rows)
+        upstreamCases.ts       # Featured upstream case studies (problem/change/outcome)
         contact.ts
         seo.ts
         site.ts
@@ -60,7 +62,8 @@ src/
       experience/              # Motion/WebGL gating, intro, scroll & pointer signals
       gl/                      # Lazy WebGL runtime (strata backdrop, per-project scenes, shaders)
       ui/
-        ResumePage.tsx         # Feature page composition
+        Dossier.tsx            # Homepage composition (merge-ledger dossier)
+        ResumePage.tsx         # Earlier descent composition (unrouted)
         Navbar.tsx
         Footer.tsx
         descent/               # Intro, custom cursor, depth gauge, split text

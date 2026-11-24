@@ -1,6 +1,6 @@
-import Workbench from "@/features/resume/ui/Workbench";
-import "./workbench.css";
+import Dossier from "@/features/resume/ui/Dossier";
+import "./dossier.css";
 
 export default function HomePage() {
-  return <Workbench />;
+  return <Dossier />;
 }
