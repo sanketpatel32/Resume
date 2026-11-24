@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-const BASE = "http://localhost:3000";
+const BASE = process.env.RESUME_TEST_URL || "http://localhost:3000";
 
 // Exact-token check: "Vary: ... Accept-Encoding" must NOT satisfy this —
 // the response must advertise a distinct `Accept` token so CDN caches key
@@ -223,189 +223,56 @@ test("17. GET /privacy.md returns 200 and text/markdown with >500 chars", { skip
   assert.ok(md.includes("Privacy Policy"));
 });
 
-test("Private application work stays credited in metadata but unnamed and unlinked on the page", { skip: !isServerRunning }, async () => {
+test("Private work is credited without naming projects or exposing links", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
-  assert.equal(res.status, 200);
   const html = await res.text();
-  // Rendered <body> only — head metadata (keywords) still names every
-  // shipped project, while the featured ItemList is homepage-scoped.
-  const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(
-    /<script[\s\S]*?<\/script>/g,
-    "",
-  );
-  const jsonLdBlocks = [
-    ...html.matchAll(
-      /<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g,
-    ),
-  ].map((m) => JSON.parse(m[1]));
-  assert.ok(jsonLdBlocks.length > 0, "Structured data must be present");
-  const allNodes = jsonLdBlocks.flatMap((doc) => doc["@graph"] ?? [doc]);
-  const projects = allNodes.find(
-    (entry) => entry["@type"] === "ItemList",
-  ).itemListElement;
-  const articles = body.match(/<article\b[^>]*>[\s\S]*?<\/article>/g) || [];
-
-  const privateRow = articles.find((article) => article.includes("is-private"));
-  assert.ok(privateRow, "Private work must be acknowledged in the index");
-  assert.doesNotMatch(privateRow, /href=/, "Private work must not expose external links");
-  assert.doesNotMatch(privateRow, /<img\b/i, "Private work must not show screenshots");
-
-  // The featured-scope ItemList on the homepage names only the public
-  // exhibits and index entries — mdpeek and the private builds stay out.
-  const featuredNames = projects.map((entry) => entry.item.name);
-  for (const name of ["AI Hiring Platform", "Voice AI Platform"]) {
-    assert.ok(!body.includes(name), `${name} must stay unnamed on the homepage`);
-    assert.ok(
-      !featuredNames.some((n) => n.startsWith(name)),
-      `${name} must stay out of the homepage featured ItemList`,
-    );
-  }
-  assert.ok(
-    !featuredNames.some((n) => /mdpeek/i.test(n)),
-    "mdpeek must stay out of the homepage featured ItemList",
-  );
-  for (const name of ["Blunt Code", "Miracode", "AuraFlow", "Small Server"]) {
-    assert.ok(
-      featuredNames.some((n) => n.startsWith(name)),
-      `${name} must be featured in the homepage ItemList`,
-    );
-  }
+  const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(/<script[\s\S]*?<\/script>/g, "");
+  const nodes = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+    .map(m => JSON.parse(m[1])).flatMap(doc => doc["@graph"] ?? [doc]);
+  const featured = nodes.find(node => node["@type"] === "ItemList")?.itemListElement;
+  const privateRow = body.match(/<article[^>]*class="sy-private is-private"[^>]*>[\s\S]*?<\/article>/)?.[0];
+  assert.ok(privateRow, "Acknowledge private apps without making them featured links");
+  assert.doesNotMatch(privateRow, /href=|<img\b/);
+  assert.doesNotMatch(body, /AI Hiring Platform|Voice AI Platform|mdpeek/i);
+  assert.deepEqual(featured.map(entry => entry.item.name.split(" - ")[0]), [
+    "System Design Quest", "Small Server", "AuraFlow", "Blunt Code",
+  ]);
 });
 
-test("Homepage exhibits and index render real content with no retired work or hidden DOM", { skip: !isServerRunning }, async () => {
+test("Homepage presents the real owned work first, with a working lesson destination", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
-  const html = await res.text();
-  const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(
-    /<script[\s\S]*?<\/script>/g,
-    "",
-  );
-
-  assert.ok(!/mdpeek/i.test(body), "mdpeek must not appear anywhere on the homepage");
-  assert.ok(!body.includes("sr-only"), "No hidden contract DOM on the page");
-
-  // Blunt Code exhibit: the map, both readers, and its honesty label.
-  assert.ok(body.includes(">Blunt Code</h2>"), "Blunt Code must be the flagship exhibit");
-  assert.ok(body.includes("One report, two readers"), "Exhibit premise must be stated");
-  assert.ok(body.includes("Local SQLite"), "The storage node must be drawn");
-  assert.ok(body.includes(">Human</span>") && body.includes(">Markdown</span>"), "Human branch must be labelled");
-  assert.ok(body.includes(">Tools</span>") && body.includes(">SARIF</span>"), "Tools branch must be labelled");
-  assert.ok(body.includes("2.1.0"), "A schema-faithful SARIF excerpt must ship");
-  assert.ok(body.includes("Synthetic report — no scan is run"), "The synthetic label must be present");
-
-  // System Design Quest exhibit: the real lesson 17 content.
-  assert.ok(body.includes("A nightly scan meets the cache"), "Lesson 17 must be named");
-  assert.ok(body.includes("least frequently used"), "LFU must be an expanded choice");
-  assert.ok(body.includes("least recently used"), "LRU must be an expanded choice");
-  assert.ok(body.includes("TTL"), "TTL must be a choice");
-  assert.ok(body.includes("best-sellers cached"), "The real prompt must ship");
-
-  // Skip link and a small index of the other verified public work.
-  assert.ok(body.includes("Skip to content"), "Skip link must be present");
-  const rows = body.match(/<article\b[^>]*class="ft-idx[^"]*"[\s\S]*?<\/article>/g) || [];
-  assert.equal(rows.length, 4, "Index lists Miracode, AuraFlow, Small Server and the private record");
-  const miracode = rows.find((article) => article.includes(">Miracode</h3>"));
-  assert.ok(miracode, "Miracode must be indexed");
-  assert.match(miracode, /Personal fork of Mira/, "Miracode must stay labelled as a fork");
-  assert.ok(miracode.includes("href="), "Miracode must link its source");
-  const smallServer = rows.find((article) => article.includes(">Small Server</h3>"));
-  assert.ok(smallServer, "Small Server must be indexed");
-  assert.ok(smallServer.includes("/lab/cache"), "Small Server must carry its evidence line");
+  const body = (await res.text()).match(/<main[\s\S]*<\/main>/i)?.[0] || "";
+  assert.match(body, /id="sy-title">I build tools/);
+  assert.match(body, /<h3 id="sy-quest">System<br\/?>(?:<!-- -->)?Design Quest/);
+  assert.match(body, /href="#sample-lesson"/);
+  assert.match(body, /id="sample-lesson"/);
+  assert.match(body, /A nightly scan meets the cache/);
+  for (const answer of ["least frequently used", "least recently used", "TTL", "best-sellers cached"]) {
+    assert.ok(body.includes(answer));
+  }
+  assert.ok(body.indexOf('id="work"') < body.indexOf('id="open-source"'));
+  assert.match(body, /\/lab\/cache/);
+  assert.match(body, /github.com\/sanketpatel32\/Small-server/);
+  assert.match(body, /github.com\/sanketpatel32\/Portal/);
 });
 
-test("Open-source explorer renders the checked-in snapshot as a count matrix", { skip: !isServerRunning }, async () => {
+test("Contribution chart is labeled and every bar links to real snapshot evidence", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
-  const html = await res.text();
-  const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(
-    /<script[\s\S]*?<\/script>/g,
-    "",
-  );
-
-  const { default: snapshot } = await import(
-    "../src/features/fieldtrials/contributions.json",
-    { with: { type: "json" } }
-  );
-
-  assert.ok(body.includes('id="open-source"'), "Explorer section must exist");
-  assert.ok(
-    body.includes("Other codebases") && body.includes("I work upstream, too."),
-    "Premise must be stated",
-  );
-  assert.match(
-    body,
-    new RegExp(
-      `${snapshot.meta.total}\\s*(?:<!-- -->)?\\s*merged pull requests across\\s*(?:<!-- -->)?\\s*${snapshot.meta.repoCount}\\s*(?:<!-- -->)?\\s*public\\s*(?:<!-- -->)?\\s*repositories`,
-    ),
-    "Dynamic totals must be stated",
-  );
-  assert.ok(
-    /GitHub<\/a>\s*(?:<!-- -->)?\s*snapshot/.test(body) && body.includes("UTC"),
-    "The snapshot must be labeled with a UTC date",
-  );
-  assert.ok(
-    body.includes("Only dates with merges are shown."),
-    "The day-column rule must be stated",
-  );
-
-  // One equal column per active UTC day, in ascending order.
-  const activeDays = [
-    ...new Set(snapshot.repos.flatMap((r) => r.merges.map((m) => m.date))),
-  ].sort();
-  const head = body.match(/<div[^>]*class="ft-oss-head"[\s\S]*?<\/div>/);
-  assert.ok(head, "The shared column header must render");
-  const headCells = head[0].match(/ft-oss-cell-head/g) || [];
-  assert.equal(
-    headCells.length,
-    Math.min(activeDays.length, 6),
-    "Header shows one column per active day (Earlier + 5 when >6)",
-  );
-
-  // Every repository and every PR link from the validated snapshot renders.
-  const rows = body.match(/<details\b[^>]*class="ft-oss-row"/g) || [];
-  assert.equal(rows.length, snapshot.meta.repoCount, "All snapshot repos render as rows");
-  for (const repo of snapshot.repos) {
-    assert.ok(body.includes(repo.repo), `${repo.repo} must be named`);
-    for (const m of repo.merges) {
-      assert.ok(
-        body.includes(`href="${m.url}"`),
-        `PR link must be present: ${m.url}`,
-      );
+  const body = (await res.text()).match(/<main[\s\S]*<\/main>/i)?.[0] || "";
+  const { default: snapshot } = await import("../src/features/fieldtrials/contributions.json", { with: { type: "json" } });
+  assert.ok(body.includes('id="open-source"'));
+  assert.match(body, new RegExp(`<strong>${snapshot.meta.total}</strong> public pull requests merged across <strong>${snapshot.meta.repoCount}</strong> external repositories`));
+  assert.ok(body.includes("Public GitHub snapshot"));
+  assert.ok(body.includes(`dateTime="${snapshot.meta.cutoffUTC}"`));
+  assert.equal((body.match(/class="sy-repo"/g) || []).length, snapshot.meta.repoCount);
+  const max = Math.max(...snapshot.repos.map(row => row.count));
+  const bars = [...body.matchAll(/class="sy-bar" aria-hidden="true"><i style="width:([^"]+)"\/?>/g)].map(m => m[1]);
+  assert.deepEqual(bars, snapshot.repos.map(row => `${row.count / max * 100}%`));
+  for (const row of snapshot.repos) {
+    assert.ok(body.includes(`aria-label="${row.repo}: ${row.count} merged pull request`));
+    for (const pr of row.merges) {
+      assert.ok(body.includes(`href="${pr.url}"`), `Missing ${pr.url}`);
     }
   }
-
-  // Cells carry plain-text counts (or a restrained dash), not color-only marks.
-  const cells = body.match(/class="ft-oss-cell"[^>]*>/g) || [];
-  assert.equal(
-    cells.length,
-    snapshot.meta.repoCount * headCells.length,
-    "Every row fills every day column",
-  );
-  assert.ok(body.includes('data-empty="true">–'), "Empty cells show a dash");
-
-  // Accessible labels: name+count on the summary, a hidden per-date
-  // breakdown via aria-describedby, and no extra focus stops.
-  assert.ok(
-    /<summary[^>]*aria-label="[^"]*merged pull request/.test(body),
-    "Rows must carry accessible name + count labels",
-  );
-  const described = body.match(/aria-describedby="ft-oss-desc-(\d+)"/g) || [];
-  assert.equal(
-    described.length,
-    snapshot.meta.repoCount,
-    "Every row references its date/count description",
-  );
-
-  // Top entries are upfront, the rest behind a native disclosure.
-  const topRepo = snapshot.repos[0].repo;
-  const showAll = body.indexOf("Show all");
-  const topIdx = body.indexOf(topRepo);
-  assert.ok(topIdx !== -1 && showAll !== -1 && topIdx < showAll,
-    "Top repos render before the Show-all disclosure");
-  assert.match(
-    body,
-    new RegExp(
-      `Show all\\s*(?:<!-- -->)?\\s*${snapshot.meta.repoCount}\\s*(?:<!-- -->)?\\s*repositories`,
-    ),
-    "Show-all must name the full repository count",
-  );
+  assert.match(body, /<details class="sy-all"><summary>/);
 });
-

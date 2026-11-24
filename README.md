@@ -20,6 +20,17 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Portfolio homepage
+
+The home page puts owned projects first. The **System Design Quest** illustration
+shows concepts in the course, not its production topology. The optional practice
+card uses the original lesson 17, with no score or tracking. **Other repositories**
+is a disclosure-based bar chart with exact public PR links. The repo browser and
+site navigation work without client-side JavaScript.
+
+Run `npm run build`, start the production server, then run `npm test` in
+a second terminal. Set `RESUME_TEST_URL` to test a server at a different address.
+
 ## Contribution snapshot
 
 `src/features/fieldtrials/contributions.json` is a checked-in snapshot of merged PRs to public repositories outside the owner's namespace — only public repo, PR number, date, title and URL; validated and timestamped.

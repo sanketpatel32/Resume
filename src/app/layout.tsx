@@ -9,6 +9,7 @@ import "@fontsource/ibm-plex-sans/500.css";
 import "@fontsource/ibm-plex-sans/600.css";
 import "./globals.css";
 import "./fieldtrials.css";
+import "./switchyard.css";
 
 export const metadata: Metadata = resumeContent.seo;
 

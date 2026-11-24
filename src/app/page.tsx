@@ -1,33 +1,28 @@
 import type { Metadata } from "next";
-import FieldTrialsPage from "@/features/fieldtrials/FieldTrialsPage";
+import SwitchyardPage from "@/features/switchyard/SwitchyardPage";
 import { resumeContent } from "@/features/resume/content";
 import { getStory } from "@/features/resume/content/stories";
 import { buildFeaturedItemList } from "@/features/resume/jsonld/personJsonLd";
 
-// Homepage-specific keyword override: same set as the shared metadata,
-// minus mdpeek — its deeper route and record stay, but it is no longer
-// promoted on the front page.
 export const metadata: Metadata = {
+  description: "Sanket Patel builds developer tools and contributes to open source. Explore System Design Quest, Small Server, AuraFlow, and merged work in other repositories.",
   keywords: (resumeContent.seo.keywords as string[]).filter(
     (k) => k.toLowerCase() !== "mdpeek",
   ),
 };
 
-// The homepage's featured scope: the two exhibits plus the indexed public
-// work. mdpeek and the unnamed private builds stay out of this page's
-// structured data; the shared identity graph is unchanged site-wide.
-const FEATURED_SLUGS = new Set([
-  "blunt-code",
-  "miracode",
-  "auraflow",
-  "small-server",
-]);
-
-const featuredItemList = buildFeaturedItemList(
-  resumeContent.projects.filter((p) =>
-    FEATURED_SLUGS.has(getStory(p.name)?.slug ?? ""),
-  ),
+const projects = ["small-server", "auraflow", "blunt-code"].flatMap((slug) =>
+  resumeContent.projects.filter((p) => getStory(p.name)?.slug === slug),
 );
+const featuredItemList = buildFeaturedItemList([
+  {
+    name: "System Design Quest",
+    description: "An interactive course for learning system design through practice.",
+    tech: ["TypeScript", "React"],
+    links: { github: "https://github.com/sanketpatel32/system-design-quest" },
+  },
+  ...projects,
+]);
 
 export default function HomePage() {
   return (
@@ -41,7 +36,7 @@ export default function HomePage() {
           }),
         }}
       />
-      <FieldTrialsPage />
+      <SwitchyardPage />
     </>
   );
 }
