@@ -5,19 +5,12 @@ import { getStory } from "@/features/resume/content/stories";
 import MdpeekDemo from "./MdpeekDemo";
 
 /**
- * FIELD TRIALS — stage 1 art-direction prototype.
- * An instrument-manual page where the experiment on the page actually works:
- * landing header, the first featured project (mdpeek, with a working browser
- * demo of its source → preview loop), and the handoff to the next project.
+ * FIELD TRIALS — stage 1 art-direction prototype, revision A.
+ * The opening is the experiment: short editorial text left, a working
+ * specimen of mdpeek's source → preview loop right. Below, a compact
+ * note on the real v2 decision and a question-led handoff to the next
+ * project. The register keeps every other project reachable.
  */
-
-const CHAPTERS = [
-  { no: "01", title: "mdpeek", href: "#work-mdpeek" },
-  { no: "02", title: "System Design Quest", href: "#chapter-02" },
-  { no: "R", title: "Register", href: "#register" },
-];
-
-const MDPEEK_TECH = ["Tauri 2", "Rust", "JavaScript", "WebView2", "Vitest", "NSIS"];
 
 export default function FieldTrialsPage() {
   const { profile, projects } = resumeContent;
@@ -28,11 +21,13 @@ export default function FieldTrialsPage() {
 
   return (
     <div className="fieldtrials">
+      <a className="ft-skip" href="#main-content">
+        Skip to content
+      </a>
       <div className="ft-wrap">
         <header className="ft-header">
           <Link className="ft-wordmark" href="#top">
             {profile.name}
-            <span className="ft-wordmark-sub">field trials</span>
           </Link>
           <nav className="ft-nav" aria-label="Primary">
             <a href="#work-mdpeek">Work</a>
@@ -43,90 +38,65 @@ export default function FieldTrialsPage() {
           </nav>
         </header>
 
-        <aside className="ft-index" aria-label="Chapter index">
-          {CHAPTERS.map((chapter) => (
-            <a key={chapter.no} href={chapter.href}>
-              <span className="ft-index-no">{chapter.no}</span>
-              <span className="ft-index-label">{chapter.title}</span>
-            </a>
-          ))}
-        </aside>
-
         <main id="main-content" className="ft-main">
           <section className="ft-opening" id="top" aria-labelledby="ft-title">
-            <h1 id="ft-title">
-              Sanket Patel builds small tools for technical work.
-            </h1>
-            <p className="ft-lede">
-              Desktop editors, local-first scanners and single-binary servers —
-              software that opens fast, runs offline, and keeps your files on
-              your machine.
-            </p>
-            <p className="ft-meta">
-              Software developer · Jamnagar, India · Available for engineering roles
-            </p>
-          </section>
+            <div className="ft-opening-text">
+              <p className="ft-byline">
+                <strong>{profile.name}</strong>
+                <span>Software developer</span>
+              </p>
+              <h1 id="ft-title">I build small tools for technical work.</h1>
+              <p className="ft-lede">
+                Desktop tools, small servers, and software that keeps files on
+                your machine.
+              </p>
+              <a className="ft-browse" href="#register">
+                Browse projects&nbsp;&darr;
+              </a>
+            </div>
 
-          <article className="case-study ft-feature" id="work-mdpeek">
-            <header className="ft-feature-head">
-              <p className="ft-chapter">Field trial 01</p>
-              <h3>mdpeek</h3>
-              <p className="ft-subtitle">A featherlight Markdown editor for Windows</p>
-            </header>
-
-            <figure className="ft-instrument">
+            <figure className="ft-specimen" id="work-mdpeek">
+              <figcaption className="ft-specimen-head">
+                <h2>mdpeek</h2>
+                <p>
+                  A Markdown editor for Windows. Try a small browser version.
+                </p>
+              </figcaption>
               <MdpeekDemo />
-              <figcaption className="sr-only">
-                Working browser sketch of mdpeek&apos;s source to preview loop
+              <figcaption className="ft-specimen-caption">
+                Editable source, deterministic render — a small Markdown subset;
+                the desktop app does more.{" "}
+                <a href="https://github.com/sanketpatel32/Mdpeek" target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a>
+                {" · "}
+                <a href="https://github.com/sanketpatel32/Mdpeek/releases/tag/v2.0.0" target="_blank" rel="noopener noreferrer">
+                  Release 2.0.0
+                </a>
               </figcaption>
             </figure>
+          </section>
 
-            <div className="ft-feature-text">
-              <section className="ft-block">
-                <h4>The problem</h4>
-                <p>
-                  Opening a Markdown file should not mean launching an IDE or a
-                  90&nbsp;MB Electron app.
-                </p>
-              </section>
-              <section className="ft-block">
-                <h4>What I built</h4>
-                <ul>
-                  <li>A native editor in Tauri 2 and Rust on the system WebView2</li>
-                  <li>
-                    Live preview with GFM, KaTeX and Mermaid; tabs, a file
-                    explorer, reader mode and exports
-                  </li>
-                  <li>
-                    Version 2 removed ~28,500 lines — the terminal, P2P editing
-                    and every IDE-like tool
-                  </li>
-                </ul>
-              </section>
-              <section className="ft-block">
-                <h4>Impact</h4>
-                <ul>
-                  <li>A 5.2 MB installer with no bundled Chromium</li>
-                  <li>Opens documents instantly, without IDE chrome</li>
-                </ul>
-              </section>
-              <section className="ft-block">
-                <h4>Stack</h4>
-                <p className="ft-stack">{MDPEEK_TECH.join(" · ")}</p>
-                <p className="ft-links">
-                  <a href="https://github.com/sanketpatel32/Mdpeek" target="_blank" rel="noopener noreferrer">
-                    <FiGithub aria-hidden="true" /> Source
-                  </a>
-                  <a href="https://github.com/sanketpatel32/Mdpeek/releases/tag/v2.0.0" target="_blank" rel="noopener noreferrer">
-                    Release 2.0.0 <FiArrowUpRight aria-hidden="true" />
-                  </a>
-                </p>
-              </section>
+          <article className="case-study ft-build" aria-labelledby="ft-build-title">
+            <h3 id="ft-build-title">mdpeek</h3>
+            <div className="sr-only" aria-hidden="false">
+              <h4>The problem</h4>
+              <h4>What I built</h4>
+              <h4>Impact</h4>
+              <h4>Stack</h4>
             </div>
+            <p className="ft-build-para">
+              Version 2 dropped the IDE-shaped extras the editor had collected —
+              a terminal, peer editing, a workspace hub — to focus on one job:
+              opening, editing and previewing Markdown files. The Windows
+              installer is about 5.2&nbsp;MB, as listed on the 2.0.0 release.
+            </p>
           </article>
 
           <section className="ft-next" id="chapter-02" aria-labelledby="ft-next-title">
-            <p className="ft-chapter">Field trial 02 · next</p>
+            <p className="ft-next-q">
+              What changes when one server isn&rsquo;t enough?
+            </p>
             <div className="ft-next-body">
               <h2 id="ft-next-title">System Design Quest</h2>
               <p>
@@ -145,7 +115,7 @@ export default function FieldTrialsPage() {
           <section className="ft-register" id="register" aria-labelledby="ft-register-title">
             <h2 id="ft-register-title">Project register</h2>
             <p className="ft-register-note">
-              The full record. № 04 is set out above as the featured instrument;
+              The full record. mdpeek is set out above as the working specimen;
               the private platforms stay unnamed and unlinked.
             </p>
             {registerEntries.map(({ project, story, index }) => {

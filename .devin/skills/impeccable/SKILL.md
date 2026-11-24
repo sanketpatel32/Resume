@@ -2,6 +2,7 @@
 name: impeccable
 description: "Manual trigger only. Sanket's curated Impeccable guidance profile for the FIELD TRIALS portfolio redesign: craft-floor checks, material honesty, and a critique lens. Invoke only when Sanket explicitly asks (e.g. 'impeccable', 'impeccable critique'). Never auto-applies."
 user-invocable: true
+triggers: [user]
 ---
 
 # Impeccable — curated field profile (inert)
@@ -13,7 +14,11 @@ static Markdown guidance for this repository only.
 
 - **Source:** `github.com/pbakaus/impeccable`, tag `skill-v4.10.0`,
   commit `b49177d32788f2dc585c42831d845dacf1ebed2c` (verified `refs/tags/skill-v4.10.0^{}`).
-- **License:** Apache-2.0 (see the upstream repository). Adapted extracts below.
+- **License:** Apache License, Version 2.0. Copyright Paul Bakaus.
+  Upstream `LICENSE` applies to every adapted extract below; upstream
+  `NOTICE.md` covers third-party material and is retained by reference.
+  See `github.com/pbakaus/impeccable/blob/skill-v4.10.0/LICENSE` and
+  `…/NOTICE.md`.
 - **Scope:** craft-floor, brand/material-honesty and critique guidance only.
   All engine commands, hooks, agents, live mode and detection tooling were
   deliberately excluded.
