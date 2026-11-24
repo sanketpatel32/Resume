@@ -5,6 +5,7 @@ import { skills } from "./skills";
 import { certifications } from "./certifications";
 import { education } from "./education";
 import { contact } from "./contact";
+import { upstreamContributions, upstreamPullUrl } from "./contributions";
 
 const SITE_URL = "https://www.sanketpatel.online";
 
@@ -56,6 +57,13 @@ ${p.description}
 ${links.length > 0 ? `- **Links**: ${links.join(" | ")}` : ""}`;
   })
   .join("\n\n")}
+`);
+
+  sections.push(`## Open-Source Contributions (External Projects)
+
+These are selected merged pull requests to repositories outside my own GitHub account.
+
+${upstreamContributions.map((item) => `- **${item.name}**: ${item.summary} [Merged PR #${item.pull}](${upstreamPullUrl(item)})`).join("\n")}
 `);
 
   // Technical Proficiency

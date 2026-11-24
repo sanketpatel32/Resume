@@ -260,3 +260,33 @@ test("Every project renders as a case study covering problem, build, impact and 
   assert.match(miracode, /Personal fork of Mira/, "Miracode must stay labelled as a fork");
 });
 
+
+test("Workbench separates personal work from verified external results in HTML and Markdown", { skip: !isServerRunning }, async () => {
+  const [page, markdown, resume] = await Promise.all([
+    fetch(`${BASE}/`, { headers: { Accept: "text/html" } }),
+    fetch(`${BASE}/`, { headers: { Accept: "text/markdown" } }),
+    fetch(`${BASE}/resume.pdf`),
+  ]);
+  assert.equal(page.status, 200);
+  assert.equal(markdown.status, 200);
+  assert.equal(resume.status, 200);
+  assert.match(resume.headers.get("content-type") || "", /application\/pdf/);
+  const [html, md] = await Promise.all([page.text(), markdown.text()]);
+  assert.match(html, /OPEN-SOURCE CONTRIBUTOR/);
+  assert.match(html, /href="#open-source"/);
+  assert.match(html, /id="open-source"/);
+  assert.match(html, /More upstream projects/);
+  const section = html.split('id="open-source"')[1].split("</section>")[0];
+  assert.equal((section.match(/<li class="wb-ledger-row">/g) || []).length, 17);
+  assert.doesNotMatch(section, /href="https:\/\/github\.com\/sanketpatel32\//i);
+  assert.match(md, /## Open-Source Contributions \(External Projects\)/);
+  for (const proof of [
+    "https://github.com/CherryHQ/cherry-studio/pull/25286",
+    "https://github.com/LibrePhotos/librephotos/pull/3106",
+    "https://github.com/nextcloud/spreed/pull/20467",
+    "https://github.com/lingdojo/kana-dojo/pull/20972",
+  ]) {
+    assert.ok(section.includes(`href="${proof}"`), `Visible or expandable proof missing: ${proof}`);
+    assert.ok(md.includes(`(${proof})`), `Markdown proof missing: ${proof}`);
+  }
+});

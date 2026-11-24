@@ -1,5 +1,6 @@
-import { ResumePage } from "@/features/resume";
+import Workbench from "@/features/resume/ui/Workbench";
+import "./workbench.css";
 
 export default function HomePage() {
-  return <ResumePage />;
+  return <Workbench />;
 }

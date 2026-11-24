@@ -1,12 +1,7 @@
-/* The Whole Thing: a descent through the stack.
- * The hero's three layers (interfaces, systems, developer tools) are the strata the visitor falls
- * through on the way from the surface to the core. Display: Antonio. Body: IBM Plex Sans.
- * Shared chrome (navigation, buttons, forms, footer, developer portal) lives here; the homepage
- * experience lives in descent.css. */
+/* Shared chrome, standalone pages, and design tokens. */
 @import "tailwindcss";
 @import "./tokens.css";
 @import "./base.css" layer(base);
-@import "./descent.css";
 
 :root {
   --rule-thin: 1px;

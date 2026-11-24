@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { resumeContent } from "@/features/resume/content";
 import { personJsonLd } from "@/features/resume/jsonld/personJsonLd";
-import { introSkipScript } from "@/features/resume/experience/intro";
 import "@fontsource-variable/antonio";
 import "@fontsource/ibm-plex-sans/400.css";
 import "@fontsource/ibm-plex-sans/500.css";
@@ -17,9 +16,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: introSkipScript }} />
-      </head>
       <body className="antialiased">
         <a className="skip-link" href="#main-content">Skip to content</a>
         <script

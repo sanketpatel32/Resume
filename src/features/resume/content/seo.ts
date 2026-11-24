@@ -9,7 +9,7 @@ export const seo: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Official portfolio of Sanket Patel, Full-Stack Developer based in Jamnagar, India. Complete hiring and voice AI applications, backend engineering, and open-source developer tools.",
+    "Official portfolio of Sanket Patel, Full-Stack Developer based in Jamnagar, India. Complete hiring and voice AI applications, backend engineering, and open-source tools and upstream contributions.",
   keywords: [
     "Sanket Patel",
     "Sanket Patel Portfolio",
@@ -21,6 +21,7 @@ export const seo: Metadata = {
     "sanketpatel.online",
     "sanketpatel32",
     "Full-Stack Developer",
+    "Open-Source Contributor",
     "Backend Specialist",
     "Node.js Developer",
     "TypeScript",
@@ -48,7 +49,7 @@ export const seo: Metadata = {
     type: "profile",
     title: `${SITE_NAME} | ${profile.title} & Backend Specialist`,
     description:
-      "Sanket Patel, Full-Stack Developer. Full-stack applications, real-time AI systems, and open-source developer tools.",
+      "Sanket Patel, Full-Stack Developer. Full-stack applications, real-time AI systems, and open-source tools and upstream contributions.",
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "en_US",
@@ -65,7 +66,7 @@ export const seo: Metadata = {
     card: "summary",
     title: `${SITE_NAME} | ${profile.title} & Backend Specialist`,
     description:
-      "Sanket Patel, Full-Stack Developer. Full-stack applications, real-time AI systems, and open-source developer tools.",
+      "Sanket Patel, Full-Stack Developer. Full-stack applications, real-time AI systems, and open-source tools and upstream contributions.",
     images: ["/logo.png"],
   },
   robots: {
