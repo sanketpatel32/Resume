@@ -227,17 +227,22 @@ test("Private application work stays credited in metadata but unnamed and unlink
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   assert.equal(res.status, 200);
   const html = await res.text();
-  // Rendered <body> only — the JSON-LD résumé graph intentionally still
-  // describes the full project list for agents, and head metadata
-  // (keywords) still names every shipped project.
+  // Rendered <body> only — head metadata (keywords) still names every
+  // shipped project, while the featured ItemList is homepage-scoped.
   const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(
     /<script[\s\S]*?<\/script>/g,
     "",
   );
-  const jsonLd = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
-  assert.ok(jsonLd, "Project structured data must be present");
-  const graph = JSON.parse(jsonLd[1])["@graph"];
-  const projects = graph.find((entry) => entry["@type"] === "ItemList").itemListElement;
+  const jsonLdBlocks = [
+    ...html.matchAll(
+      /<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g,
+    ),
+  ].map((m) => JSON.parse(m[1]));
+  assert.ok(jsonLdBlocks.length > 0, "Structured data must be present");
+  const allNodes = jsonLdBlocks.flatMap((doc) => doc["@graph"] ?? [doc]);
+  const projects = allNodes.find(
+    (entry) => entry["@type"] === "ItemList",
+  ).itemListElement;
   const articles = body.match(/<article\b[^>]*>[\s\S]*?<\/article>/g) || [];
 
   const privateRow = articles.find((article) => article.includes("is-private"));
@@ -245,12 +250,25 @@ test("Private application work stays credited in metadata but unnamed and unlink
   assert.doesNotMatch(privateRow, /href=/, "Private work must not expose external links");
   assert.doesNotMatch(privateRow, /<img\b/i, "Private work must not show screenshots");
 
+  // The featured-scope ItemList on the homepage names only the public
+  // exhibits and index entries — mdpeek and the private builds stay out.
+  const featuredNames = projects.map((entry) => entry.item.name);
   for (const name of ["AI Hiring Platform", "Voice AI Platform"]) {
     assert.ok(!body.includes(name), `${name} must stay unnamed on the homepage`);
-    const project = projects.find((entry) => entry.item.name.startsWith(name)).item;
-    assert.match(project.description, /complete.*from scratch/i);
-    assert.equal(project.codeRepository, undefined, `${name} must not advertise a repository`);
-    assert.equal(project.url, undefined, `${name} must not advertise a demo URL`);
+    assert.ok(
+      !featuredNames.some((n) => n.startsWith(name)),
+      `${name} must stay out of the homepage featured ItemList`,
+    );
+  }
+  assert.ok(
+    !featuredNames.some((n) => /mdpeek/i.test(n)),
+    "mdpeek must stay out of the homepage featured ItemList",
+  );
+  for (const name of ["Blunt Code", "Miracode", "AuraFlow", "Small Server"]) {
+    assert.ok(
+      featuredNames.some((n) => n.startsWith(name)),
+      `${name} must be featured in the homepage ItemList`,
+    );
   }
 });
 
@@ -272,7 +290,7 @@ test("Homepage exhibits and index render real content with no retired work or hi
   assert.ok(body.includes(">Human</span>") && body.includes(">Markdown</span>"), "Human branch must be labelled");
   assert.ok(body.includes(">Tools</span>") && body.includes(">SARIF</span>"), "Tools branch must be labelled");
   assert.ok(body.includes("2.1.0"), "A schema-faithful SARIF excerpt must ship");
-  assert.ok(body.includes("Illustrative report, no scan is run"), "The no-scan label must be present");
+  assert.ok(body.includes("Synthetic report — no scan is run"), "The synthetic label must be present");
 
   // System Design Quest exhibit: the real lesson 17 content.
   assert.ok(body.includes("A nightly scan meets the cache"), "Lesson 17 must be named");
@@ -294,7 +312,7 @@ test("Homepage exhibits and index render real content with no retired work or hi
   assert.ok(smallServer.includes("/lab/cache"), "Small Server must carry its evidence line");
 });
 
-test("Open-source explorer renders the checked-in snapshot with real links", { skip: !isServerRunning }, async () => {
+test("Open-source explorer renders the checked-in snapshot as a count matrix", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const html = await res.text();
   const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(
@@ -309,12 +327,36 @@ test("Open-source explorer renders the checked-in snapshot with real links", { s
 
   assert.ok(body.includes('id="open-source"'), "Explorer section must exist");
   assert.ok(
-    body.includes("Other codebases") && body.includes("did not start"),
+    body.includes("Other codebases") && body.includes("I work upstream, too."),
     "Premise must be stated",
   );
+  assert.match(
+    body,
+    new RegExp(
+      `${snapshot.meta.total}\\s*(?:<!-- -->)?\\s*merged pull requests across\\s*(?:<!-- -->)?\\s*${snapshot.meta.repoCount}\\s*(?:<!-- -->)?\\s*public\\s*(?:<!-- -->)?\\s*repositories`,
+    ),
+    "Dynamic totals must be stated",
+  );
   assert.ok(
-    body.includes("snapshot, not live") && body.includes("UTC"),
-    "The snapshot must be explained as snapshot, with a UTC stamp",
+    /GitHub<\/a>\s*(?:<!-- -->)?\s*snapshot/.test(body) && body.includes("UTC"),
+    "The snapshot must be labeled with a UTC date",
+  );
+  assert.ok(
+    body.includes("Only dates with merges are shown."),
+    "The day-column rule must be stated",
+  );
+
+  // One equal column per active UTC day, in ascending order.
+  const activeDays = [
+    ...new Set(snapshot.repos.flatMap((r) => r.merges.map((m) => m.date))),
+  ].sort();
+  const head = body.match(/<div[^>]*class="ft-oss-head"[\s\S]*?<\/div>/);
+  assert.ok(head, "The shared column header must render");
+  const headCells = head[0].match(/ft-oss-cell-head/g) || [];
+  assert.equal(
+    headCells.length,
+    Math.min(activeDays.length, 6),
+    "Header shows one column per active day (Earlier + 5 when >6)",
   );
 
   // Every repository and every PR link from the validated snapshot renders.
@@ -330,6 +372,28 @@ test("Open-source explorer renders the checked-in snapshot with real links", { s
     }
   }
 
+  // Cells carry plain-text counts (or a restrained dash), not color-only marks.
+  const cells = body.match(/class="ft-oss-cell"[^>]*>/g) || [];
+  assert.equal(
+    cells.length,
+    snapshot.meta.repoCount * headCells.length,
+    "Every row fills every day column",
+  );
+  assert.ok(body.includes('data-empty="true">–'), "Empty cells show a dash");
+
+  // Accessible labels: name+count on the summary, a hidden per-date
+  // breakdown via aria-describedby, and no extra focus stops.
+  assert.ok(
+    /<summary[^>]*aria-label="[^"]*merged pull request/.test(body),
+    "Rows must carry accessible name + count labels",
+  );
+  const described = body.match(/aria-describedby="ft-oss-desc-(\d+)"/g) || [];
+  assert.equal(
+    described.length,
+    snapshot.meta.repoCount,
+    "Every row references its date/count description",
+  );
+
   // Top entries are upfront, the rest behind a native disclosure.
   const topRepo = snapshot.repos[0].repo;
   const showAll = body.indexOf("Show all");
@@ -342,10 +406,6 @@ test("Open-source explorer renders the checked-in snapshot with real links", { s
       `Show all\\s*(?:<!-- -->)?\\s*${snapshot.meta.repoCount}\\s*(?:<!-- -->)?\\s*repositories`,
     ),
     "Show-all must name the full repository count",
-  );
-  assert.ok(
-    /<summary[^>]*aria-label="[^"]*merged pull request/.test(body),
-    "Rows must carry accessible name + count labels",
   );
 });
 

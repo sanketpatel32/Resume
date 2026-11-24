@@ -88,10 +88,7 @@ export default function BluntCodeFigure() {
               <span className="ft-sev">note</span>
               <strong>Sample checklist: review project notes</strong>
             </p>
-            <p className="ft-proof-item-note">
-              A synthetic example in the shape of a finding — no code was
-              scanned.
-            </p>
+            <p className="ft-proof-item-note">Synthetic example.</p>
           </div>
         </div>
 

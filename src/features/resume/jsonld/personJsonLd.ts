@@ -7,9 +7,41 @@ import { SITE_URL } from "@/features/resume/content/site";
  * programmatically. Uses @graph with a Person (primary identity), WebSite,
  * ProfilePage, and ItemList (projects), cross-referenced by @id.
  */
+/** The homepage's featured-scope project list as a standalone ItemList node. */
+export function buildFeaturedItemList(
+  projects: ResumeContent["projects"],
+  siteUrl: string = SITE_URL,
+) {
+  return {
+    "@type": "ItemList",
+    "@id": `${siteUrl}/#projects-list`,
+    name: "Featured Software Applications",
+    itemListElement: projects.map((p, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      item: {
+        "@type": "SoftwareApplication",
+        name: p.name,
+        description: p.description,
+        applicationCategory:
+          p.name.includes("Scanner") || p.name.includes("Security")
+            ? "SecurityApplication"
+            : "DeveloperApplication",
+        operatingSystem: "Cross-platform",
+        author: {
+          "@id": `${siteUrl}/#person`,
+        },
+        ...(p.links.github && { codeRepository: p.links.github }),
+        ...(p.links.live && { url: p.links.live }),
+      },
+    })),
+  };
+}
+
 export function buildPersonJsonLd(
   content: ResumeContent = resumeContent,
   siteUrl: string = SITE_URL,
+  { includeItemList = true }: { includeItemList?: boolean } = {},
 ) {
   const { profile, contact, skills, projects } = content;
 
@@ -153,29 +185,7 @@ export function buildPersonJsonLd(
         mainEntity: { "@id": `${siteUrl}/#person` },
         inLanguage: "en-US",
       },
-      {
-        "@type": "ItemList",
-        "@id": `${siteUrl}/#projects-list`,
-        name: "Featured Software Applications",
-        itemListElement: projects.map((p, idx) => ({
-          "@type": "ListItem",
-          position: idx + 1,
-          item: {
-            "@type": "SoftwareApplication",
-            name: p.name,
-            description: p.description,
-            applicationCategory: p.name.includes("Scanner") || p.name.includes("Security")
-              ? "SecurityApplication"
-              : "DeveloperApplication",
-            operatingSystem: "Cross-platform",
-            author: {
-              "@id": `${siteUrl}/#person`,
-            },
-            ...(p.links.github && { codeRepository: p.links.github }),
-            ...(p.links.live && { url: p.links.live }),
-          },
-        })),
-      },
+      ...(includeItemList ? [buildFeaturedItemList(projects, siteUrl)] : []),
     ],
   };
 }

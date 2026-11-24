@@ -42,7 +42,7 @@ export default function FieldTrialsPage() {
           </nav>
         </header>
 
-        <main id="main-content" className="ft-main">
+        <main id="main-content" className="ft-main" tabIndex={-1}>
           <section className="ft-opening" id="top" aria-labelledby="ft-title">
             <div className="ft-opening-text">
               <p className="ft-byline">Software developer</p>
@@ -63,7 +63,7 @@ export default function FieldTrialsPage() {
               </div>
               <BluntCodeFigure />
               <figcaption className="ft-specimen-caption">
-                Illustrative report, no scan is run.{" "}
+                Synthetic report — no scan is run.{" "}
                 <a
                   href="https://github.com/sanketpatel32/Blunt-code"
                   target="_blank"

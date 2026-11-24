@@ -27,7 +27,7 @@ export default function DevelopersPage() {
     <div className="hallmark-shell developer-portal">
       <SpotlightBackground />
       <Navbar />
-      <main className="resume-container developer-main" id="main-content">
+      <main className="resume-container developer-main" id="main-content" tabIndex={-1}>
         <nav className="developer-breadcrumb" aria-label="Breadcrumb">
           <Link href="/">Home</Link><span aria-hidden="true">/</span><span>Developers</span>
         </nav>

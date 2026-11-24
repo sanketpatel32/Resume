@@ -113,8 +113,14 @@ export default function SdqCard() {
             })}
           </div>
 
+          <p className="ft-vh" role="status">
+            {choice
+              ? `${right ? "Yes." : "Not quite."} ${choice.feedback}`
+              : ""}
+          </p>
+
           {choice && (
-            <div className="ft-card-outcome" aria-live="polite">
+            <div className="ft-card-outcome">
               <p className="ft-card-verdict">
                 {right ? "Yes. " : "Not quite. "}
                 {choice.feedback}

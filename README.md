@@ -20,6 +20,12 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contribution snapshot
+
+`src/features/fieldtrials/contributions.json` is a checked-in snapshot of merged PRs to public repositories outside the owner's namespace — only public repo, PR number, date, title and URL; validated and timestamped.
+Refresh it by hand with `node scripts/refresh-contributions.mjs` (anonymous GitHub REST search, no credentials); any failed validation leaves the previous snapshot untouched.
+Nothing fetches it at build time, at runtime, in the browser, or in CI — the site renders whatever the checked-in file says.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

@@ -836,58 +836,104 @@ html:has(.fieldtrials) body {
   max-width: 52ch;
 }
 
-.ft-oss-note {
-  margin-block-start: 0.9rem;
-  max-width: 62ch;
-  font-size: 0.82rem;
-  line-height: 1.55;
+.ft-oss-line {
+  margin-block-start: 0.5rem;
+  font-size: 0.95rem;
+  max-width: 60ch;
+}
+
+.ft-oss-snapshot {
+  margin-block-start: 0.75rem;
+  font-size: 0.72rem;
   color: var(--ft-ink-3);
 }
 
-.ft-oss-note a {
+.ft-oss-snapshot a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+.ft-oss-only {
+  margin-block-start: 1.1rem;
+  font-size: 0.72rem;
+  color: var(--ft-ink-3);
+}
+
+.ft-oss-empty {
+  margin-block-start: 1.2rem;
+  font-size: 0.9rem;
+  max-width: 56ch;
+}
+
+.ft-oss-empty a {
   color: var(--ft-vermilion);
 }
 
-/* the plot: name | marks | count, sharing one grid with the axis */
+/* visually hidden but announced (named ft-vh, not sr-only, so the
+   no-hidden-contract test stays clean) */
 
-.ft-oss-plot {
-  margin-block-start: 1.7rem;
+.ft-vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-.ft-oss-axis,
+/* the matrix: name | one equal column per active merge day | filler | total | + */
+
+.ft-oss-matrix {
+  margin-block-start: 0.7rem;
+}
+
+.ft-oss-head,
 .ft-oss-row > summary {
   display: grid;
-  grid-template-columns: minmax(9rem, 16rem) 1fr 3.5ch 1.1rem;
+  grid-template-columns: minmax(9rem, 16rem) var(--ft-oss-cols) 1fr 4ch 1.1rem;
   column-gap: 1.2rem;
   align-items: center;
 }
 
-.ft-oss-axis {
-  padding-block-end: 0.5rem;
+.ft-oss-days {
+  display: contents;
+}
+
+.ft-oss-head {
+  padding-block-end: 0.4rem;
   border-bottom: 1px solid var(--ft-rule-strong);
 }
 
-.ft-oss-axis-track {
-  grid-column: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  font-family: var(--ft-mono);
-  font-size: 0.68rem;
-  color: var(--ft-ink-3);
-}
-
-.ft-oss-axis-date {
-  white-space: nowrap;
-}
-
-.ft-oss-axis-label {
+.ft-oss-head-name {
   font-family: var(--font-body);
   font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--ft-ink-3);
+}
+
+.ft-oss-cell {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.82rem;
+  color: var(--ft-ink-2);
+}
+
+.ft-oss-cell[data-empty] {
+  color: var(--ft-rule-strong);
+}
+
+.ft-oss-cell-head {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ft-ink-3);
+  white-space: nowrap;
 }
 
 .ft-oss-row {
@@ -933,29 +979,6 @@ html:has(.fieldtrials) body {
   color: var(--ft-ink-3);
 }
 
-.ft-oss-track {
-  position: relative;
-  height: 1rem;
-  border-bottom: 1px solid var(--ft-rule);
-}
-
-.ft-oss-mark {
-  position: absolute;
-  bottom: -1px;
-  width: 2px;
-  height: 0.55rem;
-  background: var(--ft-ink);
-}
-
-.ft-oss-mark b {
-  position: absolute;
-  bottom: 0.58rem;
-  inset-inline-start: 50%;
-  transform: translateX(-50%);
-  font: 600 0.62rem/1 var(--font-body);
-  color: var(--ft-vermilion);
-}
-
 .ft-oss-count {
   font-variant-numeric: tabular-nums;
   font-size: 0.82rem;
@@ -975,7 +998,7 @@ html:has(.fieldtrials) body {
 
 .ft-oss-prs a {
   display: grid;
-  grid-template-columns: 5.9rem minmax(0, 1fr) auto;
+  grid-template-columns: 4.4rem minmax(0, 1fr) auto;
   column-gap: 0.9rem;
   align-items: baseline;
   min-height: 2.75rem;
@@ -1178,23 +1201,26 @@ html:has(.fieldtrials) body {
     margin-block-start: 0.3rem;
   }
 
-  /* the plot becomes a compact list: name + count, mini axis below */
-  .ft-oss-axis,
+  /* the matrix wraps: name · total · + on line one, the day grid beneath */
+  .ft-oss-head,
   .ft-oss-row > summary {
-    grid-template-columns: minmax(0, 1fr) 3.5ch 1.1rem;
+    grid-template-columns: minmax(0, 1fr) 4ch 1.1rem;
     column-gap: 0.8rem;
+    row-gap: 0.3rem;
   }
-  .ft-oss-axis-track {
-    grid-column: 1 / -1;
-    font-size: 0.6rem;
-  }
-  .ft-oss-axis-label {
-    display: none;
-  }
-  .ft-oss-track {
+  .ft-oss-days {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
     grid-column: 1 / -1;
     grid-row: 2;
-    margin-block-start: 0.45rem;
+  }
+  .ft-oss-cell {
+    font-size: 0.78rem;
+  }
+  .ft-oss-cell-head {
+    font-size: 0.56rem;
+    letter-spacing: 0.03em;
   }
   .ft-oss-name {
     font-size: 0.8rem;

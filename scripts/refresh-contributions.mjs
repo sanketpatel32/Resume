@@ -57,6 +57,9 @@ for (let page = 1; page <= MAX_PAGES; page += 1) {
   if (items.length >= total) break;
 }
 if (total === null) fail("no pages fetched");
+if (items.length === 0) {
+  fail("search returned 0 items — refusing to overwrite the snapshot");
+}
 if (items.length !== total) {
   fail(`fetched ${items.length} items but total_count is ${total}`);
 }
