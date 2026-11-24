@@ -1,5 +1,5 @@
-import { ResumePage } from "@/features/resume";
+import FieldTrialsPage from "@/features/fieldtrials/FieldTrialsPage";
 
 export default function HomePage() {
-  return <ResumePage />;
+  return <FieldTrialsPage />;
 }
