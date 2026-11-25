@@ -713,3 +713,7 @@
 @media(prefers-reduced-motion:reduce){
  .atlas-field.atlas-collapsing{transition:none!important}
 }
+@media(min-width:901px){
+ .atlas-jumps{margin-top:14px}
+ .atlas-jumps a{min-height:38px}
+}
