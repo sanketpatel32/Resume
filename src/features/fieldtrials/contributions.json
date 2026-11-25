@@ -2,9 +2,9 @@
   "meta": {
     "description": "Merged pull requests by sanketpatel32 to public GitHub repositories outside his own namespace. Checked-in snapshot, not live data.",
     "query": "is:pr is:merged is:public author:sanketpatel32 -user:sanketpatel32",
-    "cutoffUTC": "2026-11-24T23:41:23Z",
-    "generatedAtUTC": "2026-11-25T02:16:44.192Z",
-    "total": 81,
+    "cutoffUTC": "2026-11-25T03:58:47Z",
+    "generatedAtUTC": "2026-11-25T04:05:24Z",
+    "total": 82,
     "repoCount": 17
   },
   "repos": [
@@ -345,6 +345,54 @@
       ]
     },
     {
+      "repo": "C4rohan/Lampline",
+      "count": 7,
+      "merges": [
+        {
+          "number": 122,
+          "date": "2026-11-23",
+          "title": "templates: add the restaurant-reservations starter agent",
+          "url": "https://github.com/C4rohan/Lampline/pull/122"
+        },
+        {
+          "number": 123,
+          "date": "2026-11-24",
+          "title": "Add a tough-caller persona pack for tests and evals",
+          "url": "https://github.com/C4rohan/Lampline/pull/123"
+        },
+        {
+          "number": 124,
+          "date": "2026-11-24",
+          "title": "vk test --format junit: strict-schema counts and a CI publish example",
+          "url": "https://github.com/C4rohan/Lampline/pull/124"
+        },
+        {
+          "number": 125,
+          "date": "2026-11-24",
+          "title": "Transfer: choose the SIP header prefix for the caller's details",
+          "url": "https://github.com/C4rohan/Lampline/pull/125"
+        },
+        {
+          "number": 128,
+          "date": "2026-11-24",
+          "title": "Docs: quick start on Windows with WSL 2",
+          "url": "https://github.com/C4rohan/Lampline/pull/128"
+        },
+        {
+          "number": 135,
+          "date": "2026-11-24",
+          "title": "Add engine test coverage for steps and routes",
+          "url": "https://github.com/C4rohan/Lampline/pull/135"
+        },
+        {
+          "number": 121,
+          "date": "2026-11-25",
+          "title": "pre-commit: a vk-lint hook for consumer repos",
+          "url": "https://github.com/C4rohan/Lampline/pull/121"
+        }
+      ]
+    },
+    {
       "repo": "rasonyang/ai-native-callcenter",
       "count": 6,
       "merges": [
@@ -383,48 +431,6 @@
           "date": "2026-11-23",
           "title": "web: the campaign import dialog offers a fill-in template and says what a file needs (#586)",
           "url": "https://github.com/rasonyang/ai-native-callcenter/pull/683"
-        }
-      ]
-    },
-    {
-      "repo": "C4rohan/Lampline",
-      "count": 6,
-      "merges": [
-        {
-          "number": 122,
-          "date": "2026-11-23",
-          "title": "templates: add the restaurant-reservations starter agent",
-          "url": "https://github.com/C4rohan/Lampline/pull/122"
-        },
-        {
-          "number": 123,
-          "date": "2026-11-24",
-          "title": "Add a tough-caller persona pack for tests and evals",
-          "url": "https://github.com/C4rohan/Lampline/pull/123"
-        },
-        {
-          "number": 124,
-          "date": "2026-11-24",
-          "title": "vk test --format junit: strict-schema counts and a CI publish example",
-          "url": "https://github.com/C4rohan/Lampline/pull/124"
-        },
-        {
-          "number": 125,
-          "date": "2026-11-24",
-          "title": "Transfer: choose the SIP header prefix for the caller's details",
-          "url": "https://github.com/C4rohan/Lampline/pull/125"
-        },
-        {
-          "number": 128,
-          "date": "2026-11-24",
-          "title": "Docs: quick start on Windows with WSL 2",
-          "url": "https://github.com/C4rohan/Lampline/pull/128"
-        },
-        {
-          "number": 135,
-          "date": "2026-11-24",
-          "title": "Add engine test coverage for steps and routes",
-          "url": "https://github.com/C4rohan/Lampline/pull/135"
         }
       ]
     },
