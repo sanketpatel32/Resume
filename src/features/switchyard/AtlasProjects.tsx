@@ -6,7 +6,7 @@ const gh = "https://github.com/sanketpatel32";
 const subscribe = () => () => {};
 const projects = [
   {id:"decide", n:"01", title:"System Design Quest", kind:"Learning tool", color:"mint", description:"An interactive course where you make architecture decisions and see the trade-offs.", href:gh+"/system-design-quest", art:"PREDICT / COMPARE / LEARN"},
-  {id:"find", n:"02", title:"UI Vault", kind:"Component catalogue", color:"lilac", description:"Search 3,157 components from 33 sources, with attribution, licenses and live previews.", href:gh+"/ui-vault", extra:["Open catalogue","https://sanketpatel32.github.io/ui-vault/"], art:"QUERY / MATCH / PREVIEW"},
+  {id:"find", n:"02", title:"UI Vault", kind:"Component catalogue", color:"lilac", description:"Search 3,157 entries from 33 sources, with attribution, licenses and 766 live previews.", href:gh+"/ui-vault", extra:["Open catalogue","https://sanketpatel32.github.io/ui-vault/"], art:"QUERY / MATCH / PREVIEW"},
   {id:"review", n:"03", title:"Blunt Code", kind:"Local code review", color:"rose", description:"Track findings against a baseline and export them as SARIF, without a hosted account.", href:gh+"/Blunt-code", extra:["Windows release",gh+"/Blunt-code/releases/tag/v0.52.0"], art:"REVIEW / TRIAGE / EXPORT"},
   {id:"trace", n:"04", title:"Small Server", kind:"HTTP workbench", color:"sand", description:"A single Go binary for testing webhooks and experimenting with HTTP behavior.", href:gh+"/Small-server", art:"REQUEST / COMPARE / CACHE"},
 ] as const;

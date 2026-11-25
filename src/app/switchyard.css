@@ -591,10 +591,10 @@
 .atlas-samples .wb-station-title{align-items:baseline;gap:16px}
 .atlas-samples .wb-station-title h2{letter-spacing:-.048em}
 .atlas-samples .wb-station-title a{display:inline-flex;align-items:center;min-height:32px;padding-block:0}
-.wb-trace{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto}
+.wb-trace{display:grid;grid-template-rows:auto auto auto auto;align-content:start}
 .wb-trace .wb-explain{margin-top:8px!important}
 .wb-trace .wb-packets{align-self:center;margin:0}
-.wb-trace .wb-actions{align-self:end;gap:12px;margin-top:16px}
+.wb-trace .wb-actions{align-self:start;gap:12px;margin-top:16px}
 .wb-actions :where(button,a){min-height:44px;padding:8px 14px}
 .wb-actions p{max-width:38ch}
 .wb-search{display:grid;grid-template-rows:auto auto auto auto minmax(0,1fr)}
@@ -708,10 +708,6 @@
  .atlas-field-body .wb-station-title{display:block}
  .atlas-field-body .wb-station-title h2{max-width:100%}
  .atlas-field-body .wb-station-title>a{display:flex;justify-content:flex-end;margin-top:0}
-}
-.atlas-field.atlas-collapsing>.atlas-field-body{display:block}
-@media(prefers-reduced-motion:reduce){
- .atlas-field.atlas-collapsing{transition:none!important}
 }
 @media(min-width:901px){
  .atlas-jumps{margin-top:14px}
