@@ -720,3 +720,4 @@
 @media(max-width:360px){
  .atlas-field-body .wb-station-title>a{width:100%;max-width:none}
 }
+.atlas-samples .wb-station-title a{gap:4px}
