@@ -100,9 +100,11 @@ export default function Workbench() {
           closing.style.transition="height 220ms ease";
           closing.style.height=`${end}px`;
           let stabilizing=true;
+          const target=anchor?.element;
+          const targetTop=anchor?.top??0;
           const stabilize=()=>{
-            if (!stabilizing||!anchor) return;
-            const delta=anchor.element.getBoundingClientRect().top-anchor.top;
+            if (!stabilizing||!target) return;
+            const delta=target.getBoundingClientRect().top-targetTop;
             if (Math.abs(delta)>1) window.scrollBy(0,delta);
             if (closing.classList.contains("atlas-collapsing")) requestAnimationFrame(stabilize);
           };
