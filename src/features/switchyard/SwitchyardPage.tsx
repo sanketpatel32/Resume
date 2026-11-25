@@ -1,5 +1,6 @@
 import SdqCard from "@/features/fieldtrials/SdqCard";
 import Upstream from "./Upstream";
+import ProjectCases from "./ProjectCases";
 
 const gh = "https://github.com/sanketpatel32";
 
@@ -58,12 +59,12 @@ export default function SwitchyardPage() {
           <p className="sy-kicker"><i aria-hidden="true"/> Software developer <span aria-hidden="true">/</span> Open-source contributor</p>
           <h1 id="sy-title">I build tools.<br/> <em>Look inside.</em></h1>
           <div className="sy-hero-aside">
-            <p>A one-binary Go server, a game about system design, and the bits of other codebases I’ve helped improve.</p>
+            <p>An interactive system-design course, a catalogue of UI patterns, and native tools that make everyday work easier.</p>
             <a href="#work">Explore my projects&nbsp; <span aria-hidden="true">↓</span></a>
           </div>
         </section>
         <section className="sy-work" id="work" aria-labelledby="sy-work-title">
-          <div className="sy-section-label"><h2 id="sy-work-title">Selected projects</h2><span>01 — 03</span></div>
+          <div className="sy-section-label"><h2 id="sy-work-title">Selected projects</h2><span>01 — 04</span></div>
           <article className="sy-feature" aria-labelledby="sy-quest">
             <div className="sy-feature-copy">
               <p className="sy-label"><span>01</span> Interactive learning</p>
@@ -84,32 +85,7 @@ export default function SwitchyardPage() {
               <a href={`${gh}/system-design-quest/blob/4d83a6c97a34e11b362b609d0c3f13e06fbf8670/scripts/authored/interactive/r1-r4.json#L374-L397`}>See the original lesson</a>
             </div>
           </details>
-          <div className="sy-pair">
-            <article className="sy-project sy-small" aria-labelledby="sy-small">
-              <div className="sy-graphic sy-cache" aria-hidden="true"><span>200 <i>OK</i></span><b>↳</b><span>304 <i>NOT MODIFIED</i></span></div>
-              <div className="sy-project-copy">
-                <p className="sy-label"><span>02</span> Go · SQLite</p>
-                <h3 id="sy-small">Small Server</h3>
-                <p>A Go playground for webhooks and HTTP, with OpenAPI docs and a local SQLite store in one binary. Its /lab/cache endpoint shows what an ETag actually does.</p>
-                <a href={`${gh}/Small-server`}>View Small Server <span aria-hidden="true" className="sy-ne"/></a>
-              </div>
-            </article>
-            <article className="sy-project sy-aura" aria-labelledby="sy-aura">
-              <div className="sy-graphic sy-wiring" aria-hidden="true">
-                <div><span>API TESTS</span><span>JSON</span><span>CRON</span></div><b>↓</b><span>BUN</span>
-              </div>
-              <div className="sy-project-copy">
-                <p className="sy-label"><span>03</span> TypeScript · Bun</p>
-                <h3 id="sy-aura">AuraFlow</h3>
-                <p>A self-hosted workspace for the tools I kept opening in separate tabs. One Bun service serves the React app, REST API and WebSocket updates.</p>
-                <a href={`${gh}/Portal`}>View AuraFlow <span aria-hidden="true" className="sy-ne"/></a>
-              </div>
-            </article>
-          </div>
-          <aside className="sy-more-work">
-            <p><strong>Also built:</strong> Blunt Code, a local code-review tool with a Go backend and SQLite, used from a browser UI or the command line.</p>
-            <a href={`${gh}/Blunt-code`}>View Blunt Code <span aria-hidden="true" className="sy-ne"/></a>
-          </aside>
+          <ProjectCases/>
           <article className="sy-private is-private" aria-labelledby="sy-private-title">
             <h3 id="sy-private-title">Two projects I can’t show</h3>
             <p>I’ve also built two private applications from scratch, from the interface and API to real-time services. Product names and screenshots stay private.</p>

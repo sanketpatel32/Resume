@@ -24,9 +24,11 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 The home page puts owned projects first. The **System Design Quest** illustration
 shows concepts in the course, not its production topology. The optional practice
-card uses the original lesson 17, with no score or tracking. **Other repositories**
-is a disclosure-based bar chart with exact public PR links. The repo browser and
-site navigation work without client-side JavaScript.
+card uses the original lesson 17, with no score or tracking. Other featured work
+includes UI Vault, Blunt Code, and YumeDock. The contribution gallery ranks
+curated exhibits by their repositories' GitHub stars and shows a specific merged
+PR for each. The expandable index contains every PR in the snapshot. Navigation,
+the index and the evidence links work without client-side JavaScript.
 
 Run `npm run build`, start the production server, then run `npm test` in
 a second terminal. Set `RESUME_TEST_URL` to test a server at a different address.
@@ -35,7 +37,7 @@ a second terminal. Set `RESUME_TEST_URL` to test a server at a different address
 
 `src/features/fieldtrials/contributions.json` is a checked-in snapshot of merged PRs to public repositories outside the owner's namespace — only public repo, PR number, date, title and URL; validated and timestamped.
 Refresh it by hand with `node scripts/refresh-contributions.mjs` (anonymous GitHub REST search, no credentials); any failed validation leaves the previous snapshot untouched.
-Nothing fetches it at build time, at runtime, in the browser, or in CI — the site renders whatever the checked-in file says.
+Repository star counts are recorded separately in `src/features/switchyard/repo-stars.json` using public GitHub repository metadata. Keep the counts and their observation date together when refreshing. Nothing fetches either snapshot at build time or in the browser.
 
 ## Learn More
 

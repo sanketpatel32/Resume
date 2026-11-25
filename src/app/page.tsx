@@ -1,27 +1,20 @@
 import type { Metadata } from "next";
 import SwitchyardPage from "@/features/switchyard/SwitchyardPage";
 import { resumeContent } from "@/features/resume/content";
-import { getStory } from "@/features/resume/content/stories";
 import { buildFeaturedItemList } from "@/features/resume/jsonld/personJsonLd";
 
 export const metadata: Metadata = {
-  description: "Sanket Patel builds developer tools and contributes to open source. Explore System Design Quest, Small Server, AuraFlow, and merged work in other repositories.",
+  description: "Sanket Patel builds developer tools and contributes to open source. Explore System Design Quest, UI Vault, Blunt Code, YumeDock, and merged work in other repositories.",
   keywords: (resumeContent.seo.keywords as string[]).filter(
     (k) => k.toLowerCase() !== "mdpeek",
   ),
 };
 
-const projects = ["small-server", "auraflow", "blunt-code"].flatMap((slug) =>
-  resumeContent.projects.filter((p) => getStory(p.name)?.slug === slug),
-);
 const featuredItemList = buildFeaturedItemList([
-  {
-    name: "System Design Quest",
-    description: "An interactive course for learning system design through practice.",
-    tech: ["TypeScript", "React"],
-    links: { github: "https://github.com/sanketpatel32/system-design-quest" },
-  },
-  ...projects,
+  { name: "System Design Quest", description: "An interactive course for learning system design through practice.", tech: ["TypeScript", "React"], links: { github: "https://github.com/sanketpatel32/system-design-quest" } },
+  { name: "UI Vault", description: "A searchable catalogue of interface components with live previews.", tech: ["JavaScript"], links: { github: "https://github.com/sanketpatel32/ui-vault", live: "https://sanketpatel32.github.io/ui-vault/" } },
+  { name: "Blunt Code", description: "A local code-review workbench with SARIF export.", tech: ["Go", "React", "SQLite"], links: { github: "https://github.com/sanketpatel32/Blunt-code" } },
+  { name: "YumeDock", description: "A Rust dock for Windows 11.", tech: ["Rust", "Direct2D"], links: { github: "https://github.com/sanketpatel32/YumeDock" } },
 ]);
 
 export default function HomePage() {

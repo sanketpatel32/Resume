@@ -235,7 +235,7 @@ test("Private work is credited without naming projects or exposing links", { ski
   assert.doesNotMatch(privateRow, /href=|<img\b/);
   assert.doesNotMatch(body, /AI Hiring Platform|Voice AI Platform|mdpeek/i);
   assert.deepEqual(featured.map(entry => entry.item.name.split(" - ")[0]), [
-    "System Design Quest", "Small Server", "AuraFlow", "Blunt Code",
+    "System Design Quest", "UI Vault", "Blunt Code", "YumeDock",
   ]);
 });
 
@@ -256,7 +256,7 @@ test("Homepage presents the real owned work first, with a working lesson destina
   assert.match(body, /github.com\/sanketpatel32\/Portal/);
 });
 
-test("Contribution chart is labeled and every bar links to real snapshot evidence", { skip: !isServerRunning }, async () => {
+test("Contribution gallery has star-ranked exhibits, precise repository stars and all merged evidence", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const body = (await res.text()).match(/<main[\s\S]*<\/main>/i)?.[0] || "";
   const { default: snapshot } = await import("../src/features/fieldtrials/contributions.json", { with: { type: "json" } });
@@ -265,14 +265,19 @@ test("Contribution chart is labeled and every bar links to real snapshot evidenc
   assert.ok(body.includes("Public GitHub snapshot"));
   assert.ok(body.includes(`dateTime="${snapshot.meta.cutoffUTC}"`));
   assert.equal((body.match(/class="sy-repo"/g) || []).length, snapshot.meta.repoCount);
-  const max = Math.max(...snapshot.repos.map(row => row.count));
-  const bars = [...body.matchAll(/class="sy-bar" aria-hidden="true"><i style="width:([^"]+)"\/?>/g)].map(m => m[1]);
-  assert.deepEqual(bars, snapshot.repos.map(row => `${row.count / max * 100}%`));
+  const { default: metadata } = await import("../src/features/switchyard/repo-stars.json", { with: { type: "json" } });
+  const ordered = [...snapshot.repos].sort((a, b) => metadata.stars[b.repo] - metadata.stars[a.repo] || b.count - a.count || a.repo.localeCompare(b.repo));
+  const gallery = body.match(/class="sy-exhibit-grid"[\s\S]*?<details class="sy-all sy-index"/)?.[0] ?? "";
+  assert.equal((gallery.match(/class="sy-exhibit"/g) || []).length, 6);
+  const starCounts = [...gallery.matchAll(/data-repo-stars="(\d+)"/g)].map(m => Number(m[1]));
+  assert.deepEqual(starCounts, ordered.slice(0, 6).map(row => metadata.stars[row.repo]));
+  assert.ok(body.includes("Stars belong to the repositories, not to my PRs"));
+  assert.ok(body.includes("https://github.com/C4rohan/Lampline/pull/135"));
   for (const row of snapshot.repos) {
-    assert.ok(body.includes(`aria-label="${row.repo}: ${row.count} merged pull request`));
+    assert.ok(body.includes(`href="https://github.com/${row.repo}"`));
     for (const pr of row.merges) {
       assert.ok(body.includes(`href="${pr.url}"`), `Missing ${pr.url}`);
     }
   }
-  assert.match(body, /<details class="sy-all"><summary>/);
+  assert.match(body, /<details class="sy-all sy-index"><summary>/);
 });
