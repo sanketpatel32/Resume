@@ -562,3 +562,65 @@
 .atlas-ledger h2{font-size:clamp(30px,3.65vw,65px)}
 @media(max-width:900px){.atlas-jumps a{white-space:nowrap;min-height:42px;padding-inline:8px}}
 @media(max-width:440px){.atlas-jumps a{padding-inline:6px}}
+
+/* Atlas refinement: one measured first-fold grid, without changing the concept. */
+.atlas-page{
+  --atlas-pad:16px;
+  --atlas-gap:clamp(12px,1.2vw,24px);
+}
+.atlas-cover{gap:var(--atlas-gap);margin-top:clamp(24px,2.6vw,40px)}
+.atlas-identity{padding:var(--atlas-pad) 12px 8px 0}
+.atlas-identity h1{letter-spacing:-.06em;margin:12px 0 16px}
+.atlas-deck{line-height:1.5;max-width:26ch}
+.atlas-jumps{margin-top:16px}
+.atlas-jumps a{min-height:44px}
+.atlas-signature{padding-top:16px}
+.atlas-samples{padding:12px;min-height:392px}
+.atlas-frame{min-height:32px;padding:0 4px 8px}
+.atlas-samples .wb-shell{gap:8px}
+.atlas-samples .wb-rail{padding:8px 4px 8px}
+.atlas-samples .wb-rail>p{padding:0 4px 8px}
+.atlas-samples .wb-rail :where(button,a){min-height:56px;padding:8px;border-width:1px}
+.atlas-samples .wb-rail :where(button,a):hover{background:#392b54}
+.atlas-samples .wb-rail button[aria-pressed=true]{background:#e5d9f5;border-color:#f2ebfa;box-shadow:inset 3px 0 0 #9de5ba}
+.atlas-samples .wb-rail button[aria-pressed=true]>span:first-child{color:#563b7c;opacity:1}
+.atlas-samples .wb-rail button[aria-pressed=true] small{color:#5a4a69}
+.atlas-samples .wb-rail :where(button,a) small{font-size:.68rem;line-height:1.35}
+.atlas-samples .wb-stage{align-content:stretch;display:grid;padding:clamp(16px,2vw,24px)}
+.atlas-samples .wb-stage>*{height:100%}
+.atlas-samples .wb-station-title{align-items:baseline;gap:16px}
+.atlas-samples .wb-station-title h2{letter-spacing:-.048em}
+.atlas-samples .wb-station-title a{display:inline-flex;align-items:center;min-height:32px;padding-block:0}
+.wb-trace{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto}
+.wb-trace .wb-explain{margin-top:8px!important}
+.wb-trace .wb-packets{align-self:center;margin:0}
+.wb-trace .wb-actions{align-self:end;gap:12px;margin-top:16px}
+.wb-actions :where(button,a){min-height:44px;padding:8px 14px}
+.wb-actions p{max-width:38ch}
+.wb-search{display:grid;grid-template-rows:auto auto auto auto minmax(0,1fr)}
+.wb-search label{margin-top:16px}
+.wb-search input{min-height:44px}
+.wb-search ul{align-self:start;width:100%}
+.wb-decide{display:grid;grid-template-rows:auto minmax(0,1fr)}
+.wb-decide .ft-card{align-self:start}
+.atlas-ledger{padding:var(--atlas-pad) clamp(12px,1.2vw,20px) 12px}
+.atlas-ledger .atlas-frame{min-height:32px;padding:0 0 8px}
+.atlas-ledger h2{letter-spacing:-.058em;margin-top:4px}
+.atlas-ledger dl{gap:24px;margin:16px 0 12px}
+.atlas-ledger dd{font-size:.72rem;line-height:1.3}
+.atlas-ledger li{padding:8px 0}
+.atlas-ledger li a{align-items:baseline;min-height:28px}
+.atlas-ledger li a>span{justify-content:end;min-width:6ch;font-variant-numeric:tabular-nums;line-height:1.35}
+.atlas-ledger li p{font-size:.78rem;line-height:1.35;margin-top:2px;padding-right:12px}
+.atlas-all{min-height:44px}
+.atlas-identity h1{font-size:clamp(44px,4.9vw,100px);letter-spacing:-.064em;overflow-wrap:normal}
+.atlas-ledger dl{margin:12px 0 8px}
+.atlas-ledger li{padding:5px 0}
+.atlas-ledger li a{min-height:24px}
+.atlas-ledger li p{margin-top:1px;line-height:1.3}
+.atlas-all{min-height:36px}
+.wb-trace .wb-packets{align-self:start;margin-top:24px}
+@media(min-width:901px){
+ .wb-actions{flex-wrap:nowrap}
+ .wb-actions p{flex:1;min-width:0}
+}
