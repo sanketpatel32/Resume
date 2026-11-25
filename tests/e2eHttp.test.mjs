@@ -241,7 +241,9 @@ test("Homepage starts with a source-linked workbench before projects and contrib
   const body = (await res.text()).match(/<main[\s\S]*?<\/main>/i)?.[0] || "";
   assert.match(body, /id="sy-title">Sanket/);
   assert.match(body, /name="field-samples"/);
-  assert.match(body, /class="atlas-ledger"/);
+  assert.match(body, /class="atlas-proofline"/);
+  assert.doesNotMatch(body, /atlas-signature|atlas-plate|sy-exhibit-art/);
+  assert.equal((body.match(/<details class="atlas-evidence">/g) || []).length, 4);
   assert.match(body, /class="atlas-catalogue" data-view="plates"/);
   assert.match(body, /id="workbench"/);
   assert.match(body, /Can we skip the download\?/);

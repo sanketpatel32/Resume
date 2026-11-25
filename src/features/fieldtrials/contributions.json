@@ -1,199 +1,13 @@
 {
   "meta": {
-    "description": "Merged pull requests by sanketpatel32 to public GitHub repositories outside his own namespace. Checked-in snapshot, not live data.",
+    "description": "Merged pull requests by sanketpatel32 to public GitHub repositories outside his own namespace. Checked-in snapshot of links available at the time of review, not live data.",
     "query": "is:pr is:merged is:public author:sanketpatel32 -user:sanketpatel32",
-    "cutoffUTC": "2026-11-25T03:58:47Z",
-    "generatedAtUTC": "2026-11-25T04:05:24Z",
-    "total": 82,
+    "cutoffUTC": "2026-11-25T09:58:09Z",
+    "generatedAtUTC": "2026-11-25T10:02:57Z",
+    "total": 53,
     "repoCount": 17
   },
   "repos": [
-    {
-      "repo": "flisk-sh/flisk",
-      "count": 30,
-      "merges": [
-        {
-          "number": 5030,
-          "date": "2026-11-22",
-          "title": "fix(logs): validate --service name before contacting Tilt",
-          "url": "https://github.com/flisk-sh/flisk/pull/5030"
-        },
-        {
-          "number": 5032,
-          "date": "2026-11-22",
-          "title": "fix(up): report no resources before validating --only",
-          "url": "https://github.com/flisk-sh/flisk/pull/5032"
-        },
-        {
-          "number": 5037,
-          "date": "2026-11-22",
-          "title": "feat(repos): let repos clone take named repositories",
-          "url": "https://github.com/flisk-sh/flisk/pull/5037"
-        },
-        {
-          "number": 5290,
-          "date": "2026-11-22",
-          "title": "docs: backfill missing changelog releases and fix the (undefined) heading (#5282)",
-          "url": "https://github.com/flisk-sh/flisk/pull/5290"
-        },
-        {
-          "number": 5291,
-          "date": "2026-11-22",
-          "title": "fix(mcp): return the standard envelope from resource_create and enforce the real name rule (#5235)",
-          "url": "https://github.com/flisk-sh/flisk/pull/5291"
-        },
-        {
-          "number": 5292,
-          "date": "2026-11-22",
-          "title": "perf(up): build each service image once per start (#4237)",
-          "url": "https://github.com/flisk-sh/flisk/pull/5292"
-        },
-        {
-          "number": 5293,
-          "date": "2026-11-22",
-          "title": "feat(resource): accept --local for worker, mcp and agent (#5277)",
-          "url": "https://github.com/flisk-sh/flisk/pull/5293"
-        },
-        {
-          "number": 5297,
-          "date": "2026-11-22",
-          "title": "test(cli): cover rust backend language module",
-          "url": "https://github.com/flisk-sh/flisk/pull/5297"
-        },
-        {
-          "number": 5298,
-          "date": "2026-11-22",
-          "title": "test(cli): scaffold test for the lit frontend provider",
-          "url": "https://github.com/flisk-sh/flisk/pull/5298"
-        },
-        {
-          "number": 5299,
-          "date": "2026-11-22",
-          "title": "test(cli): scaffold test for the solid frontend provider",
-          "url": "https://github.com/flisk-sh/flisk/pull/5299"
-        },
-        {
-          "number": 5300,
-          "date": "2026-11-22",
-          "title": "test(cli): scaffold tests for the qwik frontend provider",
-          "url": "https://github.com/flisk-sh/flisk/pull/5300"
-        },
-        {
-          "number": 5301,
-          "date": "2026-11-22",
-          "title": "test(cli): scaffold tests for the preact frontend provider",
-          "url": "https://github.com/flisk-sh/flisk/pull/5301"
-        },
-        {
-          "number": 5302,
-          "date": "2026-11-22",
-          "title": "test(cli): scaffold test for the react frontend provider",
-          "url": "https://github.com/flisk-sh/flisk/pull/5302"
-        },
-        {
-          "number": 5303,
-          "date": "2026-11-22",
-          "title": "test(cli): scaffold test for the vue frontend provider",
-          "url": "https://github.com/flisk-sh/flisk/pull/5303"
-        },
-        {
-          "number": 5305,
-          "date": "2026-11-22",
-          "title": "test(cli): direct tests for resolveProjectCapabilities and isGatewayEnabled in utils/capabilities.ts",
-          "url": "https://github.com/flisk-sh/flisk/pull/5305"
-        },
-        {
-          "number": 5306,
-          "date": "2026-11-22",
-          "title": "test(cli): scaffold test for the svelte frontend provider",
-          "url": "https://github.com/flisk-sh/flisk/pull/5306"
-        },
-        {
-          "number": 5307,
-          "date": "2026-11-22",
-          "title": "test(cli): add tests for tanstack-router frontend provider",
-          "url": "https://github.com/flisk-sh/flisk/pull/5307"
-        },
-        {
-          "number": 5308,
-          "date": "2026-11-22",
-          "title": "test(cli): direct tests for explainConfigFile",
-          "url": "https://github.com/flisk-sh/flisk/pull/5308"
-        },
-        {
-          "number": 5309,
-          "date": "2026-11-22",
-          "title": "test(cli): unit tests for the go backend language module",
-          "url": "https://github.com/flisk-sh/flisk/pull/5309"
-        },
-        {
-          "number": 5310,
-          "date": "2026-11-22",
-          "title": "test(cli): unit tests for runVariables in utils/native-up.ts",
-          "url": "https://github.com/flisk-sh/flisk/pull/5310"
-        },
-        {
-          "number": 5311,
-          "date": "2026-11-22",
-          "title": "test(cli): cover grouping and unhealthy helpers in status-groups tests",
-          "url": "https://github.com/flisk-sh/flisk/pull/5311"
-        },
-        {
-          "number": 5312,
-          "date": "2026-11-22",
-          "title": "feat(cli): add Examples blocks to eject, projects and agent sessions help",
-          "url": "https://github.com/flisk-sh/flisk/pull/5312"
-        },
-        {
-          "number": 5316,
-          "date": "2026-11-22",
-          "title": "fix(status): claim no shared Postgres in a local-process project",
-          "url": "https://github.com/flisk-sh/flisk/pull/5316"
-        },
-        {
-          "number": 5320,
-          "date": "2026-11-22",
-          "title": "test(engine): cover the Vite frontend env-file copy through the image build",
-          "url": "https://github.com/flisk-sh/flisk/pull/5320"
-        },
-        {
-          "number": 5321,
-          "date": "2026-11-22",
-          "title": "test(engine): pin the router port in generated .ts API fallbacks (#3647)",
-          "url": "https://github.com/flisk-sh/flisk/pull/5321"
-        },
-        {
-          "number": 5323,
-          "date": "2026-11-22",
-          "title": "docs(networks): describe local-process URLs and test the create layout",
-          "url": "https://github.com/flisk-sh/flisk/pull/5323"
-        },
-        {
-          "number": 5324,
-          "date": "2026-11-22",
-          "title": "ci(bench): flisk-kiri shim retags image ids Kiri already has instead of reloading",
-          "url": "https://github.com/flisk-sh/flisk/pull/5324"
-        },
-        {
-          "number": 5326,
-          "date": "2026-11-22",
-          "title": "refactor(discovery): one service.json validation rule table + corpus contract test",
-          "url": "https://github.com/flisk-sh/flisk/pull/5326"
-        },
-        {
-          "number": 5327,
-          "date": "2026-11-22",
-          "title": "docs+feat(agents): run Flisk in cloud coding agents and scaffold a no-Docker --type agent",
-          "url": "https://github.com/flisk-sh/flisk/pull/5327"
-        },
-        {
-          "number": 5330,
-          "date": "2026-11-22",
-          "title": "refactor(up): turn the flisk up action into an ordered step pipeline (#4862)",
-          "url": "https://github.com/flisk-sh/flisk/pull/5330"
-        }
-      ]
-    },
     {
       "repo": "MNSBaanu/OpenPlan",
       "count": 15,
@@ -599,6 +413,18 @@
           "date": "2026-11-23",
           "title": "docs: add issue templates, PR template, and extend CONTRIBUTING",
           "url": "https://github.com/streamcoreai/streamcore-server/pull/89"
+        }
+      ]
+    },
+    {
+      "repo": "backstage/backstage",
+      "count": 1,
+      "merges": [
+        {
+          "number": 37127,
+          "date": "2026-11-25",
+          "title": "chore(deps): patch parse5 and body-parser vulnerabilities",
+          "url": "https://github.com/backstage/backstage/pull/37127"
         }
       ]
     }

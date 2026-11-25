@@ -1,7 +1,6 @@
 {
   "checkedUTC": "2026-11-25T02:16:44.194Z",
   "stars": {
-    "flisk-sh/flisk": 58,
     "MNSBaanu/OpenPlan": 2,
     "LibrePhotos/librephotos": 8186,
     "rasonyang/ai-native-callcenter": 782,
@@ -17,6 +16,7 @@
     "marcus-beauregard/staticgen": 0,
     "shamilahmdt/devtasks": 72,
     "Stellar-Hive/stellar-stream-hive-frontend": 0,
-    "streamcoreai/streamcore-server": 250
+    "streamcoreai/streamcore-server": 250,
+    "backstage/backstage": 34918
   }
 }

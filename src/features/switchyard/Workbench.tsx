@@ -30,10 +30,9 @@ function Cache({ interactive }: { interactive: boolean }) {
       <a href={labSource}>Inspect the Go handler <span aria-hidden="true" className="sy-ne"/></a>
     </div>
     <p className="wb-explain">The first request gets a response and an ETag. Send the same request with that tag to see what the server can skip.</p>
-    <div className="wb-packets">
-      <div className="wb-packet wb-in"><span>01 / INITIAL GET</span><strong>200 <small>OK</small></strong><code>ETag + JSON body</code></div>
-      <svg aria-hidden="true" width="29" height="18" viewBox="0 0 29 18" fill="none"><path d="M1 9h24m-7-7 7 7-7 7" stroke="currentColor" strokeWidth="2"/></svg>
-      <div className={"wb-packet "+(sent?"wb-hit":"wb-pending")}><span>02 / SAME ETAG</span><strong>{sent?"304":"—"} <small>{sent?"NOT MODIFIED":"WAITING"}</small></strong><code>{sent?"No body sent":"If-None-Match"}</code></div>
+    <div className="wb-packets" aria-label="HTTP transcript">
+      <div className="wb-packet wb-in"><span>01 <code>GET</code></span><strong>200 <small>OK</small></strong><code>ETag + JSON body</code></div>
+      <div className={"wb-packet "+(sent?"wb-hit":"wb-pending")}><span>02 <code>If-None-Match</code></span><strong key={sent?"hit":"wait"}>{sent?"304":"—"} <small>{sent?"NOT MODIFIED":"WAITING"}</small></strong><code>{sent?"No body sent":"Ready to send"}</code></div>
     </div>
     <div className="wb-actions">
       {interactive?<button type="button" onClick={()=>setSent(!sent)}>{sent?"Reset trace":"Send conditional request"} <span aria-hidden="true">{sent?"↺":"→"}</span></button>:<a href={labSource}>Read the request logic</a>}
@@ -69,19 +68,20 @@ function DesignStation({id}:{id:string}) {
 export default function Workbench() {
   const mounted=useSyncExternalStore(subscribe,()=>true,()=>false);
   const [station,setStation]=useState<Station>("trace");
+  const [engaged,setEngaged]=useState(false);
   return <section id="workbench" className="atlas-samples" aria-label="Interactive samples">
     <div className="atlas-frame">
-      <p className="wb-overline atlas-frame-label"><span aria-hidden="true">✳</span> The workbench</p>
-      <p>Three things to try</p>
+      <p className="wb-overline atlas-frame-label">Try my work</p>
     </div>
     <div className="wb-shell atlas-desktop">
       <div className="wb-rail">
-        <p className="wb-overline"><i/> Select a sample</p>
-        {mounted?<div role="group" aria-label="Choose an experiment">{stations.map((item,i)=><button type="button" aria-pressed={item.id===station} key={item.id} onClick={()=>setStation(item.id)}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></button>)}</div>:
+        {mounted?<div role="group" aria-label="Choose an experiment">{stations.map((item,i)=><button type="button" aria-pressed={item.id===station} key={item.id} onClick={()=>{setEngaged(true);setStation(item.id);}}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></button>)}</div>:
         <div aria-label="Project links">{stations.map((item,i)=><a key={item.id} href={"#project-"+item.id}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></a>)}</div>}
       </div>
-      <div className="wb-stage" key={station}>
+      <div className="wb-stage" data-station={station} data-engaged={engaged}>
+        <div className="atlas-demo-in" key={station}>
         {station==="trace"?<Cache interactive={mounted}/>:station==="find"?<SearchStation id="wb-query"/>:<DesignStation id="sample-lesson"/>}
+        </div>
       </div>
     </div>
     <div className="atlas-mobile">
