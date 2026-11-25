@@ -5,10 +5,9 @@ import { useState, useSyncExternalStore } from "react";
 const gh = "https://github.com/sanketpatel32";
 const subscribe = () => () => {};
 const projects = [
-  {id:"decide", n:"01", title:"System Design Quest", kind:"Learning tool", color:"mint", description:"An interactive course where you make architecture decisions and see the trade-offs.", href:gh+"/system-design-quest", proofTitle:"Lesson 17", proof:"A nightly batch scans every product. Can your eviction policy keep the best-sellers cached?", evidence:"Read the original lesson", evidenceHref:gh+"/system-design-quest/blob/4d83a6c97a34e11b362b609d0c3f13e06fbf8670/scripts/authored/interactive/r1-r4.json#L374-L397"},
-  {id:"find", n:"02", title:"UI Vault", kind:"Component catalogue", color:"lilac", description:"A searchable collection of UI patterns with original sources, usage licenses and live previews.", href:gh+"/ui-vault", proofTitle:"3,157 entries", proof:"33 sources and 766 live previews in the catalogue snapshot.", evidence:"Open catalogue", evidenceHref:"https://sanketpatel32.github.io/ui-vault/"},
-  {id:"review", n:"03", title:"Blunt Code", kind:"Local code review", color:"rose", description:"Track findings against a baseline and export them as SARIF, without a hosted account.", href:gh+"/Blunt-code", proofTitle:"Windows release", proof:"Try the desktop build locally or inspect the implementation on GitHub.", evidence:"See release", evidenceHref:gh+"/Blunt-code/releases/tag/v0.52.0"},
-  {id:"trace", n:"04", title:"Small Server", kind:"HTTP workbench", color:"sand", description:"A single Go binary for testing webhooks and experimenting with HTTP behavior.", href:gh+"/Small-server", proofTitle:"200 → 304", proof:"A matching ETag avoids sending the response body again. See how the Go handler makes that decision.", evidence:"Read cache handler", evidenceHref:gh+"/Small-server/blob/052726757207700e210946e4565d8bbf2a940dcc/lab.go#L104-L116"},
+  {id:"find", n:"01", title:"UI Vault", kind:"Component catalogue", color:"lilac", description:"A searchable collection of UI patterns with original sources, usage licenses and live previews.", href:gh+"/ui-vault", proofTitle:"3,157 entries", proof:"33 sources and 766 live previews in the catalogue snapshot.", evidence:"Open catalogue", evidenceHref:"https://sanketpatel32.github.io/ui-vault/"},
+  {id:"review", n:"02", title:"Blunt Code", kind:"Local code review", color:"rose", description:"Track findings against a baseline and export them as SARIF, without a hosted account.", href:gh+"/Blunt-code", proofTitle:"Windows release", proof:"Try the desktop build locally or inspect the implementation on GitHub.", evidence:"See release", evidenceHref:gh+"/Blunt-code/releases/tag/v0.52.0"},
+  {id:"trace", n:"03", title:"Small Server", kind:"HTTP workbench", color:"sand", description:"A single Go binary for testing webhooks and experimenting with HTTP behavior.", href:gh+"/Small-server", proofTitle:"200 → 304", proof:"A matching ETag avoids sending the response body again. See how the Go handler makes that decision.", evidence:"Read cache handler", evidenceHref:gh+"/Small-server/blob/052726757207700e210946e4565d8bbf2a940dcc/lab.go#L104-L116"},
 ] as const;
 
 export default function AtlasProjects() {
@@ -16,7 +15,7 @@ export default function AtlasProjects() {
   const [view,setView]=useState<"plates"|"list">("plates");
   return <section className="atlas-projects wb-index" id="work" aria-labelledby="wb-index-title">
     <div className="atlas-catalogue-head">
-      <div className="atlas-catalogue-title"><p className="wb-overline">01 / Selected work</p><h2 id="wb-index-title">Projects I built.</h2></div>
+      <div className="atlas-catalogue-title"><p className="wb-overline">02 / Selected work</p><h2 id="wb-index-title">More things I built.</h2></div>
       {ready&&<div className="atlas-views" role="group" aria-label="Project view"><button type="button" onClick={()=>setView("plates")} aria-pressed={view==="plates"}>Cards</button><button type="button" onClick={()=>setView("list")} aria-pressed={view==="list"}>List</button></div>}
     </div>
     <div className="atlas-catalogue" data-view={view}>{projects.map(p=>

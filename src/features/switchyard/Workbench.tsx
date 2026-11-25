@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
-import SdqCard from "@/features/fieldtrials/SdqCard";
 
 const subscribe = () => () => {};
 const labSource = "https://github.com/sanketpatel32/Small-server/blob/052726757207700e210946e4565d8bbf2a940dcc/lab.go#L104-L116";
@@ -9,7 +8,6 @@ const catalogue = "https://sanketpatel32.github.io/ui-vault";
 const stations = [
   { id: "trace", name: "Trace a request", project: "Small Server" },
   { id: "find", name: "Find a component", project: "UI Vault" },
-  { id: "decide", name: "Make a design call", project: "System Design Quest" },
 ] as const;
 type Station = typeof stations[number]["id"];
 
@@ -58,20 +56,13 @@ function SearchStation({ id }: { id: string }) {
   </div>;
 }
 
-function DesignStation({id}:{id:string}) {
-  return <div id={id} className="wb-decide sy-lesson">
-    <div className="wb-station-title"><div><p className="wb-overline">03 / System Design Quest · Lesson 17</p><h2>A nightly scan meets the cache.</h2></div>
-    <a href="https://github.com/sanketpatel32/system-design-quest/blob/4d83a6c97a34e11b362b609d0c3f13e06fbf8670/scripts/authored/interactive/r1-r4.json#L374-L397">Original lesson <span aria-hidden="true" className="sy-ne"/></a></div>
-    <SdqCard/>
-  </div>;
-}
 export default function Workbench() {
   const mounted=useSyncExternalStore(subscribe,()=>true,()=>false);
   const [station,setStation]=useState<Station>("trace");
   const [engaged,setEngaged]=useState(false);
   return <section id="workbench" className="atlas-samples" aria-label="Interactive samples">
     <div className="atlas-frame">
-      <p className="wb-overline atlas-frame-label">Try my work</p>
+      <p className="wb-overline atlas-frame-label">Two more things to try</p>
     </div>
     <div className="wb-shell atlas-desktop">
       <div className="wb-rail">
@@ -80,7 +71,7 @@ export default function Workbench() {
       </div>
       <div className="wb-stage" data-station={station} data-engaged={engaged}>
         <div className="atlas-demo-in" key={station}>
-        {station==="trace"?<Cache interactive={mounted}/>:station==="find"?<SearchStation id="wb-query"/>:<DesignStation id="sample-lesson"/>}
+        {station==="trace"?<Cache interactive={mounted}/>:<SearchStation id="wb-query"/>}
         </div>
       </div>
     </div>
@@ -88,7 +79,7 @@ export default function Workbench() {
       {stations.map((item,i)=><details name="field-samples" key={item.id} open={i===0?true:undefined} className="atlas-field" data-field={item.id}>
         <summary><span className="atlas-field-n" aria-hidden="true">0{i+1}</span><span><strong>{item.name}</strong><small>{item.project}</small></span><span className="atlas-field-switch" aria-hidden="true"/></summary>
         <div className="atlas-field-body">
-          {item.id==="trace"?<Cache interactive={mounted}/>:item.id==="find"?(mounted?<SearchStation id="mobile-query"/>:<a href={catalogue+"/"}>Open UI Vault</a>):<DesignStation id="mobile-lesson"/>}
+          {item.id==="trace"?<Cache interactive={mounted}/>:(mounted?<SearchStation id="mobile-query"/>:<a href={catalogue+"/"}>Open UI Vault</a>)}
         </div>
       </details>)}
     </div>

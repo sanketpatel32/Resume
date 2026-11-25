@@ -26,7 +26,7 @@ export default function Upstream() {
   const featured = ranked.filter(row => row.merges.some(merge => merge.number === exhibits[row.repo]?.number)).slice(0, 6);
   return (
     <section id="open-source" className="sy-oss" aria-labelledby="sy-oss-title">
-      <div className="sy-section-label"><p>02 / Open-source gallery</p><a href="https://github.com/sanketpatel32">GitHub profile <span aria-hidden="true" className="sy-ne"/></a></div>
+      <div className="sy-section-label"><p>03 / Open source</p><a href="https://github.com/sanketpatel32">GitHub profile <span aria-hidden="true" className="sy-ne"/></a></div>
       <div className="sy-oss-intro">
         <h2 id="sy-oss-title">Open-source contributions.</h2>
         <div className="sy-oss-proof">

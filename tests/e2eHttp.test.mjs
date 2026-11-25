@@ -236,24 +236,25 @@ test("Homepage only features the approved public project selection", { skip: !is
   ]);
 });
 
-test("Homepage starts with a source-linked workbench before projects and contributions", { skip: !isServerRunning }, async () => {
+test("Homepage leads with a source-linked project lesson before the project index and contributions", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const body = (await res.text()).match(/<main[\s\S]*?<\/main>/i)?.[0] || "";
   assert.match(body, /id="sy-title">Sanket/);
   assert.match(body, /name="field-samples"/);
-  assert.match(body, /class="atlas-proofline"/);
+  assert.match(body, /id="ed-feature-title"/);
   assert.doesNotMatch(body, /atlas-signature|atlas-plate|sy-exhibit-art/);
-  assert.equal((body.match(/<details class="atlas-evidence">/g) || []).length, 4);
+  assert.equal((body.match(/<details class="atlas-evidence">/g) || []).length, 3);
   assert.match(body, /class="atlas-catalogue" data-view="plates"/);
   assert.match(body, /id="workbench"/);
   assert.match(body, /Can we skip the download\?/);
   assert.match(body, /ETag \+ JSON body/);
   assert.match(body, /If-None-Match/);
-  for (const id of ["trace", "find", "decide"]) {
+  for (const id of ["trace", "find"]) {
     assert.ok(body.includes(`href="#project-${id}"`));
     assert.ok(body.includes(`id="project-${id}"`));
   }
-  assert.ok(body.indexOf('id="workbench"') < body.indexOf('id="work"'));
+  assert.ok(body.indexOf('id="ed-feature-title"') < body.indexOf('id="work"'));
+  assert.ok(body.indexOf('id="work"') < body.indexOf('id="workbench"'));
   assert.ok(body.indexOf('id="work"') < body.indexOf('id="open-source"'));
   assert.match(body, /github.com\/sanketpatel32\/Small-server/);
   assert.match(body, /github.com\/sanketpatel32\/Portal/);
