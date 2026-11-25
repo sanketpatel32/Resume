@@ -709,3 +709,7 @@
  .atlas-field-body .wb-station-title h2{max-width:100%}
  .atlas-field-body .wb-station-title>a{display:flex;justify-content:flex-end;margin-top:0}
 }
+.atlas-field.atlas-collapsing>.atlas-field-body{display:block}
+@media(prefers-reduced-motion:reduce){
+ .atlas-field.atlas-collapsing{transition:none!important}
+}

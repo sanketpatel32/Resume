@@ -75,20 +75,47 @@ export default function Workbench() {
     const root=mobileRef.current;
     if (!root) return;
     let anchor:{element:HTMLElement;top:number}|null=null;
+    let heights=new Map<HTMLDetailsElement,number>();
     let frame=0;
     const remember=(event:Event)=>{
       const summary=(event.target as Element|null)?.closest("summary");
-      if (summary instanceof HTMLElement) anchor={element:summary,top:summary.getBoundingClientRect().top};
+      if (!(summary instanceof HTMLElement)) return;
+      anchor={element:summary,top:summary.getBoundingClientRect().top};
+      heights=new Map([...root.querySelectorAll<HTMLDetailsElement>("details[open]")].map(details=>[details,details.getBoundingClientRect().height]));
     };
     const settle=()=>{
       if (frame) return;
       frame=requestAnimationFrame(()=>{
         frame=0;
         const details=anchor?.element.closest("details");
+        const closing=[...root.querySelectorAll<HTMLDetailsElement>("details")].find(item=>!item.open&&heights.has(item));
+        const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (closing&&!reduce) {
+          const start=heights.get(closing)??0;
+          const end=closing.querySelector("summary")?.getBoundingClientRect().height??start;
+          closing.classList.add("atlas-collapsing");
+          closing.style.height=`${start}px`;
+          closing.style.overflow="hidden";
+          void closing.offsetHeight;
+          closing.style.transition="height 220ms ease";
+          closing.style.height=`${end}px`;
+          const cleanup=()=>{
+            closing.classList.remove("atlas-collapsing");
+            closing.style.height="";
+            closing.style.overflow="";
+            closing.style.transition="";
+          };
+          closing.addEventListener("transitionend",cleanup,{once:true});
+          window.setTimeout(cleanup,280);
+          anchor=null;
+          heights.clear();
+          return;
+        }
         if (!anchor||!(details instanceof HTMLDetailsElement)||!details.open) return;
         const delta=anchor.element.getBoundingClientRect().top-anchor.top;
         if (Math.abs(delta)>1) window.scrollBy(0,delta);
         anchor=null;
+        heights.clear();
       });
     };
     root.addEventListener("click",remember,true);
