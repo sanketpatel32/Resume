@@ -1,5 +1,4 @@
 import Upstream from "./Upstream";
-import Workbench from "./Workbench";
 import AtlasProjects from "./AtlasProjects";
 
 const gh = "https://github.com/sanketpatel32";
@@ -17,7 +16,6 @@ export default function SwitchyardPage() {
           <p>I build developer tools for learning system design, reviewing code, and testing how software behaves.</p>
         </section>
         <AtlasProjects/>
-        <Workbench/>
         <Upstream/>
         <section className="sy-contact wb-contact" aria-labelledby="sy-contact-title">
           <div><p className="wb-overline">Contact / Sanket Patel</p><h2 id="sy-contact-title">Let’s talk shop.</h2></div>

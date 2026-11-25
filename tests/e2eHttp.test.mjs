@@ -240,23 +240,13 @@ test("Homepage leads with the project index, not an embedded lesson", { skip: !i
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const body = (await res.text()).match(/<main[\s\S]*?<\/main>/i)?.[0] || "";
   assert.match(body, /id="sy-title">Sanket/);
-  assert.equal((body.match(/class="wb-shell ed-workbench"/g) || []).length, 1);
-  assert.doesNotMatch(body, /name="field-samples"|atlas-mobile|atlas-desktop/);
   assert.match(body, /id="project-learn"/);
   assert.doesNotMatch(body, /Lesson 17|nightly scan|sample-lesson|ft-card-choices/i);
   assert.doesNotMatch(body, /atlas-signature|atlas-plate|sy-exhibit-art/);
   assert.equal((body.match(/<details class="atlas-evidence">/g) || []).length, 4);
   assert.match(body, /class="atlas-catalogue" data-view="plates"/);
-  assert.match(body, /id="workbench"/);
-  assert.match(body, /Can we skip the download\?/);
-  assert.match(body, /ETag \+ JSON body/);
-  assert.match(body, /If-None-Match/);
-  for (const id of ["trace", "find"]) {
-    assert.ok(body.includes(`href="#project-${id}"`));
-    assert.ok(body.includes(`id="project-${id}"`));
-  }
+  assert.doesNotMatch(body, /id="workbench"|Two more things to try|Can we skip the download|Find an interface pattern/);
   assert.ok(body.indexOf('id="sy-title"') < body.indexOf('id="work"'));
-  assert.ok(body.indexOf('id="work"') < body.indexOf('id="workbench"'));
   assert.ok(body.indexOf('id="work"') < body.indexOf('id="open-source"'));
   assert.match(body, /github.com\/sanketpatel32\/Small-server/);
   assert.match(body, /github.com\/sanketpatel32\/Portal/);

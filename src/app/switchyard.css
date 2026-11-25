@@ -145,68 +145,18 @@
 }
 .wb-page{--sy-bg:#f5f0fc;--sy-ink:#211930;--sy-muted:#534861;--sy-rule:#d6c9e7;--sy-purple:#5d4293}
 .wb-page .sy-head{height:64px}
-.wb-overline,.wb-packet>span{font:700 .68rem/1.35 ui-monospace,Consolas,monospace;letter-spacing:.085em;text-transform:uppercase}
-.wb-shell{display:grid;grid-template-columns:minmax(161px,.36fr) minmax(0,1fr);padding:10px;gap:10px;background:#271d40;color:#f8f1ff;border:1px solid #281c44;border-radius:19px;box-shadow:0 6px #d0c0e8}
-.wb-rail{display:flex;flex-direction:column;min-width:0;padding:13px 4px 8px}
-.wb-rail>p{display:flex;align-items:center;gap:8px;color:#e4d5f7;padding:0 8px 12px}
-.wb-rail i{width:7px;height:7px;background:#9de5ba;border-radius:50%;flex:none}
-.wb-rail>div{display:grid;gap:5px}
-.wb-rail :where(button,a){text-align:start;padding:8px 9px;display:grid;grid-template-columns:2.3ch minmax(0,1fr);gap:10px;align-items:start;color:#f8f1ff;background:none;border:1px solid transparent;text-decoration:none;border-radius:8px;line-height:1.2;font-family:inherit;font-size:.93rem;font-weight:650;min-height:53px;cursor:pointer}
-.wb-rail :where(button,a):hover{background:#35274f}
-.wb-rail button[aria-pressed=true]{background:#dcd0f4;color:#281c44;border-color:#e6ddf6}
-.wb-rail :where(button,a)>span:first-child{font:700 .68rem/1.25 ui-monospace,monospace;opacity:.75}
-.wb-rail :where(button,a) small{display:block;font-size:.72rem;line-height:1.27;margin-top:3px;font-weight:500}
-.wb-page .wb-rail :where(button,a):focus-visible{outline-color:#a9f1c5;outline-offset:1px}
-.wb-stage{min-width:0;background:#fcf9ff;color:var(--sy-ink);border:1px solid #e4d7f2;border-radius:11px;padding:clamp(13px,2.4vw,27px);min-height:282px}
-.wb-station-title{display:flex;justify-content:space-between;align-items:start;gap:8px}
-.wb-station-title .wb-overline{color:var(--sy-purple)}
-.wb-station-title h2{font:600 clamp(23px,3.4vw,45px)/1 "IBM Plex Sans",Arial,sans-serif;margin-top:4px;letter-spacing:-.058em}
-.wb-station-title a{flex:none;color:#493475;font-size:.75rem;line-height:1.25;padding:3px 1px 3px 5px;font-weight:650}
-.wb-explain{color:#524660;font-size:.86rem;margin-top:7px!important;max-width:59ch}
-.wb-packets{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);gap:9px;align-items:center;margin:13px 0 11px;color:#60498a}
-.wb-packet{min-width:0;color:#322344;border-radius:8px;padding:9px 11px 8px;background:#eee5f7;border:1px solid #d4c1e7}
-.wb-packet.wb-in{background:#dcf4e7;border-color:#b1dfc5;color:#193d31}
-.wb-packet.wb-hit{background:#f3e1fb;border-color:#e0c6f0}
-.wb-packet strong{font:650 clamp(23px,3.6vw,43px)/1 "IBM Plex Sans",Arial,sans-serif;letter-spacing:-.07em;display:block;white-space:nowrap;margin:3px 0}
-.wb-packet small{font-size:.37em;letter-spacing:.015em}
-.wb-packet code{font:500 .72rem/1.25 ui-monospace,monospace;display:block}
-.wb-packet>span{font-size:.59rem;display:block}
-.wb-actions{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
-.wb-actions :where(button,a){min-height:39px;display:inline-flex;align-items:center;justify-content:space-between;gap:12px;background:#593d8c;color:white;border:0;border-radius:6px;padding:8px 12px;line-height:1.25;font-family:inherit;font-size:.86rem;font-weight:650;cursor:pointer}
-.wb-actions button:hover{background:#463071}
-.wb-actions p,.wb-search-count{font-size:.75rem;color:#584b68}
-.wb-search label{display:block;color:#48365d;font-size:.76rem;font-weight:650;margin:10px 0 3px}
-.wb-search input{display:block;width:100%;border:1px solid #b5a2ce;border-radius:6px;padding:7px 9px;min-height:39px;background:white;color:#251938;font-size:.9rem}
-.wb-search input:focus-visible{outline:2px solid #6144b5;outline-offset:2px}
-.wb-search-count{margin-top:4px!important}
-.wb-search ul{margin-top:3px;padding:0;list-style:none}
-.wb-search li{border-top:1px solid #dfd4ea}
-.wb-search li>a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:35px;text-decoration:none;font-size:.84rem}
-.wb-search li>a:hover strong{text-decoration:underline}
-.wb-search li>a>span{font-size:.75rem;color:#554768}
+.wb-overline{font:700 .68rem/1.35 ui-monospace,Consolas,monospace;letter-spacing:.085em;text-transform:uppercase}
 .wb-index{margin-top:clamp(27px,4vw,53px)}
 .wb-project-links{display:flex;flex-wrap:wrap;gap:0 12px;margin-top:auto}
 .wb-also{margin-top:7px!important;color:#514662;font-size:.8rem}
 .wb-page .sy-oss{margin-top:clamp(25px,4vw,50px)}
-@media(max-width:760px){.wb-page .sy-bound{width:calc(100% - 34px)}.wb-shell{grid-template-columns:1fr;padding:7px;gap:6px}.wb-rail{padding:4px 1px 0}.wb-rail>p{padding:2px 4px 4px;font-size:.58rem}.wb-rail>div{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px}.wb-rail :where(button,a){display:block;padding:6px 5px;min-height:44px;font-size:.75rem;text-align:center}.wb-rail :where(button,a)>span:first-child,.wb-rail :where(button,a) small{display:none}.wb-stage{min-height:252px}}
-@media(max-width:440px){.wb-page .sy-head{height:51px}.wb-station-title a{font-size:.68rem;max-width:10ch;text-align:right}.wb-station-title h2{font-size:25px}.wb-packets{grid-template-columns:minmax(0,1fr) 14px minmax(0,1fr);gap:5px}.wb-packets>svg{width:14px}.wb-packet{padding:6px}.wb-packet code{font-size:.61rem}.wb-packet small{font-size:.31em}.wb-actions{gap:5px}}
+@media(max-width:760px){.wb-page .sy-bound{width:calc(100% - 34px)}}
+@media(max-width:440px){.wb-page .sy-head{height:51px}}
 .atlas-page{--sy-bg:#f3eef9;--sy-rule:#d4c7e2;--sy-ink:#231c32;--sy-purple:#574086;--atlas-mono:ui-monospace,Consolas,monospace}
 .atlas-page .sy-bound{width:calc(100% - clamp(36px,4.4vw,94px));max-width:none}
 .atlas-page .sy-head{position:relative;height:58px}
 .atlas-page .sy-head nav{gap:clamp(12px,2.6vw,37px)}
 .atlas-page .atlas-pdf{color:#fff;background:#2d2144;border-radius:5px;min-height:33px;padding:0 10px;gap:6px}
-.atlas-samples{align-self:stretch;display:flex;flex-direction:column;min-width:0;border:1px solid #36284b;border-radius:13px;background:#2b2040;padding:8px;color:#f8efff;min-height:390px}
-.atlas-frame{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:33px;padding:2px 8px 7px;font-size:.71rem;font-weight:650}
-.atlas-frame-label>span{font-size:1.21rem;color:#a5f1c5;vertical-align:-2px;margin-right:5px}
-.atlas-samples .wb-shell{box-shadow:none;border:0;border-radius:8px;padding:0;gap:5px;flex:1;grid-template-columns:minmax(126px,.32fr) minmax(0,1fr);background:transparent}
-.atlas-samples .wb-rail{padding:8px 2px 0}
-.atlas-samples .wb-rail>p{font-size:.57rem;padding:0 4px 7px}
-.atlas-samples .wb-rail :where(button,a){font-size:.83rem;padding:8px 5px;gap:5px}
-.atlas-samples .wb-rail :where(button,a) small{font-size:.66rem}
-.atlas-samples .wb-stage{align-content:center;min-height:0}
-.atlas-samples .wb-station-title h2{font-size:clamp(24px,3.2vw,49px)}
-.atlas-samples .wb-explain{font-size:.87rem}
-.atlas-samples .wb-station-title a{max-width:17ch;text-align:right}
 .atlas-projects{margin-top:clamp(23px,3.1vw,48px)}
 .atlas-catalogue-head{display:flex;align-items:end;justify-content:space-between;gap:10px;padding:9px 0 10px;border-top:1px solid var(--sy-rule)}
 .atlas-catalogue-title p{color:var(--sy-purple)}
@@ -230,14 +180,7 @@
 .atlas-catalogue[data-view=list] h3{font-size:clamp(21px,2.3vw,33px)}
 .atlas-page .sy-oss-intro{grid-template-columns:1.2fr .6fr}
 .atlas-page .sy-exhibit-body p{max-width:64ch}
-@media(min-width:1580px){
- .atlas-samples{min-height:460px}
- .atlas-samples .wb-stage{padding:clamp(25px,3vw,61px)}
- .atlas-samples .wb-rail :where(button,a){font-size:1rem;min-height:66px;padding-left:9px}
- .atlas-samples .wb-rail :where(button,a) small{font-size:.77rem}
-}
 @media(max-width:900px){
- .atlas-samples{min-height:0;padding:7px}
  .atlas-views{display:none}.atlas-catalogue,.atlas-catalogue[data-view=list]{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
  .atlas-catalogue .atlas-project,.atlas-catalogue[data-view=list] .atlas-project{display:flex;min-height:0;padding:9px}.atlas-catalogue .atlas-project h3{font-size:clamp(19px,4.7vw,31px);margin:4px 0 3px}
  .atlas-catalogue .atlas-project p{font-size:.78rem;margin-bottom:3px}.atlas-project-head{font-size:.53rem;gap:4px}
@@ -251,37 +194,6 @@
 .atlas-page{
   --atlas-pad:16px;
   --atlas-gap:clamp(12px,1.2vw,24px);
-}
-.atlas-samples{padding:12px;min-height:392px}
-.atlas-frame{min-height:32px;padding:0 4px 8px}
-.atlas-samples .wb-shell{gap:8px}
-.atlas-samples .wb-rail{padding:8px 4px 8px}
-.atlas-samples .wb-rail>p{padding:0 4px 8px}
-.atlas-samples .wb-rail :where(button,a){min-height:56px;padding:8px;border-width:1px}
-.atlas-samples .wb-rail :where(button,a):hover{background:#392b54}
-.atlas-samples .wb-rail button[aria-pressed=true]{background:#e5d9f5;border-color:#f2ebfa;box-shadow:inset 3px 0 0 #9de5ba}
-.atlas-samples .wb-rail button[aria-pressed=true]>span:first-child{color:#563b7c;opacity:1}
-.atlas-samples .wb-rail button[aria-pressed=true] small{color:#5a4a69}
-.atlas-samples .wb-rail :where(button,a) small{font-size:.68rem;line-height:1.35}
-.atlas-samples .wb-stage{align-content:stretch;display:grid;padding:clamp(16px,2vw,24px)}
-.atlas-samples .wb-stage>*{height:100%}
-.atlas-samples .wb-station-title{align-items:baseline;gap:16px}
-.atlas-samples .wb-station-title h2{letter-spacing:-.048em}
-.atlas-samples .wb-station-title a{display:inline-flex;align-items:center;min-height:32px;padding-block:0}
-.wb-trace{display:grid;grid-template-rows:auto auto auto auto;align-content:start}
-.wb-trace .wb-explain{margin-top:8px!important}
-.wb-trace .wb-packets{align-self:center;margin:0}
-.wb-trace .wb-actions{align-self:start;gap:12px;margin-top:16px}
-.wb-actions :where(button,a){min-height:44px;padding:8px 14px}
-.wb-actions p{max-width:38ch}
-.wb-search{display:grid;grid-template-rows:auto auto auto auto minmax(0,1fr)}
-.wb-search label{margin-top:16px}
-.wb-search input{min-height:44px}
-.wb-search ul{align-self:start;width:100%}
-.wb-trace .wb-packets{align-self:start;margin-top:24px}
-@media(min-width:901px){
- .wb-actions{flex-wrap:nowrap}
- .wb-actions p{flex:1;min-width:0}
 }
 @media(max-width:900px){
  .atlas-page .sy-head nav{gap:0}
@@ -327,9 +239,6 @@
 .sy-index .sy-repo li a span+span{font-variant-numeric:tabular-nums}
 .sy-contact h2{letter-spacing:-.052em}
 .sy-contact-links a{min-height:44px;align-items:baseline}
-.atlas-samples .wb-rail :where(button,a):focus-visible{outline:2px solid #a9f1c5;box-shadow:0 0 0 2px #241831}
-.wb-actions button:active{background:#38245d}
-.atlas-samples .wb-station-title a{gap:4px}
 @media(min-width:901px){
  .atlas-catalogue-head{padding:10px 0 12px}
  .atlas-project h3{margin:9px 0 5px}
@@ -338,22 +247,6 @@
 }
 .atlas-page { --sy-bg:#f7f4fa; --sy-rule:#ded5e8; --sy-ink:#251d31; --sy-purple:#654691; --motion-out:cubic-bezier(.2,.65,.3,1); }
 .atlas-page .sy-head { height:64px; }
-.atlas-page .atlas-samples { min-height:0; padding:10px; border-radius:13px; background:#302342; }
-.atlas-page .atlas-samples .atlas-frame { padding:0 6px 7px; min-height:26px; }
-.atlas-page .atlas-samples .atlas-frame-label { font-size:.66rem; letter-spacing:.08em; }
-.atlas-page .atlas-samples .wb-shell { grid-template-columns:1fr; gap:6px; }
-.atlas-page .atlas-samples .wb-rail { padding:0; }
-.atlas-page .atlas-samples .wb-rail>div { grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
-.atlas-page .atlas-samples .wb-rail :where(button,a) {
-  display:flex; padding:7px 8px; gap:6px; align-items:center; min-height:47px; font-size:clamp(.76rem,1vw,.91rem);
-}
-.atlas-page .atlas-samples .wb-rail button[aria-pressed=true] { box-shadow:inset 0 -3px 0 #8563aa; }
-.atlas-page .atlas-samples .wb-stage {
-  min-height:clamp(292px,22vw,360px); padding:clamp(12px,1.9vw,31px); display:block; border-radius:7px;
-}
-.atlas-page .atlas-samples .wb-stage>* { height:auto; }
-.atlas-page .atlas-samples .wb-station-title h2 { font-size:clamp(25px,3vw,47px); }
-.atlas-page .wb-trace .wb-packets { margin-top:17px; }
 .atlas-page .atlas-projects { margin-top:0; }
 .atlas-catalogue .atlas-project { padding:clamp(12px,1.55vw,24px); }
 .atlas-catalogue .atlas-project h3 { font-size:clamp(22px,2.2vw,35px); }
@@ -377,10 +270,6 @@
 
 @media (max-width:900px) {
   .atlas-page .sy-head { height:55px; }
-  .atlas-page .atlas-samples { padding:7px; }
-  .atlas-page .atlas-samples .atlas-frame { padding:2px 3px 7px; min-height:24px; }
-  .atlas-page .atlas-samples .wb-station-title h2 { font-size:clamp(23px,4.8vw,32px); }
-  .atlas-page .atlas-samples .wb-station-title { gap:8px; }
   .atlas-page .atlas-catalogue[data-view=list] .atlas-project { display:flex; }
 }
 @media (max-width:440px) {
@@ -388,35 +277,15 @@
 }
 @keyframes atlas-in { from { opacity:.64; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
 @media (prefers-reduced-motion:no-preference) {
-  .atlas-page .wb-rail button,.atlas-page .wb-actions button,.atlas-evidence summary>span {
+  .atlas-evidence summary>span {
     transition:background-color 150ms var(--motion-out), color 150ms var(--motion-out), border-color 150ms var(--motion-out), transform 150ms var(--motion-out);
   }
-  .atlas-page [data-engaged=true] .atlas-demo-in,.atlas-page .wb-hit strong,.atlas-page .atlas-evidence[open] .atlas-evidence-body { animation:atlas-in 180ms var(--motion-out) both; }
-  .atlas-page .wb-actions button:active { transform:scale(.98); }
+  .atlas-page .wb-hit strong,.atlas-page .atlas-evidence[open] .atlas-evidence-body { animation:atlas-in 180ms var(--motion-out) both; }
 }
 @media (hover:hover) and (pointer:fine) {
   .atlas-page .sy-exhibit-body>a:hover,.atlas-page .atlas-evidence summary:hover { text-decoration:underline; text-underline-offset:3px; }
 }
-.atlas-page .wb-packets { display:grid; grid-template-columns:1fr; gap:0; border:1px solid #e2d8ed; border-radius:8px; overflow:hidden; }
-.atlas-page .wb-packet {
-  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.82fr) minmax(0,1.05fr); align-items:center; gap:6px;
-  padding:8px 11px; border:0; border-radius:0; min-height:43px; background:#f6f1fa;
-}
-.atlas-page .wb-packet+.wb-packet { border-top:1px solid #e2d8ed; }
-.atlas-page .wb-in { background:#eff8f1; }
 .atlas-page .wb-hit { background:#f0e6fa; }
-.atlas-page .wb-packet>span { white-space:nowrap; font-size:.63rem; }
-.atlas-page .wb-packet>span code { display:inline; font-size:inherit; }
-.atlas-page .wb-packet>strong { font-size:clamp(16px,2vw,28px); white-space:nowrap; line-height:1; }
-.atlas-page .wb-packet>strong small { font-size:.58rem; }
-.atlas-page .wb-packet>code { font-size:.71rem; line-height:1.25; text-align:end; }
-@media(max-width:440px) {
-  .atlas-page .wb-packet { padding:7px; grid-template-columns:minmax(0,1fr) minmax(0,.78fr) minmax(0,.87fr); gap:4px; }
-  .atlas-page .wb-packet>span { font-size:.56rem; }
-  .atlas-page .wb-packet>strong { white-space:normal; }
-  .atlas-page .wb-packet>strong small { display:block; font-size:.51rem; }
-  .atlas-page .wb-packet>code { font-size:.58rem; }
-}
 .editorial {
   --sy-bg:#fbfaf6;--sy-rule:#d9d8cc;--sy-ink:#19201e;--sy-muted:#4d5c56;--sy-purple:#174b47;
   --ed-surface:#e4efe9;--ed-green:#174b47;--ed-light:#fbfefb;--ed-edge:#b8cfc3;
@@ -440,13 +309,7 @@
 .editorial .atlas-views>button[aria-pressed=true] {background:#fffefa;border-color:#c0d4c7}
 .editorial .atlas-evidence summary {color:var(--ed-green)}
 .editorial .atlas-evidence-body {color:#163e35;background:#edf4ec}
-.editorial .atlas-samples {margin-top:clamp(22px,4vw,65px);border-color:#bfd0c2;background:#e4efe9;color:#174b47}
-.editorial .atlas-samples .wb-rail>div {grid-template-columns:repeat(2,minmax(0,1fr))}
-.editorial .atlas-samples .wb-stage {background:#fbfefb;border:1px solid #c7d9cc}
-.editorial .atlas-samples .wb-rail :where(button,a) {color:#174b47;background:#f2f7f2}
-.editorial .atlas-samples .wb-rail button[aria-pressed=true] {background:#fffefa;border-color:#a7c2b4;box-shadow:inset 0 -3px 0 #4f8778}
-.editorial .atlas-samples .wb-rail :where(button,a):focus-visible {outline-color:#174b47}
-.editorial .wb-actions button,.editorial .atlas-pdf {background:#174b47;color:white}
+.editorial .atlas-pdf {background:#174b47;color:white}
 .editorial .sy-oss {margin-top:clamp(28px,4.5vw,70px)}
 .editorial a:focus-visible,.editorial button:focus-visible,.editorial summary:focus-visible {outline-offset:3px}
 @media(max-width:900px) {
@@ -459,8 +322,7 @@
  .ed-intro h1 {font-size:clamp(39px,10vw,53px)}
  .editorial .atlas-catalogue {grid-template-columns:1fr}
 }
-/* Interaction feedback stays local to the control or new content. No scroll listener,
-   interpolated panel height, or hidden second workbench to lay out and hydrate. */
+/* Interaction feedback stays local to the control or new content. No scroll listener or animated panel height. */
 .editorial { --ed-ease:cubic-bezier(.18,.7,.28,1); --ed-feedback:#dcece2 }
 .editorial .atlas-views {position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(2,1fr);gap:0;padding:3px}
 .editorial .atlas-views[data-ready=false] {visibility:hidden}
@@ -472,56 +334,41 @@
 .editorial details[open]>summary>.ed-chevron {transform:translateY(2px) rotate(225deg)}
 .editorial .sy-index>summary::after {content:none}
 .editorial .atlas-evidence[open]>summary,.editorial .sy-index[open]>summary,.editorial .sy-repo[open]>summary {background:#e7f0e7;color:#174b47}
-.editorial .atlas-samples .ed-workbench {display:grid;grid-template-columns:minmax(136px,.25fr) minmax(0,1fr)}
-.editorial .atlas-samples .ed-workbench .wb-rail>div {grid-template-columns:1fr}
-.editorial .atlas-samples .ed-workbench .wb-stage {min-height:344px;align-content:start;padding:clamp(13px,2.4vw,25px)}
-.editorial .wb-actions :where(button,a),.editorial .wb-search input {min-height:44px}
-.editorial .wb-search input {font-size:1rem}
-.editorial .wb-search input:focus {border-color:#37786a}
-.editorial .wb-search a,.editorial .wb-project-links a {min-height:42px}
+.editorial .wb-project-links a {min-height:42px}
 .editorial .wb-hit {background:#dcefe5}
-.editorial .ed-action-icon,.editorial .sy-ne {display:inline-block}
+.editorial .sy-ne {display:inline-block}
 .editorial .sy-head nav a:not(.atlas-pdf) {
   text-decoration:underline;text-decoration-thickness:1px;
   text-decoration-color:transparent;text-underline-offset:5px
 }
 .editorial .sy-head nav a:focus-visible:not(.atlas-pdf) {text-decoration-color:currentColor}
-.editorial .wb-station-title>a {display:inline-flex;align-items:center;justify-content:flex-end;min-height:40px}
-@media(max-width:760px) {
-  .editorial .atlas-samples .ed-workbench {grid-template-columns:1fr;gap:6px}
-  .editorial .atlas-samples .ed-workbench .wb-rail>div {grid-template-columns:repeat(2,minmax(0,1fr))}
-  .editorial .atlas-samples .ed-workbench .wb-stage {min-height:330px}
-  .editorial .wb-station-title>a {max-width:11ch}
-}
 @media(max-width:390px) {
   .editorial .atlas-views>button {padding-inline:7px}
-  .editorial .atlas-samples .ed-workbench .wb-stage {min-height:374px}
 }
 @keyframes ed-arrive {from {opacity:.22;transform:translateY(7px)} to {opacity:1;transform:none}}
 @keyframes ed-cards-arrive {from {opacity:.4;transform:translateY(4px)} to {opacity:1;transform:none}}
 @keyframes ed-rows-arrive {from {opacity:.4;transform:translateX(-5px)} to {opacity:1;transform:none}}
 @media(prefers-reduced-motion:no-preference){
-  .editorial .atlas-views::before,.editorial .ed-chevron,.editorial .ed-action-icon,.editorial a .sy-ne {transition:transform 200ms var(--ed-ease)}
-  .editorial .atlas-views button,.editorial summary,.editorial .wb-rail button,.editorial .wb-actions button,.editorial .wb-search input,.editorial .wb-search li>a,.editorial .atlas-pdf {
+  .editorial .atlas-views::before,.editorial .ed-chevron,.editorial a .sy-ne {transition:transform 200ms var(--ed-ease)}
+  .editorial .atlas-views button,.editorial summary,.editorial .atlas-pdf {
     transition:background-color 150ms var(--ed-ease),border-color 150ms var(--ed-ease),color 150ms var(--ed-ease),transform 120ms var(--ed-ease)
   }
   .editorial .sy-head nav a:not(.atlas-pdf) {transition:text-decoration-color 160ms ease}
-  .editorial .atlas-views button:active,.editorial .wb-rail button:active,.editorial .wb-actions button:active,.editorial .atlas-pdf:active {transform:scale(.975)}
+  .editorial .atlas-views button:active,.editorial .atlas-pdf:active {transform:scale(.975)}
   .editorial .atlas-catalogue[data-changed=true][data-view=plates] .atlas-project {animation:ed-cards-arrive 200ms var(--ed-ease) both}
   .editorial .atlas-catalogue[data-changed=true][data-view=list] .atlas-project {animation:ed-rows-arrive 200ms var(--ed-ease) both}
   .editorial .atlas-catalogue[data-changed=true] .atlas-project:nth-child(2) {animation-delay:16ms}
   .editorial .atlas-catalogue[data-changed=true] .atlas-project:nth-child(3) {animation-delay:32ms}
   .editorial .atlas-catalogue[data-changed=true] .atlas-project:nth-child(4) {animation-delay:48ms}
-  .editorial .atlas-evidence[open]>.atlas-evidence-body,.editorial .sy-index[open]>.ed-repo-list,.editorial .sy-repo[open]>ul,.editorial [data-engaged=true] .atlas-demo-in,.editorial .wb-hit strong {animation:ed-arrive 230ms var(--ed-ease) both}
+  .editorial .atlas-evidence[open]>.atlas-evidence-body,.editorial .sy-index[open]>.ed-repo-list,.editorial .sy-repo[open]>ul,.editorial .wb-hit strong {animation:ed-arrive 230ms var(--ed-ease) both}
 }
 @media(hover:hover){
   .editorial .sy-head nav a:hover:not(.atlas-pdf) {text-decoration-color:currentColor}
-  .editorial .atlas-views>button[aria-pressed=false]:hover,.editorial summary:hover,.editorial .wb-rail button[aria-pressed=false]:hover,.editorial .wb-search li>a:hover {background:var(--ed-feedback)}
-  .editorial .atlas-pdf:hover,.editorial .wb-actions button:hover {background:#236659}
+  .editorial .atlas-views>button[aria-pressed=false]:hover,.editorial summary:hover {background:var(--ed-feedback)}
+  .editorial .atlas-pdf:hover {background:#236659}
 }
 @media(hover:hover) and (prefers-reduced-motion:no-preference){
   .editorial a:hover .sy-ne {transform:translate(2px,-2px)}
-  .editorial .wb-actions button:hover .ed-action-icon {transform:translateX(3px)}
 }
 
 @media(max-width:520px) {
