@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import SdqCard from "@/features/fieldtrials/SdqCard";
 
 const subscribe = () => () => {};
@@ -69,6 +69,37 @@ function DesignStation({id}:{id:string}) {
 export default function Workbench() {
   const mounted=useSyncExternalStore(subscribe,()=>true,()=>false);
   const [station,setStation]=useState<Station>("trace");
+  const mobileRef=useRef<HTMLDivElement>(null);
+
+  useEffect(()=>{
+    const root=mobileRef.current;
+    if (!root) return;
+    let anchor:{element:HTMLElement;top:number}|null=null;
+    let frame=0;
+    const remember=(event:Event)=>{
+      const summary=(event.target as Element|null)?.closest("summary");
+      if (summary instanceof HTMLElement) anchor={element:summary,top:summary.getBoundingClientRect().top};
+    };
+    const settle=()=>{
+      if (frame) return;
+      frame=requestAnimationFrame(()=>{
+        frame=0;
+        const details=anchor?.element.closest("details");
+        if (!anchor||!(details instanceof HTMLDetailsElement)||!details.open) return;
+        const delta=anchor.element.getBoundingClientRect().top-anchor.top;
+        if (Math.abs(delta)>1) window.scrollBy(0,delta);
+        anchor=null;
+      });
+    };
+    root.addEventListener("click",remember,true);
+    root.addEventListener("toggle",settle,true);
+    return()=>{
+      root.removeEventListener("click",remember,true);
+      root.removeEventListener("toggle",settle,true);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  },[]);
+
   return <section id="workbench" className="atlas-samples" aria-label="Interactive samples">
     <div className="atlas-frame">
       <p className="wb-overline atlas-frame-label"><span aria-hidden="true">✳</span> The workbench</p>
@@ -84,7 +115,7 @@ export default function Workbench() {
         {station==="trace"?<Cache interactive={mounted}/>:station==="find"?<SearchStation id="wb-query"/>:<DesignStation id="sample-lesson"/>}
       </div>
     </div>
-    <div className="atlas-mobile">
+    <div className="atlas-mobile" ref={mobileRef}>
       {stations.map((item,i)=><details name="field-samples" key={item.id} open={i===0?true:undefined} className="atlas-field" data-field={item.id}>
         <summary><span className="atlas-field-n" aria-hidden="true">0{i+1}</span><span><strong>{item.name}</strong><small>{item.project}</small></span><span className="atlas-field-switch" aria-hidden="true"/></summary>
         <div className="atlas-field-body">

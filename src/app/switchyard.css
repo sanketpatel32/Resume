@@ -624,3 +624,38 @@
  .wb-actions{flex-wrap:nowrap}
  .wb-actions p{flex:1;min-width:0}
 }
+
+/* Phone refinement: native field cards, readable single-column records, calm wayfinding. */
+@media(max-width:900px){
+ .atlas-cover{margin-top:8px}
+ .atlas-identity{padding-top:0}
+ .atlas-identity h1{margin:8px 0;letter-spacing:-.055em}
+ .atlas-jumps{margin-top:12px}
+ .atlas-jumps a{min-height:44px}
+ .atlas-field{scroll-margin-top:12px}
+ .atlas-field>summary{min-height:56px}
+ .atlas-field-body .wb-station-title a{min-height:44px}
+ .atlas-field-body .wb-search li>a{min-height:44px}
+}
+@media(max-width:700px){
+ .atlas-page .sy-head nav a:not(.atlas-pdf){display:none}
+ .atlas-page .sy-head nav{gap:0}
+ .atlas-page .atlas-pdf{min-height:44px;padding-inline:11px}
+}
+@media(max-width:440px){
+ .atlas-page .sy-bound{width:calc(100% - 24px)}
+ .atlas-catalogue,.atlas-catalogue[data-view=list]{grid-template-columns:1fr;gap:8px}
+ .atlas-catalogue .atlas-project,.atlas-catalogue[data-view=list] .atlas-project{padding:12px}
+ .atlas-project-head{font-size:.6rem}
+ .atlas-project a{min-height:44px}
+ .sy-exhibit-grid{grid-template-columns:1fr}
+ .sy-exhibit{display:grid;grid-template-columns:29% minmax(0,1fr)}
+ .sy-exhibit-art{align-content:center;min-height:100%;grid-template-rows:auto;align-items:center;padding:8px}
+ .sy-exhibit-art span{position:absolute;inset:auto auto 6px 8px;font-size:.42rem}
+ .sy-exhibit-art span:last-child{display:none}
+ .sy-exhibit-art svg{height:54px}
+ .sy-exhibit-body{padding:9px 10px 4px}
+ .sy-exhibit-body>a{min-height:44px}
+ .atlas-page .sy-contact{grid-template-columns:1fr;align-items:start;gap:8px}
+ .atlas-page .sy-contact-links a{min-height:44px}
+}
