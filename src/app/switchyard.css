@@ -637,7 +637,7 @@
  .atlas-field-body .wb-station-title a{min-height:44px}
  .atlas-field-body .wb-search li>a{min-height:44px}
 }
-@media(max-width:700px){
+@media(max-width:900px){
  .atlas-page .sy-head nav a:not(.atlas-pdf){display:none}
  .atlas-page .sy-head nav{gap:0}
  .atlas-page .atlas-pdf{min-height:44px;padding-inline:11px}
