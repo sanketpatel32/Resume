@@ -236,14 +236,15 @@ test("Homepage only features the approved public project selection", { skip: !is
   ]);
 });
 
-test("Homepage leads with a source-linked project lesson before the project index and contributions", { skip: !isServerRunning }, async () => {
+test("Homepage leads with the project index, not an embedded lesson", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const body = (await res.text()).match(/<main[\s\S]*?<\/main>/i)?.[0] || "";
   assert.match(body, /id="sy-title">Sanket/);
   assert.match(body, /name="field-samples"/);
-  assert.match(body, /id="ed-feature-title"/);
+  assert.match(body, /id="project-learn"/);
+  assert.doesNotMatch(body, /Lesson 17|nightly scan|sample-lesson|ft-card-choices/i);
   assert.doesNotMatch(body, /atlas-signature|atlas-plate|sy-exhibit-art/);
-  assert.equal((body.match(/<details class="atlas-evidence">/g) || []).length, 3);
+  assert.equal((body.match(/<details class="atlas-evidence">/g) || []).length, 4);
   assert.match(body, /class="atlas-catalogue" data-view="plates"/);
   assert.match(body, /id="workbench"/);
   assert.match(body, /Can we skip the download\?/);
@@ -253,7 +254,7 @@ test("Homepage leads with a source-linked project lesson before the project inde
     assert.ok(body.includes(`href="#project-${id}"`));
     assert.ok(body.includes(`id="project-${id}"`));
   }
-  assert.ok(body.indexOf('id="ed-feature-title"') < body.indexOf('id="work"'));
+  assert.ok(body.indexOf('id="sy-title"') < body.indexOf('id="work"'));
   assert.ok(body.indexOf('id="work"') < body.indexOf('id="workbench"'));
   assert.ok(body.indexOf('id="work"') < body.indexOf('id="open-source"'));
   assert.match(body, /github.com\/sanketpatel32\/Small-server/);
