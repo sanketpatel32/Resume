@@ -718,5 +718,5 @@
  .atlas-jumps a{min-height:38px}
 }
 @media(max-width:360px){
- .atlas-field-body .wb-station-title>a{width:100%}
+ .atlas-field-body .wb-station-title>a{width:100%;max-width:none}
 }
