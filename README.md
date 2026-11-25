@@ -25,7 +25,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 The home page puts owned projects first. The **System Design Quest** illustration
 shows concepts in the course, not its production topology. The optional practice
 card uses the original lesson 17, with no score or tracking. Other featured work
-includes UI Vault, Blunt Code, and YumeDock. The contribution gallery ranks
+includes UI Vault, Blunt Code, and Small Server. The contribution gallery ranks
 curated exhibits by their repositories' GitHub stars and shows a specific merged
 PR for each. The expandable index contains every PR in the snapshot. Navigation,
 the index and the evidence links work without client-side JavaScript.

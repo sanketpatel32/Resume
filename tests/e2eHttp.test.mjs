@@ -223,26 +223,23 @@ test("17. GET /privacy.md returns 200 and text/markdown with >500 chars", { skip
   assert.ok(md.includes("Privacy Policy"));
 });
 
-test("Private work is credited without naming projects or exposing links", { skip: !isServerRunning }, async () => {
+test("Homepage only features the approved public project selection", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const html = await res.text();
   const body = (html.match(/<body[\s\S]*<\/body>/i)?.[0] || "").replace(/<script[\s\S]*?<\/script>/g, "");
   const nodes = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
     .map(m => JSON.parse(m[1])).flatMap(doc => doc["@graph"] ?? [doc]);
   const featured = nodes.find(node => node["@type"] === "ItemList")?.itemListElement;
-  const privateRow = body.match(/<article[^>]*class="sy-private is-private"[^>]*>[\s\S]*?<\/article>/)?.[0];
-  assert.ok(privateRow, "Acknowledge private apps without making them featured links");
-  assert.doesNotMatch(privateRow, /href=|<img\b/);
-  assert.doesNotMatch(body, /AI Hiring Platform|Voice AI Platform|mdpeek/i);
+  assert.doesNotMatch(body, /AI Hiring Platform|Voice AI Platform|mdpeek|yumedock/i);
   assert.deepEqual(featured.map(entry => entry.item.name.split(" - ")[0]), [
-    "System Design Quest", "UI Vault", "Blunt Code", "YumeDock",
+    "System Design Quest", "UI Vault", "Blunt Code", "Small Server",
   ]);
 });
 
 test("Homepage presents the real owned work first, with a working lesson destination", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const body = (await res.text()).match(/<main[\s\S]*<\/main>/i)?.[0] || "";
-  assert.match(body, /id="sy-title">I build tools/);
+  assert.match(body, /id="sy-title">Tools you can/);
   assert.match(body, /<h3 id="sy-quest">System<br\/?>(?:<!-- -->)?Design Quest/);
   assert.match(body, /href="#sample-lesson"/);
   assert.match(body, /id="sample-lesson"/);
@@ -252,6 +249,7 @@ test("Homepage presents the real owned work first, with a working lesson destina
   }
   assert.ok(body.indexOf('id="work"') < body.indexOf('id="open-source"'));
   assert.match(body, /\/lab\/cache/);
+  assert.match(body, /304 <small>NOT MODIFIED/);
   assert.match(body, /github.com\/sanketpatel32\/Small-server/);
   assert.match(body, /github.com\/sanketpatel32\/Portal/);
 });
@@ -261,7 +259,8 @@ test("Contribution gallery has star-ranked exhibits, precise repository stars an
   const body = (await res.text()).match(/<main[\s\S]*<\/main>/i)?.[0] || "";
   const { default: snapshot } = await import("../src/features/fieldtrials/contributions.json", { with: { type: "json" } });
   assert.ok(body.includes('id="open-source"'));
-  assert.match(body, new RegExp(`<strong>${snapshot.meta.total}</strong> public pull requests merged across <strong>${snapshot.meta.repoCount}</strong> external repositories`));
+  assert.ok(body.includes(`<dt>${snapshot.meta.total}</dt><dd>merged PRs</dd>`));
+  assert.ok(body.includes(`<dt>${snapshot.meta.repoCount}</dt><dd>outside repos</dd>`));
   assert.ok(body.includes("Public GitHub snapshot"));
   assert.ok(body.includes(`dateTime="${snapshot.meta.cutoffUTC}"`));
   assert.equal((body.match(/class="sy-repo"/g) || []).length, snapshot.meta.repoCount);
@@ -271,7 +270,7 @@ test("Contribution gallery has star-ranked exhibits, precise repository stars an
   assert.equal((gallery.match(/class="sy-exhibit"/g) || []).length, 6);
   const starCounts = [...gallery.matchAll(/data-repo-stars="(\d+)"/g)].map(m => Number(m[1]));
   assert.deepEqual(starCounts, ordered.slice(0, 6).map(row => metadata.stars[row.repo]));
-  assert.ok(body.includes("Stars belong to the repositories, not to my PRs"));
+  assert.ok(body.includes("Stars belong to the repositories, not the PRs"));
   assert.ok(body.includes("https://github.com/C4rohan/Lampline/pull/135"));
   for (const row of snapshot.repos) {
     assert.ok(body.includes(`href="https://github.com/${row.repo}"`));

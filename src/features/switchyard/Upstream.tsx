@@ -44,13 +44,15 @@ export default function Upstream() {
   const featured = ranked.slice(0, 6).filter(row => exhibits[row.repo]);
   return (
     <section id="open-source" className="sy-oss" aria-labelledby="sy-oss-title">
-      <div className="sy-section-label"><p>Open-source contributions / Gallery</p><a href="https://github.com/sanketpatel32">GitHub profile <span aria-hidden="true" className="sy-ne"/></a></div>
+      <div className="sy-section-label"><p>02 / Open-source gallery</p><a href="https://github.com/sanketpatel32">GitHub profile <span aria-hidden="true" className="sy-ne"/></a></div>
       <div className="sy-oss-intro">
         <h2 id="sy-oss-title">Beyond<br/>my own repos.</h2>
-        <div><p><strong>{data.meta.total}</strong> public pull requests merged across <strong>{data.meta.repoCount}</strong> external repositories in this snapshot.</p>
-        <p>Explore one real contribution per project. Stars belong to the repositories, not to my PRs.</p></div>
+        <div className="sy-oss-proof">
+          <dl><div><dt>{data.meta.total}</dt><dd>merged PRs</dd></div><div><dt>{data.meta.repoCount}</dt><dd>outside repos</dd></div></dl>
+          <p>One merged change from each featured repo. Stars belong to the repositories, not the PRs.</p>
+        </div>
       </div>
-      <p className="sy-gallery-caption">Selected contributions <span>Sorted by GitHub stars ↓</span></p>
+      <p className="sy-gallery-caption">Six exhibits <span>By GitHub stars ↓</span></p>
       <div className="sy-exhibit-grid">
       {featured.map((row, i) => {
         const ex = exhibits[row.repo];

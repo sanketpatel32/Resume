@@ -57,19 +57,22 @@ export default function SwitchyardPage() {
       <main id="main-content" tabIndex={-1} className="sy-bound">
         <section className="sy-hero" aria-labelledby="sy-title">
           <p className="sy-kicker"><i aria-hidden="true"/> Software developer <span aria-hidden="true">/</span> Open-source contributor</p>
-          <h1 id="sy-title">I build tools.<br/> <em>Look inside.</em></h1>
+          <h1 id="sy-title">Tools you can<br className="sy-hero-break"/> <em>look inside.</em></h1>
           <div className="sy-hero-aside">
-            <p>An interactive system-design course, a catalogue of UI patterns, and native tools that make everyday work easier.</p>
-            <a href="#work">Explore my projects&nbsp; <span aria-hidden="true">↓</span></a>
+            <p>I’m Sanket, a software developer building tools for how people learn, build, and debug software.</p>
+            <div className="sy-hero-links">
+              <a href="#work">See what I build <span aria-hidden="true">↓</span></a>
+              <a href="#open-source">See where I contribute <span aria-hidden="true">↓</span></a>
+            </div>
           </div>
         </section>
         <section className="sy-work" id="work" aria-labelledby="sy-work-title">
-          <div className="sy-section-label"><h2 id="sy-work-title">Selected projects</h2><span>01 — 04</span></div>
+          <div className="sy-section-label"><h2 id="sy-work-title">Projects I built</h2><span>01 / 04</span></div>
           <article className="sy-feature" aria-labelledby="sy-quest">
             <div className="sy-feature-copy">
               <p className="sy-label"><span>01</span> Interactive learning</p>
               <h3 id="sy-quest">System<br/>Design Quest</h3>
-              <p>A play-through course for learning how systems behave under load, one decision at a time.</p>
+              <p>Learn system design by making the calls yourself: what to cache, when to queue, and what breaks under load.</p>
               <div className="sy-actions"><a className="sy-trylink" href="#sample-lesson">Try a lesson <span aria-hidden="true">↓</span></a><a className="sy-darklink" href={`${gh}/system-design-quest`}>Source <span aria-hidden="true" className="sy-ne"/></a></div>
             </div>
             <div className="sy-art">
@@ -78,24 +81,19 @@ export default function SwitchyardPage() {
             </div>
           </article>
           <details className="sy-experiment">
-            <summary><span>Try a lesson from System Design Quest</span><span aria-hidden="true">+</span></summary>
+            <summary><span>Lesson 17: A nightly scan meets the cache</span><span aria-hidden="true">+</span></summary>
             <div id="sample-lesson" className="sy-lesson">
-              <p>Lesson 17 · A nightly scan meets the cache</p>
+              
               <SdqCard/>
               <a href={`${gh}/system-design-quest/blob/4d83a6c97a34e11b362b609d0c3f13e06fbf8670/scripts/authored/interactive/r1-r4.json#L374-L397`}>See the original lesson</a>
             </div>
           </details>
           <ProjectCases/>
-          <article className="sy-private is-private" aria-labelledby="sy-private-title">
-            <h3 id="sy-private-title">Two projects I can’t show</h3>
-            <p>I’ve also built two private applications from scratch, from the interface and API to real-time services. Product names and screenshots stay private.</p>
-          </article>
         </section>
         <Upstream/>
-        <section className="sy-contact" aria-labelledby="sy-contact">
-          <div><p className="sy-label">Sanket Patel</p><h2 id="sy-contact">Let’s talk shop.</h2></div>
-          <div><p>I work across interfaces, APIs and infrastructure. For experience, education and the full record, start with my résumé.</p>
-          <a href="/resume.pdf">Résumé (PDF) <span aria-hidden="true" className="sy-ne"/></a><a href="/contact">Contact <span aria-hidden="true" className="sy-ne"/></a></div>
+        <section className="sy-contact" aria-labelledby="sy-contact-title">
+          <div><p className="sy-label">Sanket Patel</p><h2 id="sy-contact-title">Let’s talk shop.</h2></div>
+          <div className="sy-contact-links"><a href="/resume.pdf">Résumé (PDF) <span aria-hidden="true" className="sy-ne"/></a><a href="/contact">Contact <span aria-hidden="true" className="sy-ne"/></a></div>
         </section>
       </main>
       <footer className="sy-bound sy-foot"><a href={gh}>GitHub</a><a href="https://www.linkedin.com/in/sanketpatel32/">LinkedIn</a><a href="/about">About</a><a href="/privacy">Privacy</a></footer>
