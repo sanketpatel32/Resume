@@ -721,3 +721,10 @@
  .atlas-field-body .wb-station-title>a{width:100%;max-width:none}
 }
 .atlas-samples .wb-station-title a{gap:4px}
+@media(min-width:901px){
+ .atlas-catalogue-head{padding:10px 0 12px}
+ .atlas-plate{margin-top:11px}
+ .atlas-project h3{margin:9px 0 5px}
+ .atlas-project p{margin-bottom:8px}
+ .atlas-project a{min-height:34px}
+}
