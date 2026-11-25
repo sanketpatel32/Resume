@@ -99,12 +99,21 @@ export default function Workbench() {
           void closing.offsetHeight;
           closing.style.transition="height 220ms ease";
           closing.style.height=`${end}px`;
+          let stabilizing=true;
+          const stabilize=()=>{
+            if (!stabilizing||!anchor) return;
+            const delta=anchor.element.getBoundingClientRect().top-anchor.top;
+            if (Math.abs(delta)>1) window.scrollBy(0,delta);
+            if (closing.classList.contains("atlas-collapsing")) requestAnimationFrame(stabilize);
+          };
           const cleanup=()=>{
+            stabilizing=false;
             closing.classList.remove("atlas-collapsing");
             closing.style.height="";
             closing.style.overflow="";
             closing.style.transition="";
           };
+          requestAnimationFrame(stabilize);
           closing.addEventListener("transitionend",cleanup,{once:true});
           window.setTimeout(cleanup,280);
           anchor=null;
