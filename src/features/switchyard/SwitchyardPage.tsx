@@ -1,47 +1,53 @@
 import Upstream from "./Upstream";
 import Workbench from "./Workbench";
+import AtlasProjects from "./AtlasProjects";
+import contributionData from "@/features/fieldtrials/contributions.json";
 
 const gh = "https://github.com/sanketpatel32";
-const projects = [
-  {id:"decide", n:"01", title:"System Design Quest", kind:"Learning tool", color:"mint", description:"A course where learners make architectural decisions and see the trade-offs, instead of memorizing the answers.", href:gh+"/system-design-quest"},
-  {id:"find", n:"02", title:"UI Vault", kind:"Component catalogue", color:"lilac", description:"One place to search 3,157 UI components from 33 sources, with attribution, license information and live previews.", href:gh+"/ui-vault", extra:["Open catalogue","https://sanketpatel32.github.io/ui-vault/"]},
-  {id:"review", n:"03", title:"Blunt Code", kind:"Local code review", color:"rose", description:"A local review workbench that tracks findings against a baseline and exports them as SARIF.", href:gh+"/Blunt-code", extra:["Windows release",gh+"/Blunt-code/releases/tag/v0.52.0"]},
-  {id:"trace", n:"04", title:"Small Server", kind:"HTTP workbench", color:"sand", description:"A single Go binary for inspecting webhooks and experimenting with HTTP behavior like cache validation.", href:gh+"/Small-server"},
+
+const dispatches = [
+  ["C4rohan/Lampline",121,"Lampline","A pre-commit hook that fails on lint findings by default."],
+  ["LibrePhotos/librephotos",3106,"LibrePhotos","Share links that stop working when they expire."],
+  ["nextcloud/spreed",20467,"Nextcloud Talk","Reaction notifications that respect subscriptions."],
 ] as const;
+
+function Ledger() {
+  return <aside className="atlas-ledger" aria-labelledby="atlas-ledger-title">
+    <div className="atlas-frame"><p className="wb-overline">03 / Upstream</p><span>GitHub snapshot</span></div>
+    <h2 id="atlas-ledger-title">Merged<br/>upstream.</h2>
+    <dl><div><dt>{contributionData.meta.total}</dt><dd>merged PRs</dd></div><div><dt>{contributionData.meta.repoCount}</dt><dd>outside repos</dd></div></dl>
+    <ul>{dispatches.map(([repo,number,name,what])=>{
+      const merge=contributionData.repos.find(p=>p.repo===repo)?.merges.find(p=>p.number===number);
+      return merge?<li key={repo}><a href={merge.url}><strong>{name}</strong><span>#{number} <i className="sy-ne" aria-hidden="true"/></span></a><p>{what}</p></li>:null;
+    })}</ul>
+    <a href="#open-source" className="atlas-all">See the contribution gallery <span aria-hidden="true">↓</span></a>
+  </aside>;
+}
 
 export default function SwitchyardPage() {
   return (
-    <div className="switchyard wb-page" id="top">
+    <div className="switchyard wb-page atlas-page" id="top">
       <header className="sy-head sy-bound">
         <a className="sy-brand" href="#top" aria-label="Sanket Patel, home"><span className="wb-monogram" aria-hidden="true">SP<span>.</span></span><span>Sanket Patel</span></a>
-        <nav aria-label="Primary"><a href="#work">Projects</a><a href="#open-source">Open source</a><a href="/resume.pdf">Résumé <span aria-hidden="true" className="sy-ne"/></a></nav>
+        <p className="atlas-head-tag wb-overline">Build atlas / personal portfolio</p>
+        <nav aria-label="Primary"><a href="#work">Projects</a><a href="#open-source">Open source</a><a className="atlas-pdf" href="/resume.pdf">Résumé <span aria-hidden="true" className="sy-ne"/></a></nav>
       </header>
       <main id="main-content" tabIndex={-1} className="sy-bound">
-        <section className="wb-intro" aria-labelledby="sy-title">
-          <div>
-            <p className="wb-overline wb-eyebrow">Software developer <span aria-hidden="true">/</span> Open-source contributor</p>
-            <h1 id="sy-title">Try the work<span>.</span></h1>
-          </div>
-          <div className="wb-about">
-            <p>I’m Sanket. I build tools for learning system design, finding UI patterns, and debugging software.</p>
-            <a href="#workbench">Pick an experiment <span aria-hidden="true">↓</span></a>
-          </div>
-        </section>
-        <Workbench/>
-        <section className="wb-index" id="work" aria-labelledby="wb-index-title">
-          <div className="wb-heading"><p className="wb-overline">01 / Owned work</p><h2 id="wb-index-title">What I built.</h2></div>
-          <div className="wb-project-grid">{projects.map(p=>
-            <article id={"project-"+p.id} className="wb-project" key={p.id} data-color={p.color}>
-              <div className="wb-project-index"><b>{p.n}</b><span>{p.kind}</span></div>
-              <h3>{p.title}</h3><p>{p.description}</p>
-              <div className="wb-project-links"><a href={p.href}>Source <span className="sy-ne" aria-hidden="true"/></a>{"extra" in p&&<a href={p.extra[1]}>{p.extra[0]} <span className="sy-ne" aria-hidden="true"/></a>}</div>
-            </article>
-          )}</div>
-          <p className="wb-also"><strong>Also built:</strong> <a href={gh+"/Portal"}>AuraFlow</a>, a self-hosted workspace for developer tools.</p>
-        </section>
+        <div className="atlas-cover">
+          <section className="atlas-identity" aria-labelledby="sy-title">
+            <p className="wb-overline">01 / Software developer</p>
+            <h1 id="sy-title">Sanket<br/> Patel<span>.</span></h1>
+            <p className="atlas-deck">I build developer tools and contribute to open source. Try the work, then read what went into it.</p>
+            <div className="atlas-jumps"><a href="#workbench"><span>01</span> Try it <b aria-hidden="true">↓</b></a><a href="#work"><span>02</span> Projects <b aria-hidden="true">↓</b></a><a href="#open-source"><span>03</span> Open source <b aria-hidden="true">↓</b></a></div>
+            <svg className="atlas-signature" viewBox="0 0 240 64" fill="none" aria-hidden="true"><path d="M2 32h74l21-22h140M2 32h235M2 32h74l21 22h140" stroke="currentColor"/><circle cx="76" cy="32" r="4" fill="currentColor"/><circle cx="196" cy="10" r="4" fill="currentColor"/><circle cx="158" cy="32" r="4" fill="currentColor"/><circle cx="217" cy="54" r="4" fill="currentColor"/></svg>
+          </section>
+          <Workbench/>
+          <Ledger/>
+        </div>
+        <AtlasProjects/>
         <Upstream/>
         <section className="sy-contact wb-contact" aria-labelledby="sy-contact-title">
-          <div><p className="wb-overline">03 / Contact</p><h2 id="sy-contact-title">Let’s talk shop.</h2></div>
+          <div><p className="wb-overline">Contact / Sanket Patel</p><h2 id="sy-contact-title">Let’s talk shop.</h2></div>
           <div className="sy-contact-links"><a href="/resume.pdf">Résumé (PDF) <span aria-hidden="true" className="sy-ne"/></a><a href="/contact">Contact <span aria-hidden="true" className="sy-ne"/></a></div>
         </section>
       </main>

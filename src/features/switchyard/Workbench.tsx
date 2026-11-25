@@ -42,7 +42,7 @@ function Cache({ interactive }: { interactive: boolean }) {
   </div>;
 }
 
-function SearchStation() {
+function SearchStation({ id }: { id: string }) {
   const [query,setQuery]=useState("");
   const tokens=query.toLowerCase().trim().split(/\s+/).filter(Boolean);
   const matched=picks.filter(p=>tokens.every(t=>(p.name+" "+p.creator+" "+p.tags).toLowerCase().includes(t)));
@@ -52,28 +52,45 @@ function SearchStation() {
       <div><p className="wb-overline">02 / UI Vault</p><h2>Find an interface pattern.</h2></div>
       <a href={catalogue+"/"}>Open UI Vault <span aria-hidden="true" className="sy-ne"/></a>
     </div>
-    <label htmlFor="wb-query">Search six real entries</label>
-    <input type="search" autoComplete="off" id="wb-query" placeholder="Try “blur”, “dock”, or “layout”" value={query} onChange={e=>setQuery(e.target.value)}/>
+    <label htmlFor={id}>Search six real entries</label>
+    <input type="search" autoComplete="off" id={id} placeholder="Try “blur”, “dock”, or “layout”" value={query} onChange={e=>setQuery(e.target.value)}/>
     <p role="status" className="wb-search-count">{matched.length? (matched.length>visible.length?`Showing ${visible.length} of ${matched.length} matches`:`${matched.length} ${matched.length===1?"match":"matches"}`):"No matches. Try a pattern or creator name."}</p>
     <ul>{visible.map(p=><li key={p.slug}><a href={catalogue+"/component/"+p.slug}><strong>{p.name}</strong><span>{p.creator} <span aria-hidden="true" className="sy-ne"/></span></a></li>)}</ul>
   </div>;
 }
 
+function DesignStation({id}:{id:string}) {
+  return <div id={id} className="wb-decide sy-lesson">
+    <div className="wb-station-title"><div><p className="wb-overline">03 / System Design Quest · Lesson 17</p><h2>A nightly scan meets the cache.</h2></div>
+    <a href="https://github.com/sanketpatel32/system-design-quest/blob/4d83a6c97a34e11b362b609d0c3f13e06fbf8670/scripts/authored/interactive/r1-r4.json#L374-L397">Original lesson <span aria-hidden="true" className="sy-ne"/></a></div>
+    <SdqCard/>
+  </div>;
+}
 export default function Workbench() {
   const mounted=useSyncExternalStore(subscribe,()=>true,()=>false);
   const [station,setStation]=useState<Station>("trace");
-  return <section id="workbench" className="wb-shell" aria-label="Try the work">
-    <div className="wb-rail">
-      <p className="wb-overline"><i/> Interactive samples</p>
-      {mounted?<div role="group" aria-label="Choose an experiment">{stations.map((item,i)=><button type="button" aria-pressed={item.id===station} key={item.id} onClick={()=>setStation(item.id)}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></button>)}</div>:
-      <div aria-label="Project links">{stations.map((item,i)=><a key={item.id} href={"#project-"+item.id}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></a>)}</div>}
+  return <section id="workbench" className="atlas-samples" aria-label="Interactive samples">
+    <div className="atlas-frame">
+      <p className="wb-overline atlas-frame-label"><span aria-hidden="true">✳</span> The workbench</p>
+      <p>Three things to try</p>
     </div>
-    <div className="wb-stage" key={station}>
-      {station==="trace"?<Cache interactive={mounted}/>:station==="find"?<SearchStation/>:<div id="sample-lesson" className="wb-decide sy-lesson">
-        <div className="wb-station-title"><div><p className="wb-overline">03 / System Design Quest · Lesson 17</p><h2>A nightly scan meets the cache.</h2></div>
-        <a href="https://github.com/sanketpatel32/system-design-quest/blob/4d83a6c97a34e11b362b609d0c3f13e06fbf8670/scripts/authored/interactive/r1-r4.json#L374-L397">Original lesson <span aria-hidden="true" className="sy-ne"/></a></div>
-        <SdqCard/>
-      </div>}
+    <div className="wb-shell atlas-desktop">
+      <div className="wb-rail">
+        <p className="wb-overline"><i/> Select a sample</p>
+        {mounted?<div role="group" aria-label="Choose an experiment">{stations.map((item,i)=><button type="button" aria-pressed={item.id===station} key={item.id} onClick={()=>setStation(item.id)}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></button>)}</div>:
+        <div aria-label="Project links">{stations.map((item,i)=><a key={item.id} href={"#project-"+item.id}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></a>)}</div>}
+      </div>
+      <div className="wb-stage" key={station}>
+        {station==="trace"?<Cache interactive={mounted}/>:station==="find"?<SearchStation id="wb-query"/>:<DesignStation id="sample-lesson"/>}
+      </div>
+    </div>
+    <div className="atlas-mobile">
+      {stations.map((item,i)=><details name="field-samples" key={item.id} open={i===0?true:undefined} className="atlas-field" data-field={item.id}>
+        <summary><span className="atlas-field-n" aria-hidden="true">0{i+1}</span><span><strong>{item.name}</strong><small>{item.project}</small></span><span className="atlas-field-switch" aria-hidden="true"/></summary>
+        <div className="atlas-field-body">
+          {item.id==="trace"?<Cache interactive={mounted}/>:item.id==="find"?(mounted?<SearchStation id="mobile-query"/>:<a href={catalogue+"/"}>Open UI Vault</a>):<DesignStation id="mobile-lesson"/>}
+        </div>
+      </details>)}
     </div>
   </section>;
 }

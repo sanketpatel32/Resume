@@ -239,7 +239,10 @@ test("Homepage only features the approved public project selection", { skip: !is
 test("Homepage starts with a source-linked workbench before projects and contributions", { skip: !isServerRunning }, async () => {
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const body = (await res.text()).match(/<main[\s\S]*?<\/main>/i)?.[0] || "";
-  assert.match(body, /id="sy-title">Try the work/);
+  assert.match(body, /id="sy-title">Sanket/);
+  assert.match(body, /name="field-samples"/);
+  assert.match(body, /class="atlas-ledger"/);
+  assert.match(body, /class="atlas-catalogue" data-view="plates"/);
   assert.match(body, /id="workbench"/);
   assert.match(body, /Can we skip the download\?/);
   assert.match(body, /ETag \+ JSON body/);
