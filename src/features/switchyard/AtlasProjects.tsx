@@ -14,17 +14,21 @@ const projects = [
 export default function AtlasProjects() {
   const ready=useSyncExternalStore(subscribe,()=>true,()=>false);
   const [view,setView]=useState<"plates"|"list">("plates");
+  const [changed,setChanged]=useState(false);
+  function changeView(next: typeof view) {
+    if (view !== next) { setChanged(true); setView(next); }
+  }
   return <section className="atlas-projects wb-index" id="work" aria-labelledby="wb-index-title">
     <div className="atlas-catalogue-head">
       <div className="atlas-catalogue-title"><p className="wb-overline">01 / Selected work</p><h2 id="wb-index-title">Selected projects.</h2></div>
-      {ready&&<div className="atlas-views" role="group" aria-label="Project view"><button type="button" onClick={()=>setView("plates")} aria-pressed={view==="plates"}>Cards</button><button type="button" onClick={()=>setView("list")} aria-pressed={view==="list"}>List</button></div>}
+      <div className="atlas-views" data-ready={ready} data-view={view} role="group" aria-label="Project view"><button type="button" onClick={()=>changeView("plates")} aria-pressed={view==="plates"}>Cards</button><button type="button" onClick={()=>changeView("list")} aria-pressed={view==="list"}>List</button></div>
     </div>
-    <div className="atlas-catalogue" data-view={view}>{projects.map(p=>
+    <div className="atlas-catalogue" data-view={view} data-changed={changed}>{projects.map(p=>
       <article id={"project-"+p.id} className="atlas-project" key={p.id} data-color={p.color}>
         <div className="atlas-project-head"><b>{p.n}</b><span>{p.kind}</span></div>
         <h3>{p.title}</h3><p>{p.description}</p>
         <details className="atlas-evidence">
-          <summary>What to look at <span aria-hidden="true">+</span></summary>
+          <summary>What to look at <span aria-hidden="true" className="ed-chevron"/></summary>
           <div className="atlas-evidence-body"><strong>{p.proofTitle}</strong><p>{p.proof}</p><a href={p.evidenceHref}>{p.evidence} <span aria-hidden="true">↗</span></a></div>
         </details>
         <div className="wb-project-links"><a href={p.href}>Source <span className="sy-ne" aria-hidden="true"/></a></div>

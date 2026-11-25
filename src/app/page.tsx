@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./switchyard.css";
 import SwitchyardPage from "@/features/switchyard/SwitchyardPage";
 import { resumeContent } from "@/features/resume/content";
 import { buildFeaturedItemList } from "@/features/resume/jsonld/personJsonLd";

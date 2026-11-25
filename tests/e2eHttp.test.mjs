@@ -240,7 +240,8 @@ test("Homepage leads with the project index, not an embedded lesson", { skip: !i
   const res = await fetch(`${BASE}/`, { headers: { Accept: "text/html" } });
   const body = (await res.text()).match(/<main[\s\S]*?<\/main>/i)?.[0] || "";
   assert.match(body, /id="sy-title">Sanket/);
-  assert.match(body, /name="field-samples"/);
+  assert.equal((body.match(/class="wb-shell ed-workbench"/g) || []).length, 1);
+  assert.doesNotMatch(body, /name="field-samples"|atlas-mobile|atlas-desktop/);
   assert.match(body, /id="project-learn"/);
   assert.doesNotMatch(body, /Lesson 17|nightly scan|sample-lesson|ft-card-choices/i);
   assert.doesNotMatch(body, /atlas-signature|atlas-plate|sy-exhibit-art/);

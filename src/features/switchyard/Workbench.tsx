@@ -33,7 +33,7 @@ function Cache({ interactive }: { interactive: boolean }) {
       <div className={"wb-packet "+(sent?"wb-hit":"wb-pending")}><span>02 <code>If-None-Match</code></span><strong key={sent?"hit":"wait"}>{sent?"304":"—"} <small>{sent?"NOT MODIFIED":"WAITING"}</small></strong><code>{sent?"No body sent":"Ready to send"}</code></div>
     </div>
     <div className="wb-actions">
-      {interactive?<button type="button" onClick={()=>setSent(!sent)}>{sent?"Reset trace":"Send conditional request"} <span aria-hidden="true">{sent?"↺":"→"}</span></button>:<a href={labSource}>Read the request logic</a>}
+      {interactive?<button type="button" onClick={()=>setSent(!sent)}>{sent?"Reset trace":"Send conditional request"} <span className="ed-action-icon" aria-hidden="true">{sent?"↺":"→"}</span></button>:<a href={labSource}>Read the request logic</a>}
       <p role="status">{sent?"The ETag matches. Use the cached copy.":"Local simulation from Small Server’s cache handler."}</p>
     </div>
   </div>;
@@ -64,24 +64,16 @@ export default function Workbench() {
     <div className="atlas-frame">
       <p className="wb-overline atlas-frame-label">Two more things to try</p>
     </div>
-    <div className="wb-shell atlas-desktop">
+    <div className="wb-shell ed-workbench">
       <div className="wb-rail">
-        {mounted?<div role="group" aria-label="Choose an experiment">{stations.map((item,i)=><button type="button" aria-pressed={item.id===station} key={item.id} onClick={()=>{setEngaged(true);setStation(item.id);}}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></button>)}</div>:
+        {mounted?<div role="group" aria-label="Choose an experiment">{stations.map((item,i)=><button type="button" aria-pressed={item.id===station} key={item.id} onClick={()=>{if (item.id !== station) {setEngaged(true);setStation(item.id);}}}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></button>)}</div>:
         <div aria-label="Project links">{stations.map((item,i)=><a key={item.id} href={"#project-"+item.id}><span aria-hidden="true">0{i+1}</span><span>{item.name}<small>{item.project}</small></span></a>)}</div>}
       </div>
       <div className="wb-stage" data-station={station} data-engaged={engaged}>
         <div className="atlas-demo-in" key={station}>
-        {station==="trace"?<Cache interactive={mounted}/>:<SearchStation id="wb-query"/>}
+          {station==="trace"?<Cache interactive={mounted}/>:<SearchStation id="wb-query"/>}
         </div>
       </div>
-    </div>
-    <div className="atlas-mobile">
-      {stations.map((item,i)=><details name="field-samples" key={item.id} open={i===0?true:undefined} className="atlas-field" data-field={item.id}>
-        <summary><span className="atlas-field-n" aria-hidden="true">0{i+1}</span><span><strong>{item.name}</strong><small>{item.project}</small></span><span className="atlas-field-switch" aria-hidden="true"/></summary>
-        <div className="atlas-field-body">
-          {item.id==="trace"?<Cache interactive={mounted}/>:(mounted?<SearchStation id="mobile-query"/>:<a href={catalogue+"/"}>Open UI Vault</a>)}
-        </div>
-      </details>)}
     </div>
   </section>;
 }

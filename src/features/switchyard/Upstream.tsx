@@ -53,21 +53,21 @@ export default function Upstream() {
       })}
       </div>
       <details className="sy-all sy-index">
-        <summary>Browse all {data.meta.repoCount} repositories and {data.meta.total} merged PRs</summary>
-        {ranked.map(row => (
+        <summary>Browse all {data.meta.repoCount} repositories and {data.meta.total} merged PRs <span aria-hidden="true" className="ed-chevron"/></summary>
+        <div className="ed-repo-list">{ranked.map(row => (
           <details className="sy-repo" key={row.repo}>
             <summary>
               <span className="sy-repo-title">{row.repo}</span>
               <StarCount name={row.repo}/>
               <span className="sy-count">{row.count} merged</span>
-              <span aria-hidden="true" className="sy-plus"/>
+              <span aria-hidden="true" className="ed-chevron"/>
             </summary>
             <ul>
               <li><a href={`https://github.com/${row.repo}`}>Open repository <span aria-hidden="true" className="sy-ne"/></a></li>
               {[...row.merges].reverse().map(merge => <li key={merge.number}><a href={merge.url}><span>{merge.title}</span><span><time dateTime={merge.date}>{day.format(new Date(`${merge.date}T00:00:00Z`))}</time> · #{merge.number}</span></a></li>)}
             </ul>
           </details>
-        ))}
+        ))}</div>
       </details>
       <p className="sy-snapshot">Public GitHub snapshot · Stars checked <time dateTime={metadata.checkedUTC}>{day.format(new Date(metadata.checkedUTC))}</time> · Latest included merge <time dateTime={data.meta.cutoffUTC}>{day.format(new Date(data.meta.cutoffUTC))}</time> UTC · Not live.</p>
     </section>
